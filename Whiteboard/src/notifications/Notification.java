@@ -1,5 +1,8 @@
 package notifications;
 
+/*
+ * Notification Class
+ */
 public class Notification {
 	private String actionType; // Type of action
 	private String contentID; // Content key

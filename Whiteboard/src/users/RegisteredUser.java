@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import content.Content;
 import notifications.Notification;
 
+/*
+ * Registered User Class
+ */
 public class RegisteredUser extends User {
 	private String password; // User password
 	private String email; // User email

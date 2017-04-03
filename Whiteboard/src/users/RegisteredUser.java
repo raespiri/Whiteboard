@@ -3,14 +3,14 @@ package users;
 import java.util.ArrayList;
 
 import content.Content;
+import notifications.Notification;
 
 public class RegisteredUser extends User {
-	String password; // User password
-	String email; // User email
-	ArrayList<String> friends; // List of user's friends
-	ArrayList<String> classes; // List of user's classes
-	ArrayList<Notification> actions; // List of user's notifications
-	
+	private String password; // User password
+	private String email; // User email
+	private ArrayList<String> friends; // List of user's friends
+	private ArrayList<String> classes; // List of user's classes
+	private ArrayList<Notification> actions; // List of user's notifications
 	
 	// Constructor
 	public RegisteredUser() {

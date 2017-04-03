@@ -8,13 +8,13 @@ import content.Pin;
 public class Whiteboard extends Content{
 	private Image image;
 	private String name;
-	ArrayList<Pin> pins;
+	private ArrayList<Pin> pins;
 	
 	public Whiteboard(String contentID, String userID, String classID, Date time, String name, Image image) {
 		super(contentID, userID, classID, time);
 		this.setName(name);
 		this.setImage(image);
-		this.pins = new ArrayList<Pin>();
+		this.setPins(new ArrayList<Pin>());
 	}
 	public Image getImage() {
 		return image;
@@ -28,5 +28,14 @@ public class Whiteboard extends Content{
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+	public ArrayList<Pin> getPins() {
+		return pins;
+	}
+	public void setPins(ArrayList<Pin> pins) {
+		this.pins = pins;
+	}
+	public void addPin(Pin p)
+	{
+		pins.add(p);
+	}
 }

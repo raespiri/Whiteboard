@@ -9,9 +9,9 @@ public class Pin extends Content{
 	
 	public Pin(String contentID, String userID, String classID, Date time, String name, int x, int y) {
 		super(contentID, userID, classID, time);
-		this.x = x;
-		this.y = y;
-		this.name = name;
+		this.setX(x);
+		this.setY(y);
+		this.setName(name);
 	}
 
 	public String getName() {

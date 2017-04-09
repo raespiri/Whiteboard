@@ -1,0 +1,53 @@
+body {
+	margin: 0;
+	padding: 0;
+	background-color: #e3eae9;
+	font-family: "proxima-nova", -apple-system, Helvetica, Arial, sans-serif;
+}	
+
+.wrapper {
+	background-color: black;
+}
+
+#title {
+	color: #1c4d9b;
+	text-align: center;
+	text-shadow: 4px 4px 5px grey;
+	font-style: italic;
+	font-style: bold;
+	font-size: 40px;
+	margin: 0;
+	padding: 0;
+}
+
+h1 {
+	margin: 0;
+	padding: 0;
+}
+
+#header {
+	text-align: center;
+	color: white;
+	padding-top: 10%;
+	padding-bottom: 0;
+}
+
+#main {
+	text-align: center;
+	margin-left: auto;
+  	margin-right: auto;
+	background-color: #95FFDD;
+    width: 20%;
+    margin-top: 100px;
+    padding: 2cm;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+input {
+	color: #989898;
+}
+
+input:focus { 
+   color: black;
+}

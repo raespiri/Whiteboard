@@ -1,11 +1,14 @@
 @CHARSET "ISO-8859-1";
 
+body{
+	font: proxima-nova;
+}
 ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color:black;
+    background-color:blue;
 }
 
 li {
@@ -15,4 +18,25 @@ li {
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
+}
+
+#container{
+	width: 100%;
+	display: inline-block;
+}
+
+#leftside {
+	float:left;
+	padding: 10px;
+	display: block;
+	width:60%;
+	display: inline-block;
+}
+
+#rightside {
+	float:right;
+	padding: 10px;
+	display: block;
+	width:30%;
+	display: inline-block;
 }

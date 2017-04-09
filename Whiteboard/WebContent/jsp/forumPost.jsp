@@ -7,26 +7,25 @@
 <title>Insert title here</title>
 </head>
 <body>
-<ul style = "list-style: none;">
-	<li><form method = "GET" action = "forumServlet">
-			<input type="text" name="name" />
-			<input type="submit" name="submit" value="Submit" />
-	</form></li>
-	
+	<ul style = "list-style: none;">
+		<li><span><button class = "vote-button" id = "upvote" >UP</button><button style = "position: relative; top:30" class = "vote-button" id = "downvote">DOWN</button>
+		<img></img>
+		<a>Title of the post</a><a> Text of the postText of the postText of the postText of the postText of the post</a>
+	</span></li>
+	<li>Answers sorted by best</li>
 	<li><span><button class = "vote-button" id = "upvote" >UP</button><button style = "position: relative; top:30" class = "vote-button" id = "downvote">DOWN</button>
 		<img></img>
-		<a>Title of the post</a><a> Text of the post</a>
+		<a>Title of the reply</a><a> Text of the reply</a>
 	</span></li>
-	
 	<li><span><button class = "vote-button" id = "upvote" >UP</button><button style = "position: relative; top:30" class = "vote-button" id = "downvote">DOWN</button>
 		<img></img>
-		<a>Title of the post</a><a> Text of the post</a>
+		<a>Title of the reply</a><a> Text of the reply</a>
 	</span></li>
-	
 	<li><span><button class = "vote-button" id = "upvote" >UP</button><button style = "position: relative; top:30" class = "vote-button" id = "downvote">DOWN</button>
 		<img></img>
-		<a>Title of the post</a><a> Text of the post</a>
+		<a>Title of the reply</a><a> Text of the reply</a>
 	</span></li>
-</ul>
+	</ul>
+	
 </body>
 </html>

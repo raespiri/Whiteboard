@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+	<head>
+		<title>Whiteboard</title>
+
+		<script src="https://use.typekit.net/ofv3bwh.js"></script>
+		<script>try{Typekit.load({ async: true });}catch(e){}</script>
+
+		<link href="../css/whiteboard.css" rel="stylesheet" type="text/css">
+		<link href="../css/font-awesome.css" rel="stylesheet" type="text/css">
+	</head>
+	<body ontouchstart>
+		<header>
+			<div class="header__wrapper">
+				<div class="header__logo-container">
+					<div class="logo-container__logo"></div>
+				</div>
+				<ul class="header__navigation-container">
+					<li><button class="navigation__search"><i class="fa fa-search"></i></button></li>
+					<li><a class="navigation__courses">Courses</a></li>
+					<li><a class="navigation__settings">Settings</a></li>
+				</ul>
+			</div>
+		</header>
+		<section class="tabs">
+			<h1>CSCI 201</h1>
+			<ul class="tabs__container">
+				<li><button class="tab__button tab__button--selected">Whiteboard</button></li>
+				<li><button class="tab__button">Forum</button></li>
+				<li><button class="tab__button">Docs</button></li>
+			</ul>
+		</section>
+		<section class="whiteboard">
+			<div class="whiteboard__toolbar-container"></div>
+			<canvas class="whiteboard__canvas"></canvas>
+		</section>
+	</body>
+</html>

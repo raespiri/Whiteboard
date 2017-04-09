@@ -6,11 +6,8 @@ public class Instructor extends TeachersAssistant {
 	
 	private Vector<String> instructorClasses;
 	
-	{
-		instructorClasses = new Vector<String>();
-	}
 	public Instructor() {
-		// TODO Auto-generated constructor stub
+		instructorClasses = new Vector<String>();
 	}
 	
 	public TeachersAssistant createTA(String classID, String userID) {

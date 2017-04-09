@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+	<head>
+		<title>ViewSync Mono - Video Carousel</title>
+
+		<!-- Import standard header -->
+		{{> header}}
+
+		<link href="{{ assetPathCSS "sass/index.css" }}" rel="stylesheet" type="text/css">
+
+		<!-- Page Configuration -->
+		<script type="text/javascript">
+		let videos = [
+			{
+				url: "videos/video1.mp4",
+				title: "Portrait",
+				thumbnail: "{{ assetPathIMG "portrait.svg" }}",
+			},
+			{
+				url: "videos/video1.mp4",
+				title: "Office",
+				thumbnail: "{{ assetPathIMG "office.svg" }}",
+			},
+			{
+				url: "videos/video1.mp4",
+				title: "Architecture",
+				thumbnail: "{{ assetPathIMG "architecture.svg" }}",
+			},
+		]
+
+		let pageTitle = "Toyoda Documentary"
+		</script>
+	</head>
+	<body ontouchstart>
+		<header>
+			<div class="header__video-listing template">
+				<div class="video-listing__preview-wrapper">
+					<div class="video-listing__preview"></div>
+				</div>
+				<div class="video-listing__title">Video Title</div>
+			</div>
+		</header>
+		<section class="main">
+			<div class="main__player-container">
+				<video class="player template" controls playsinline></video>
+			</div>
+			<h1>Page Title</h1>
+		</section>
+
+		<!-- Scripts -->
+		<script src="{{ assetPathJS "index.js" }}" type="text/javascript"></script>
+
+		<!-- Import standard footer -->
+		{{> footer}}
+	</body>
+</html>

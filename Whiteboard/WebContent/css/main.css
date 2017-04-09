@@ -2,19 +2,20 @@
 
 #landing-header {
 	width: 100%;
-	margin:0px;
+	margin-left:0%;
+	margin-right:0%;
 	height: 30%;
-	padding:35px;
 	background: DimGrey;
 	position: absolute;
+	top:50px;
 	align: center;
 }
 
 #landing-footer {
 	width: 100%;
-	margin:0px;
+	margin-left:0%;
+	margin-right:0%;
 	height: 70%;
-	padding:35px;
 	background: LightGrey;
 	position: absolute;
 	top: 30%;
@@ -22,11 +23,11 @@
 }
 
 #central-landing-pane {
-	width: 80%;
+	width: 50%;
 	position: absolute;
-	margin-left: 50px;
-	margin-right: 50px;
-	top: 20px;
+	margin-left: 20%;
+	margin-right: 30%;	
+	top: 70px;
 }
 
 #virtual-classroom-header
@@ -58,3 +59,20 @@
 	background: Gray;
 	float: left;
 }
+
+.sign-button
+{
+	  background: none;
+  font-size: 1.3em;
+  font-weight: 700;
+  border: none;
+  outline: none;
+  padding: 5px 15px;
+  border: 3px solid black;
+  border-radius: 30px;
+  transition: all 70ms ease-out;
+  cursor: pointer;
+ position: relative;
+ top: 10px;
+}
+

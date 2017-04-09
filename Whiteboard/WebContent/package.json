@@ -1,7 +1,7 @@
 {
-  "name": "ViewSync Plus",
+  "name": "whiteboard",
   "version": "1.0.0",
-  "description": "Multi-video player with fine-grained playback controls",
+  "description": "",
   "main": "index.js",
   "dependencies": {
     "escape-html": "^1.0.3",

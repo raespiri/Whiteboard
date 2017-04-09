@@ -7,9 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div style = "display:inline-block">
-	<span  style = "display:inline-block" id = "info"><div>IMAGE</div><div>John Doe<br>10 hours total</div><div>Courses<br>CSCI201<br>CSCI270</div></span>
-	<ul  style = "display:inline-block">
+	<div>
+	<span  style = "display:inline-block" id = "info">IMAGE<br>John Doe<br>10 hours total<br>Courses<br>CSCI201<br>CSCI270</span>
+	<ul  style = "display:inline-block; list-style: none;">
 		<li>action</li>
 		<li>action</li>
 	</ul>

@@ -1,1 +1,44 @@
 @CHARSET "UTF-8";
+
+#landing-header {
+	width: 100%;
+	margin:0px;
+	height: 30%;
+	padding:35px;
+	background: DimGrey;
+	position: absolute;
+	align: center;
+}
+
+#landing-footer {
+	width: 100%;
+	margin:0px;
+	height: 70%;
+	padding:35px;
+	background: LightGrey;
+	position: absolute;
+	top: 30%;
+	align: center;
+}
+
+#central-landing-pane {
+	width: 80%;
+	position: absolute;
+	align-left: 50%;
+	align-right: 50%;
+}
+
+#virtual-classroom-header
+{
+	width: 100%;
+	height: 20%;
+	background: white;
+	text-align: center;
+	padding: 100px;
+	display: block;
+}
+
+#content-pane
+{
+	width: 40%;
+}

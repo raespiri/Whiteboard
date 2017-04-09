@@ -11,7 +11,7 @@ public class TeachersAssistant extends RegisteredUser {
 	}
 
 	public TeachersAssistant() {
-		// TODO Auto-generated constructor stub
+
 	}
 	
 	public void addStudent(String classID, String userID) {

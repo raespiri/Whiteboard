@@ -8,7 +8,7 @@
 </head>
 <body>
 <ul style = "list-style: none;">
-	<li><form method = "GET" action = "SetupServlet">
+	<li><form method = "GET" action = "forumServlet">
 			<input type="text" name="name" />
 			<input type="submit" name="submit" value="Submit" />
 	</form></li>

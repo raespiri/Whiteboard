@@ -24,8 +24,9 @@
 #central-landing-pane {
 	width: 80%;
 	position: absolute;
-	align-left: 50%;
-	align-right: 50%;
+	margin-left: 50px;
+	margin-right: 50px;
+	top: 20px;
 }
 
 #virtual-classroom-header
@@ -40,5 +41,6 @@
 
 #content-pane
 {
-	width: 40%;
+	margin-top: 30px;
+	background: white;
 }

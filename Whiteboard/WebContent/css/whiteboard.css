@@ -204,20 +204,28 @@ header .header__navigation-container li {
   margin: 0 10px;
   cursor: pointer;
 }
+/* line 153, ../sass/partials/main.scss */
+header .header__navigation-container .navigation__search {
+  font-size: 1.3em;
+  color: #00DB92;
+  background: none;
+  border: none;
+  outline: none;
+}
 
-/* line 163, ../sass/partials/main.scss */
+/* line 171, ../sass/partials/main.scss */
 .logo {
   color: white;
   font-size: 3em;
   font-weight: 700;
 }
 
-/* line 169, ../sass/partials/main.scss */
+/* line 177, ../sass/partials/main.scss */
 a, a:hover, a:focus, a:active, a:visited {
   color: #00DB92;
 }
 
-/* line 173, ../sass/partials/main.scss */
+/* line 181, ../sass/partials/main.scss */
 footer {
   background: white;
   color: #737373;

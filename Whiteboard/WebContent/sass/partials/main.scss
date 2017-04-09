@@ -149,6 +149,14 @@ header {
 			margin: 0 10px;
 			cursor: pointer;
 		}
+
+		.navigation__search {
+			font-size: 1.3em;
+			color: $accentColor;
+			background: none;
+			border: none;
+			outline: none;
+		}
 	}
 
 	@media (max-width: $largeDeviceBreakpoint) {

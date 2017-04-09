@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import sql.SQLConnection;
+
 /**
  * Servlet implementation class RegistrationServlet
  */
@@ -27,7 +29,12 @@ public class RegistrationServlet extends HttpServlet {
     	String username = request.getParameter("username"); //get username
     	String password = request.getParameter("password"); //get passwordfield
 		String imageurl = request.getParameter("imageurl"); //get image
+		String email = request.getParameter("email"); //get email
 		
+		SQLConnection sqlCon = new SQLConnection(); 
+		sqlCon.connect();
+		sqlCon.addUser(username, password, fullname, imageurl, email);
+		sqlCon.stop();
 	}
 
 }

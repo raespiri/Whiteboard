@@ -8,22 +8,22 @@
 		<link rel="stylesheet" type="text/css" href="../css/Registration.css"/>
 		<script>
 	    	function validate() {
-	    		if(document.getElementById("fullname").value === "" || document.getElementById("username").value === "" || document.getElementById("password").value === "" || document.getElementById("imageurl").value === "") {
+	    		if(document.getElementById("fullname").value === "" || document.getElementById("username").value === "" || document.getElementById("password").value === "" || document.getElementById("imageurl").value === "" || document.getElementById("email").value === "") {
 	    			document.getElementById("error").innerHTML = "ERROR: One or more of the requested fields is empty";
 
 	    		}
-	    		else if(document.getElementById("fullname").value === "Full Name" || document.getElementById("username").value === "Username" || document.getElementById("password").value === "Password" || document.getElementById("imageurl").value === "Image URL") {
+	    		else if(document.getElementById("fullname").value === "Full Name" || document.getElementById("username").value === "Username" || document.getElementById("password").value === "Password" || document.getElementById("imageurl").value === "Image URL" || document.getElementById("email").value === "Email") {
 	    			document.getElementById("error").innerHTML = "ERROR: One or more of the requested fields is empty";
 	    		}
 	    		else {
-	    			var url = "RegistrationServlet?fullname="+document.getElementById('fullname').value+"&username="+document.getElementById('username').value+"&password="+document.getElementById('password').value+"&imageurl="+document.getElementById('imageurl').value;
+	    			var url = "../RegistrationServlet?fullname="+document.getElementById('fullname').value+"&username="+document.getElementById('username').value+"&password="+document.getElementById('password').value+"&imageurl="+document.getElementById('imageurl').value+"&email="+document.getElementById('email').value;
 	    			// create AJAX request
 		    		var req = new XMLHttpRequest();
 		    		req.open("GET", url, true);
 		    		req.onreadystatechange = function () {
 		    			if(req.readyState == 4 && req.status == 200) { 
 		    				if(req.responseText === "No Error") { //if there is no error
-		    					signIn(document.getElementById("username").value, document.getElementById("password").value); //sign in
+		    					//signIn(document.getElementById("username").value, document.getElementById("password").value); //sign in
 		    				}
 		    				else { //else print error
 		    					document.getElementById("error").innerHTML = req.responseText;
@@ -32,10 +32,6 @@
 		    		}
 		    		req.send(null);
 	    		}
-	    	}
-	    	function signIn(username, password) {
-	    		var url = "LoginServlet?usernameField="+username+"&passwordField="+password;
-	    		document.location.href = url;
 	    	}
     	</script>
 	</head>
@@ -47,6 +43,7 @@
       	</div>
       	<div id="main">
 			<input style="margin-bottom: 7px; margin-top: 7px; width: 100%;" type="text" id="fullname" onfocus="if (this.value=='Full Name') this.value = ''" value="Full Name"/>
+			<input style="margin-bottom: 7px; margin-top: 7px; width: 100%;" type="text" id="email" onfocus="if (this.value=='Email') this.value = ''" value="Email"/>
 			<input style="margin-bottom: 7px; margin-top: 7px; width: 100%;" type="text" id="username" onfocus="if (this.value=='Username') this.value = ''" value="Username"/>
 			<input style="margin-bottom: 7px; margin-top: 7px; width: 100%;" type="text" id="password" onfocus="if (this.value=='Password') this.value = ''" value="Password"/>
 			<input style="margin-bottom: 7px; margin-top: 7px; width: 100%;" type="text" id="imageurl" onfocus="if (this.value=='Image URL') this.value = ''" value="Image URL"/>

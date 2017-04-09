@@ -32,6 +32,12 @@ public class DataStorage {
 	        	u.setUserID(rs.getString("username"));
 	        	users.add(u);
 	        }
+	        rs = stmt.executeQuery("SELECT * FROM Courses");
+	        while( rs.next() )
+	        {
+	        	Course c = new Course(rs.getInt("courseID"));
+	        	courses.add(c);
+	        }
 		} catch (Exception e) {
 	        System.err.print("Got an exception! ");
 	        System.err.println(e.getMessage());

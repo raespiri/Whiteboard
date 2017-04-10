@@ -1,11 +1,12 @@
 package sql;
 
 import java.sql.SQLException;
-
+import java.util.Calendar;
 import java.sql.*;
 
 public class SQLConnection {
 	private Connection conn;
+	private final static String addPost = "INSERT INTO Whiteboard.Posts(userID, Title, Body) VALUES(?, ?, ?)";
 	private final static String addUser = "INSERT INTO Users(username, pass, fullname, image, email) VALUES(?, ?, ?, ?, ?)";
 	public SQLConnection() {
 		try {
@@ -39,6 +40,18 @@ public class SQLConnection {
 			ps.setString(3, fullname);
 			ps.setString(4, image);
 			ps.setString(5, email);
+			ps.executeUpdate();
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void addPost(String title, String body) {
+		try {
+			PreparedStatement ps = conn.prepareStatement(addPost);
+			ps.setInt(1, 803850);
+			ps.setString(2, title);
+			ps.setString(3, body);
 			ps.executeUpdate();
 		} catch(SQLException e) {
 			e.printStackTrace();

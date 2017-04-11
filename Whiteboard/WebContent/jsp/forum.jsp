@@ -52,9 +52,18 @@
 			<% for(content.Post post : posts){ 
 				int score = post.getScore();
 				String title = post.getTitle();
+				String postID = post.getContentID();
 			%>
-				<li class = "post-in-list"><button class = "upvote" ><i class="fa fa-arrow-up" aria-hidden="true"></i></button><button class = "downvote"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
-				<text class = "score"><%=score %></text><a class = "post-title"><%=title %></a></li>
+				<li class = "post-in-list">
+					<button class = "upvote" onclick = "upvote('<%=postID%>')">
+						<i class="fa fa-arrow-up" aria-hidden="true"></i>
+					</button>
+					<button class = "downvote">
+						<i class="fa fa-arrow-down" aria-hidden="true" onclick = "downvote('<%=postID%>')"></i>
+					</button>
+					<text class = "score"> <%=score %> </text>
+					<text class = "post-title"><%=title %></text>
+				</li>
 			<%} %>
 		</ul>
 	</body>

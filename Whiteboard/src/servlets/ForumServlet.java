@@ -42,6 +42,22 @@ public class ForumServlet extends HttpServlet {
 			sqlCon.addPost(classID, title, body);
 			sqlCon.stop();
 		}
+		else if(request.getParameter("type").equals("upvote"))
+		{
+			String postID = request.getParameter("postID");
+			SQLConnection sqlCon = new SQLConnection();
+			sqlCon.connect();
+			sqlCon.upvote(postID);
+			sqlCon.stop();
+		}
+		else if(request.getParameter("type").equals("downvote"))
+		{
+			String postID = request.getParameter("postID");
+			SQLConnection sqlCon = new SQLConnection();
+			sqlCon.connect();
+			sqlCon.downvote(postID);
+			sqlCon.stop();
+		}
 		else
 		{
 			List<content.Post> posts = getPosts(request.getParameter("classID"));

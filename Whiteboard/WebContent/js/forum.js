@@ -11,7 +11,6 @@ function GetURLParameter(sParam){
     }
 }
 function validate() {
-	console.log("validating...");
 	if(document.getElementById('title').value === "" || document.getElementById('body').value === "") {
 		document.getElementById('error').innerHTML = "ERROR: One or more of the requested fields is empty";
 	}
@@ -34,4 +33,42 @@ function validate() {
 		}
 		req.send(null);
 	}
+}
+
+function upvote(postID)
+{
+	var url = "../ForumServlet?postID="+postID+"&type=upvote";
+	var req = new XMLHttpRequest();
+	req.open("GET", url, true);
+	req.onreadystatechange = function () {
+		if(req.readyState == 4 && req.status == 200) { 
+			if(req.responseText === "") {
+				console.log("upvoted");
+			}
+			else {
+				console.log(req.responseText);
+				document.getElementById('error').innerHTML = req.responseText;
+			}
+		}
+	}
+	req.send(null);
+}
+
+function downvote(postID)
+{
+	var url = "../ForumServlet?postID="+postID+"&type=downvote";
+	var req = new XMLHttpRequest();
+	req.open("GET", url, true);
+	req.onreadystatechange = function () {
+		if(req.readyState == 4 && req.status == 200) { 
+			if(req.responseText === "") {
+				console.log("downvoted");
+			}
+			else {
+				console.log(req.responseText);
+				document.getElementById('error').innerHTML = req.responseText;
+			}
+		}
+	}
+	req.send(null);
 }

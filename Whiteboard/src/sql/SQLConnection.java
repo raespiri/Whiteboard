@@ -10,6 +10,10 @@ public class SQLConnection {
 	private final static String addPost = "INSERT INTO Whiteboard.Posts(contentID, userID, classID, Title, Body) VALUES(?, ?, ?, ?, ?)";
 	private final static String addUser = "INSERT INTO Users(username, pass, fullname, image, email) VALUES(?, ?, ?, ?, ?)";
 	private final static String getPosts = "SELECT * FROM Posts WHERE ClassID = ";
+	private final static String upvotePost = "UPDATE Whiteboard.Posts "+
+											"SET score = score + 1 WHERE contentID = '";
+	private final static String downvotePost = "UPDATE Whiteboard.Posts "+
+			"SET score = score - 1 WHERE contentID = '";
 	public SQLConnection() {
 		try {
 			new com.mysql.jdbc.Driver();
@@ -85,5 +89,29 @@ public class SQLConnection {
 			System.out.println("SQL ERROR WHILE FETCHING POSTS");
 		}
 		return null;
+	}
+
+	public void upvote(String postID) {
+		try {
+			String withID = upvotePost+postID+"'";
+			PreparedStatement ps;
+			ps = conn.prepareStatement(withID);
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public void downvote(String postID) {
+		try {
+			String withID = downvotePost+postID+"'";
+			System.out.println(withID);
+			PreparedStatement ps;
+			ps = conn.prepareStatement(withID);
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

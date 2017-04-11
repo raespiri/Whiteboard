@@ -10,16 +10,14 @@
 	sqlCon.connect();
 	
 	List<content.Post> posts = sqlCon.getPosts(Integer.parseInt(request.getParameter("classID")));
-	
 %>
 <html>
 	<head>
 		<title>Whiteboard</title>
-	
 		<script src="https://use.typekit.net/ofv3bwh.js"></script>
 		<script>try{Typekit.load({ async: true });}catch(e){}</script>
 		<script src="../js/forum.js"></script>
-	
+		<link href="../css/forum.css" rel="stylesheet" type="text/css">
 		<link href="../css/whiteboard.css" rel="stylesheet" type="text/css">
 		<link href="../css/font-awesome.css" rel="stylesheet" type="text/css">
 	</head>
@@ -45,20 +43,18 @@
 			</ul>
 		</section>
 		<ul id = "post-list" style = "list-style: none;">
-			<li>
-				Post Title
-				<div><input type = "text" id = "title"/></div>
-				Post Body
-				<div><input type="text" id="body" /></div>
-				<input type="submit" name="submit" onclick="validate()"/>
+			<li class = "post-in-list">
+				<input type = "text" id = "title" class = "title-input" placeholder = "Ask a Question..."/>
+				<input type="text" id="body" class = "body-input"  placeholder = "Provide some more detail (Optional)."/>
+				<input type="submit" name="submit" onclick="validate()" class = "submit-input"/>
 			</li>
 			<li><div id="error" style="color:red; font-size: 12px;"> </div></li>
 			<% for(content.Post post : posts){ 
 				int score = post.getScore();
 				String title = post.getTitle();
 			%>
-				<li class = "post-in-list"><button><i class="fa fa-arrow-up" aria-hidden="true"></i></button><button><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
-				<text id = "score"><%=score %></text><a id = "Title"><%=title %></a></li>
+				<li class = "post-in-list"><button class = "upvote" ><i class="fa fa-arrow-up" aria-hidden="true"></i></button><button class = "downvote"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
+				<text class = "score"><%=score %></text><a class = "post-title"><%=title %></a></li>
 			<%} %>
 		</ul>
 	</body>

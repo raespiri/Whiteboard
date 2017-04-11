@@ -1,0 +1,92 @@
+@CHARSET "UTF-8";
+
+.post-in-list
+{
+	height: 80px;
+    border: 1px solid #ccc!important;
+    border-radius: 16px!important;
+    margin-bottom:5px;
+    margin-top:5px;
+    width:55%;
+    margin-left:20%;
+    background:#d1d0d2;
+}
+
+.upvote
+{
+	height:20px;
+	width:30px;
+	display: inline-block;
+	position: relative;
+	top:-10px;
+	left:15px;
+}
+
+.downvote
+{
+	height:20px;
+	width:30px;
+	display: inline-block;
+	position: relative;
+	top:25px;
+	right:15px;
+}
+
+.score
+{
+	position: relative;
+	display: inline-block;
+	margin-left: 0px;
+	top: 10px;
+	right: 38px;
+}
+
+.post-title
+{
+	font-size: 40px;
+	position: relative;
+	top: 15px;
+	left: 5px;
+	font-color: #000000;
+	cursor: pointer;
+	color:black;
+}
+
+.title-input
+{
+	border: 1px solid #ccc!important;
+    border-radius: 16px 0px 0px 0px;
+    height: 36px;
+    width:80%;
+    margin: 0px;
+    font-size: 36px;
+}
+
+.body-input
+{
+	border: 1px solid #ccc!important;
+    border-radius: 0px 0px 0px 16px;
+    height: 36px;
+    width:80%;
+    margin: 0px;
+    position:relative;
+    bottom:26px;
+    font-size: 24px;
+}
+
+.submit-input
+{
+	background: #00DB92;
+    color: white;
+    border: 1px solid;
+    border-color: #00DB92;
+    height:78px;
+    border-radius: 0px 16px 16px 0px;
+    position:relative;
+    display:inline-block;
+    right:2px;
+    bottom:39px;
+    width:18%;
+    font-size:40px;
+    margin: 0px;
+}

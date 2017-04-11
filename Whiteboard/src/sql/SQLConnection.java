@@ -75,6 +75,7 @@ public class SQLConnection {
 			{
 				java.sql.Date sqlDate = new java.sql.Date(rs.getTime(6).getTime());
 				content.Post newPost = new content.Post(rs.getString(1), Integer.toString(rs.getInt(2)), Integer.toString(rs.getInt(3)), rs.getString(4), rs.getString(5), sqlDate);
+				newPost.setScore(rs.getInt(7));
 				posts.add(newPost);
 			}
 			return posts;

@@ -3,7 +3,7 @@ package datastorage;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import java.util.List;
+//import java.util.List;
 
 import com.mysql.jdbc.Statement;
 
@@ -12,8 +12,8 @@ import users.RegisteredUser;
 import users.User;
 
 public class DataStorage {
-	List<User> users;
-	List<Course> courses;
+	ArrayList<User> users;
+	ArrayList<Course> courses;
 	public DataStorage()
 	{
 		users = new ArrayList<User>();

@@ -1,13 +1,16 @@
 package sql;
 
-import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import java.sql.*;
+import java.util.UUID;
 
 public class SQLConnection {
 	private Connection conn;
-	private final static String addPost = "INSERT INTO Whiteboard.Posts(userID, Title, Body) VALUES(?, ?, ?)";
+	private final static String addPost = "INSERT INTO Whiteboard.Posts(contentID, userID, classID, Title, Body) VALUES(?, ?, ?, ?, ?)";
 	private final static String addUser = "INSERT INTO Users(username, pass, fullname, image, email) VALUES(?, ?, ?, ?, ?)";
+	private final static String getPosts = "SELECT * FROM Posts WHERE ClassID = ";
 	public SQLConnection() {
 		try {
 			new com.mysql.jdbc.Driver();
@@ -46,15 +49,41 @@ public class SQLConnection {
 		}
 	}
 
-	public void addPost(String title, String body) {
+	public void addPost(int classID, String title, String body) {
 		try {
 			PreparedStatement ps = conn.prepareStatement(addPost);
-			ps.setInt(1, 803850);
-			ps.setString(2, title);
-			ps.setString(3, body);
+			UUID idOne = UUID.randomUUID();
+			ps.setString(1, idOne.toString());
+			ps.setInt(2, 803850);
+			ps.setInt(3, classID);
+			ps.setString(4, title);
+			ps.setString(5, body);
 			ps.executeUpdate();
 		} catch(SQLException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public List<content.Post> getPosts(int classID)
+	{
+		try {
+			String getPostsForClass = getPosts+classID;
+			PreparedStatement ps;
+			ps = conn.prepareStatement(getPostsForClass);
+			ResultSet rs = ps.executeQuery();
+			List<content.Post> posts = new ArrayList<content.Post>();
+			while(rs.next())
+			{
+				java.sql.Date sqlDate = new java.sql.Date(rs.getTime(6).getTime());
+				content.Post newPost = new content.Post(rs.getString(1), Integer.toString(rs.getInt(2)), Integer.toString(rs.getInt(3)), rs.getString(4), rs.getString(5), sqlDate);
+				posts.add(newPost);
+			}
+			return posts;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println("SQL ERROR WHILE FETCHING POSTS");
+		}
+		return null;
 	}
 }

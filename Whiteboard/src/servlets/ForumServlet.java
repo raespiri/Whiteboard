@@ -1,6 +1,8 @@
 package servlets;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -23,14 +25,28 @@ public class ForumServlet extends HttpServlet {
         super();
         // TODO Auto-generated constructor stub
     }
-
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String title = request.getParameter("title"); //get title
-    	String body = request.getParameter("body"); //get body
-		SQLConnection sqlCon = new SQLConnection(); 
+    public List<content.Post> getPosts(String classID)
+    {
+		SQLConnection sqlCon = new SQLConnection();
 		sqlCon.connect();
-		sqlCon.addPost(title, body);
-		sqlCon.stop();
+		return sqlCon.getPosts(Integer.parseInt(classID));
+    }
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		if(request.getParameter("type").equals("submit"))
+		{
+			String title = request.getParameter("title"); //get title
+	    	String body = request.getParameter("body"); //get body
+	    	int classID = Integer.parseInt(request.getParameter("classID"));
+			SQLConnection sqlCon = new SQLConnection();
+			sqlCon.connect();
+			sqlCon.addPost(classID, title, body);
+			sqlCon.stop();
+		}
+		else
+		{
+			List<content.Post> posts = getPosts(request.getParameter("classID"));
+			request.setAttribute("posts", posts);
+	        request.getRequestDispatcher("/jsp/forum.jsp?classID="+request.getParameter("classID")).forward(request, response);
+		}
 	}
-
 }

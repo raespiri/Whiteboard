@@ -1,6 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page import="sql.SQLConnection" %>
+<%@ page import="content.Post" %>
+<%@ page import="java.util.List" %>
+
+<%	
+	SQLConnection sqlCon = new SQLConnection();
+	sqlCon.connect();
+	
+	List<content.Post> posts = sqlCon.getPosts(Integer.parseInt(request.getParameter("classID")));
+	
+%>
 <html>
 <head>
 	<title>Whiteboard</title>
@@ -11,13 +22,26 @@
 	<link href="../css/whiteboard.css" rel="stylesheet" type="text/css">
 	<link href="../css/font-awesome.css" rel="stylesheet" type="text/css">
 	<script>
+		function GetURLParameter(sParam){
+		    var sPageURL = window.location.search.substring(1);
+		    var sURLVariables = sPageURL.split('&');
+		    for (var i = 0; i < sURLVariables.length; i++) 
+		    {
+		        var sParameterName = sURLVariables[i].split('=');
+		        if (sParameterName[0] == sParam) 
+		        {
+		            return sParameterName[1];
+		        }
+		    }
+		}
     	function validate() {
 			console.log("validating...");
     		if(document.getElementById('title').value === "" || document.getElementById('body').value === "") {
     			document.getElementById('error').innerHTML = "ERROR: One or more of the requested fields is empty";
     		}
     		else {
-    			var url = "../ForumServlet?title="+document.getElementById('title').value+"&body="+document.getElementById('body').value;
+    			var url = "../ForumServlet?title="+document.getElementById('title').value+"&body="
+    					+document.getElementById('body').value+"&type=submit"+"&classID="+GetURLParameter("classID");
     			// create AJAX request
 	    		var req = new XMLHttpRequest();
 	    		req.open("GET", url, true);
@@ -58,7 +82,7 @@
 		<li><button class="tab__button">Docs</button></li>
 	</ul>
 </section>
-<ul style = "list-style: none;">
+<ul id = "post-list" style = "list-style: none;">
 	<li>
 		Post Title
 		<div><input type = "text" id = "title"/></div>
@@ -67,20 +91,14 @@
 		<input type="submit" name="submit" onclick="validate()"/>
 	</li>
 	<li><div id="error" style="color:red; font-size: 12px;"> </div></li>
-	<li><span><button class = "vote-button" id = "upvote" >UP</button><button style = "position: relative; top:30" class = "vote-button" id = "downvote">DOWN</button>
-		<img></img>
-		<a>Title of the post</a><a> Text of the post</a>
-	</span></li>
-	
-	<li><span><button class = "vote-button" id = "upvote" >UP</button><button style = "position: relative; top:30" class = "vote-button" id = "downvote">DOWN</button>
-		<img></img>
-		<a>Title of the post</a><a> Text of the post</a>
-	</span></li>
-	
-	<li><span><button class = "vote-button" id = "upvote" >UP</button><button style = "position: relative; top:30" class = "vote-button" id = "downvote">DOWN</button>
-		<img></img>
-		<a>Title of the post</a><a> Text of the post</a>
-	</span></li>
+	<% for(content.Post post : posts){ 
+		int score = post.getScore();
+		String title = post.getTitle();
+	%>
+		<li><button><i class="fa fa-arrow-up" aria-hidden="true"></i></button><button><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
+		<text id = "score"><%=score %></text><a id = "Title"><%=title %></a></li>
+		
+	<%} %>
 </ul>
 </body>
 </html>

@@ -4,12 +4,13 @@ import java.sql.Date;
 import java.util.ArrayList;
 
 public class Post extends Content{
-	private String title;
+	public String title;
 	private String body;
 	private ArrayList<Post> replies;
 	private int parentID;
+	public int score;
 
-	public Post(String contentID, String userID, String classID, Date time, String title, String body) {
+	public Post(String contentID, String userID, String classID, String title, String body, Date time) {
 		super(contentID, userID, classID, time);
 		this.setTitle(title);
 		this.setBody(body);
@@ -17,7 +18,7 @@ public class Post extends Content{
 		this.parentID = 0;
 	}
 	
-	public Post(String contentID, String userID, String classID, Date time, String title, String body, int parentID) {
+	public Post(String contentID, String userID, String classID, String title, String body, Date time, int parentID) {
 		super(contentID, userID, classID, time);
 		this.setTitle(title);
 		this.setBody(body);
@@ -60,5 +61,13 @@ public class Post extends Content{
 
 	public void setParentID(int parentID) {
 		this.parentID = parentID;
+	}
+
+	public int getScore() {
+		return score;
+	}
+
+	public void setScore(int score) {
+		this.score = score;
 	}
 }

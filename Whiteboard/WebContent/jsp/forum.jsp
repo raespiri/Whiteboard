@@ -25,7 +25,7 @@
 		<header>
 			<div class="header__wrapper">
 				<div class="header__logo-container">
-					<div class="logo-container__logo"></div>
+					<a class="logo-container__logo" href="../jsp/homepage.jsp"></a>
 				</div>
 				<ul class="header__navigation-container">
 					<li><button class="navigation__search"><i class="fa fa-search"></i></button></li>

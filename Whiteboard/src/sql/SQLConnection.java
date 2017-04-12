@@ -223,7 +223,6 @@ public class SQLConnection {
 		}
 	}
 	
-<<<<<<< HEAD
 	public boolean validCredentials(String username, String password) {
 		try {
 			PreparedStatement ps;
@@ -241,7 +240,8 @@ public class SQLConnection {
 			e.printStackTrace();
 		}
 		return false;
-=======
+	}
+
 	public String getPostID(String UserID, String ClassID, String title, String post){
 		try {
 			PreparedStatement ps;
@@ -259,6 +259,5 @@ public class SQLConnection {
 			e.printStackTrace();
 			return null;
 		}
->>>>>>> 92cf105163970ee5beb958dbe02f1704a4020217
 	}
 }

@@ -21,7 +21,7 @@
 	display: inline-block;
 }
 
-.notification{
+.notif-in-list{
 	height: 80px;
     border: 1px solid #ccc!important;
     border-radius: 16px!important;
@@ -34,7 +34,7 @@
 
 .notif-title
 {
-	font-size: 40px;
+	font-size: 20px;
 	position: relative;
 	top: 15px;
 	left: 5px;

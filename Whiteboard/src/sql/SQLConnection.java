@@ -148,7 +148,7 @@ public class SQLConnection {
 			while(rs.next())
 			{
 				java.sql.Date sqlDate = new java.sql.Date(rs.getTime(8).getTime());
-				Notification newNotif = new Notification(Integer.toString(rs.getInt(3)), rs.getString(2), rs.getString(4), rs.getString(7), rs.getString(6), rs.getString(5), sqlDate);
+				Notification newNotif = new Notification(rs.getString(3), rs.getString(2), rs.getString(4), rs.getString(7), rs.getString(6), rs.getString(5), sqlDate);
 				newNotif.setNotificationID(rs.getString(1));
 				notifs.add(newNotif);
 			}

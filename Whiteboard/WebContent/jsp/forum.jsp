@@ -10,7 +10,9 @@
 	sqlCon.connect();
 	
 	List<content.Post> posts = sqlCon.getPosts(Integer.parseInt(request.getParameter("classID")));
-	Collections.sort(posts);
+	Collections.sort(posts);//to sort by date
+	
+	sqlCon.stop();
 %>
 <html>
 	<head>

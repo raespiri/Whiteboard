@@ -13,6 +13,8 @@
 	String username = curruser.getUsername();
 	ArrayList<Notification> notifs = sqlCon.getNotifs(username);
 	Collections.sort(notifs);//to sort by date
+	
+	sqlCon.stop();
 %>
 <html>
 	<head>
@@ -39,62 +41,41 @@
 			</div>
 		</header>	
 		
-		<h1>Welcome,</h1> <%=username %>
+		<br>
+		<h1>Welcome, <%=username %></h1>
 	
-	<div id = "container">
-	
-		<div id="leftside">
-			<ul id = "notif-list" style = "list-style: none;">
-			<li><div id="error" style="color:red; font-size: 12px;"> </div></li>
-			<% for(Notification n : notifs){ 
-				String title = n.getContentname();
-				String fullname = n.getFullname();
-			%>
-				<li class = "notif-in-list">
-					<text class = "notif-name"><%=fullname %></text>
-					<text class = "notif-title"><%=title %></text>
-				</li>
-			<%} %>
-		</ul>
-			<div id="qbox">
-				
-				<form id="askquestion">
-					<input type="text" id="questiontext" value="Ask a question...">
-					<input type="submit">
-				</form>	
-			</div>
-			<div id = "feed">
-				<div>
-					<h4>John Doe</h4>
-					<p>Lorem ipsum dolor sit amet,
-					consectetur adipiscing elit, sed do 
-					eiusmod tempor incididunt ut labore et
-					dolore magna aliqua. Ut enim ad minim veniam,
-					</p>
-				</div>
-				
-				<div>
-				<br>
-					<h4>testtt</h4>
-					<p>Lorem ipsum dolor sit amet,
-					consectetur adipiscing elit, sed do 
-					eiusmod tempor incididunt ut labore et
-					dolore magna aliqua. Ut enim ad minim veniam,
-					</p>
+		<div id = "container">	
+			<div id="leftside">
+				<ul id = "notif-list" style = "list-style: none;">
+					<li><div id="error" style="color:red; font-size: 12px;"> </div></li>
+					<% for(Notification n : notifs){ 
+						String title = n.getContentname();
+						String fullname = n.getFullname();
+						String actiontype = n.getActionType();
+						String coursename = n.getCoursename();
+					%>
+						<li class = "notif-in-list">
+							<text class = "notif-name"><%=fullname %></text>
+							<%if( actiontype.equals("Post")){%>
+								posted in
+								<text class = "notif-title"><%=coursename %></text>
+								<br>
+								<text class = "notif-title"><%=title %></text>
+							<%} %>							
+						</li>
+					<%} %>
+				</ul>	
+			</div>	
+			<div id = "rightside">
+				<div id = "mycourses">
+					<h1>My Courses</h1>
+					<h3><a href = "../jsp/forum.jsp?classID=1">CSCI201</a></h3>
+					
+					<br>
+					<h1>Moderating</h1>
+					<h3>CSCI270</h3>
 				</div>
 			</div>
 		</div>
-		
-		<div id = "rightside">
-			<div id = "mycourses">
-				<h1>My Courses</h1>
-				<h3><a href = "../jsp/forum.jsp?classID=1">CSCI201</a></h3>
-				
-				<h1>Moderating</h1>
-				<h3>CSCI270</h3>
-			</div>
-		</div>
-	
-	</div>
-</body>
+	</body>
 </html>

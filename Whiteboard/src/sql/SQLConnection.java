@@ -15,6 +15,8 @@ public class SQLConnection {
 											"SET score = score + 1 WHERE contentID = '";
 	private final static String downvotePost = "UPDATE Whiteboard.Posts "+
 			"SET score = score - 1 WHERE contentID = '";
+	private final static String getLoginCredentials = "SELECT pass FROM Users WHERE username = ?";
+	
 	public SQLConnection() {
 		try {
 			new com.mysql.jdbc.Driver();
@@ -118,20 +120,37 @@ public class SQLConnection {
 	
 	public String getUserID(String username) {
 		try {
-			try {
-				PreparedStatement ps;
-				ps = conn.prepareStatement(getUserID);
-				ps.setString(1, username);
-				ResultSet rs = ps.executeQuery();
-				String userID = "";
-				if (rs.next()) { // Loop to get all result sets
-					userID = rs.getString("userID");
-				}
-				return userID;
-			} catch (SQLException e) {
-				e.printStackTrace();
-				return null;
+			PreparedStatement ps;
+			ps = conn.prepareStatement(getUserID);
+			ps.setString(1, username);
+			ResultSet rs = ps.executeQuery();
+			String userID = "";
+			if (rs.next()) { // Loop to get all result sets
+				userID = rs.getString("userID");
 			}
+			return userID;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
 		}
+	}
+	
+	public boolean validCredentials(String username, String password) {
+		try {
+			PreparedStatement ps;
+			ps = conn.prepareStatement(getLoginCredentials);
+			ps.setString(1, username);
+			ResultSet rs = ps.executeQuery();
+			String pass = "";
+			if (rs.next()) { // Loop to get all result sets
+				pass = rs.getString("pass");
+				if(pass.equals(password)) {
+					return true;
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
 	}
 }

@@ -5,6 +5,10 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<title>Registration</title>
+		<script src="https://use.typekit.net/ofv3bwh.js"></script>
+		<script>try{Typekit.load({ async: true });}catch(e){}</script>
+		<link href="../css/whiteboard.css" rel="stylesheet" type="text/css">
+		<link href="../css/font-awesome.css" rel="stylesheet" type="text/css">
 		<link rel="stylesheet" type="text/css" href="../css/Registration.css"/>
 		<script>
 	    	function validate() {
@@ -36,8 +40,20 @@
     	</script>
 	</head>
 	<body>
+		<header>
+			<div class="header__wrapper">
+				<div class="header__logo-container">
+					<a class="logo-container__logo" href="../jsp/homepage.jsp"></a>
+				</div>
+				<ul class="header__navigation-container">
+					<li><button class="navigation__search"><i class="fa fa-search"></i></button></li>
+					<li><a class="navigation__courses">Courses</a></li>
+					<li><a class="navigation__settings">Settings</a></li>
+				</ul>
+			</div>
+		</header>	
     	<div class="wrapper">
-      		<div id="header">
+      		<div id="head">
 				<h5 style="padding-bottom: 1cm;">Please enter your information.</h5>
       		</div>
       	</div>
@@ -49,6 +65,8 @@
 			<input style="margin-bottom: 7px; margin-top: 7px; width: 100%;" type="text" id="imageurl" onfocus="if (this.value=='Image URL') this.value = ''" value="Image URL"/>
 			<button style= "margin-top: 10px; width: 100%; color: black;" type="submit" name="signup" onclick="validate()">Sign Up</button>
 			<div id="error" style="color:red; font-size: 12px;"> </div>
+      	</div>
+      	<div id="foot">
       	</div>
   	</body>
 </html>

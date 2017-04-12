@@ -36,7 +36,7 @@ public class RegistrationServlet extends HttpServlet {
 		SQLConnection sqlCon = new SQLConnection(); 
 		sqlCon.connect();
 		sqlCon.addUser(username, password, fullname, imageurl, email);
-		
+
 		String sql_userID = sqlCon.getUserID(username); // Get SQL's generated userID;
 		
 		RegisteredUser newUser = new RegisteredUser(password, email, fullname, username, imageurl, sql_userID); // Create new user object
@@ -44,6 +44,10 @@ public class RegistrationServlet extends HttpServlet {
 		session.setAttribute("currUser", newUser); // Set session attribute for current user;
 		
 		sqlCon.stop();
+		
+		response.setContentType("text/plain");  // Set content type of the response
+	    response.setCharacterEncoding("UTF-8");
+	    response.getWriter().write("No Error");  // write error as response body.
 	}
 
 }

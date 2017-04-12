@@ -29,7 +29,7 @@ public class DataStorage {
 	        rs = stmt.executeQuery("SELECT * FROM Users");
 	        while( rs.next() ){
 	        	RegisteredUser u = new RegisteredUser();
-	        	u.setUserID(rs.getString("username"));
+	        	u.setUserID(rs.getString("userID"));
 	        	users.add(u);
 	        }
 	        rs = stmt.executeQuery("SELECT * FROM Courses");
@@ -42,5 +42,14 @@ public class DataStorage {
 	        System.err.print("Got an exception! ");
 	        System.err.println(e.getMessage());
 	    }
+	}
+	
+	public RegisteredUser getUser(String userID) {
+		for(int i = 0; i < users.size(); i++) {
+			if(users.get(i).getUserID().equals(userID)) {
+				return (RegisteredUser) users.get(i);
+			}
+		}
+		return null;
 	}
 }

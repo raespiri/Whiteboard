@@ -9,8 +9,8 @@
 	SQLConnection sqlCon = new SQLConnection();
 	sqlCon.connect();
 	
- 	User curruser = (User) session.getAttribute("currUser");
-	String username = curruser.getUserID();
+ 	RegisteredUser curruser = (RegisteredUser) session.getAttribute("currUser");
+	String username = curruser.getUsername();
 	ArrayList<Notification> notifs = sqlCon.getNotifs(username);
 %>
 <html>

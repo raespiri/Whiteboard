@@ -1,23 +1,28 @@
 package notifications;
 
+import java.sql.Date;
+
 /*
  * Notification Class
  */
 public class Notification {
+	private String NotificationID;
 	private String actionType; // Type of action
-	private String contentID; // Content key
-	private String fname;
-	private String lname;
+	private String actionID; // Content key of action
+	private String fullname;
+	private String username;
 	private String contentname;//name of actual content (e.g. filename)
 	private String coursename;
+	private Date time;
 	
-	public Notification(String contentID, String actiontype, String fname, String lname, String coursename, String contentname ){
-		this.contentID = contentID;
+	public Notification(String actionID, String actiontype, String fullname, String username, String coursename, String contentname, Date time ){
+		this.actionID = actionID;
 		this.actionType = actiontype;
-		this.fname = fname;
-		this.lname = lname;
+		this.fullname = fullname;
 		this.coursename = coursename;
 		this.contentname = contentname;
+		this.username = username;
+		this.time = time;
 	}
 	
 	// Getters and Setters
@@ -29,28 +34,8 @@ public class Notification {
 		this.actionType = actionType;
 	}
 	
-	public String getContentID() {
-		return contentID;
-	}
-	
-	public void setContentID(String contentID) {
-		this.contentID = contentID;
-	}
-
-	public String getFname() {
-		return fname;
-	}
-
-	public void setFname(String fname) {
-		this.fname = fname;
-	}
-
-	public String getLname() {
-		return lname;
-	}
-
-	public void setLname(String lname) {
-		this.lname = lname;
+	public String getActionID() {
+		return actionID;
 	}
 
 	public String getContentname() {
@@ -67,5 +52,33 @@ public class Notification {
 
 	public void setCoursename(String coursename) {
 		this.coursename = coursename;
+	}
+
+	public String getNotificationID() {
+		return NotificationID;
+	}
+
+	public void setNotificationID(String notificationID) {
+		NotificationID = notificationID;
+	}
+
+	public String getFullname() {
+		return fullname;
+	}
+
+	public void setFullname(String fullname) {
+		this.fullname = fullname;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	
+	public Date getTime() {
+		return time;
 	}
 }

@@ -8,8 +8,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import sql.SQLConnection;
+import users.RegisteredUser;
 
 /**
  * Servlet implementation class ForumServlet
@@ -40,6 +42,12 @@ public class ForumServlet extends HttpServlet {
 			SQLConnection sqlCon = new SQLConnection();
 			sqlCon.connect();
 			sqlCon.addPost(classID, title, body);
+			
+			HttpSession session = request.getSession();
+			RegisteredUser curruser = (RegisteredUser) session.getAttribute("currUser");
+			String sql_actionID = sqlCon.getPostID(curruser.getUserID(), Integer.toString(classID), title, body);
+			
+			sqlCon.addNotif("Post", sql_actionID, curruser.getUserID(), title, Integer.toString(classID));
 			sqlCon.stop();
 		}
 		else if(request.getParameter("type").equals("upvote"))

@@ -14,7 +14,10 @@ public class SQLConnection {
 	private final static String addUser = "INSERT INTO Users(username, pass, fullname, image, email) VALUES(?, ?, ?, ?, ?)";
 	private final static String addNotif = "INSERT INTO Notifications(ActionType, ActionID, FullName, ContentName, CourseName, username) VALUES(?, ?, ?, ?, ?, ?)";
 	
+	private final static String getPostID= "SELECT * FROM Posts WHERE userID = ? AND classID = ? AND Title=? ";
+	private final static String getCourseName = "SELECT * FROM Courses WHERE CourseID = ?";
 	private final static String getUserID = "SELECT userID FROM Users WHERE username = ?";
+	private final static String getUser = "SELECT * FROM Users WHERE userID = ?";
 	private final static String getNotif = "SELECT * FROM Notification WHERE username = ?";
 	private final static String getPosts = "SELECT * FROM Posts WHERE ClassID = ";
 	private final static String upvotePost = "UPDATE Whiteboard.Posts "+
@@ -61,7 +64,45 @@ public class SQLConnection {
 		}
 	}
 	
-	public void addNotif(String actiontype, String actionID, String fullname, String contentname, String coursename, String username ) {
+	public String getcoursename(String classID){
+		String cname=null;
+		try {
+			String getcoursename = getCourseName+classID;
+			PreparedStatement ps;
+			ps = conn.prepareStatement(getcoursename);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next())
+			{
+				cname = rs.getString(2);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("SQL ERROR WHILE FETCHING coursename");
+		}
+		
+		return cname;
+	}
+	
+	public void addNotif(String actiontype, String actionID, String userID, String contentname, String classID) {
+		
+		String username=null, fullname = null, coursename=null;
+		try {
+			String getuserinfo = getUser+userID;
+			PreparedStatement ps;
+			ps = conn.prepareStatement(getuserinfo);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next())
+			{
+				username = rs.getString(2);
+				fullname = rs.getString(4);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("SQL ERROR WHILE FETCHING userinfo");
+		}
+		
+		coursename = getcoursename(classID);
+		
 		try {
 			PreparedStatement ps = conn.prepareStatement(addNotif);
 			
@@ -182,6 +223,7 @@ public class SQLConnection {
 		}
 	}
 	
+<<<<<<< HEAD
 	public boolean validCredentials(String username, String password) {
 		try {
 			PreparedStatement ps;
@@ -199,5 +241,24 @@ public class SQLConnection {
 			e.printStackTrace();
 		}
 		return false;
+=======
+	public String getPostID(String UserID, String ClassID, String title, String post){
+		try {
+			PreparedStatement ps;
+			ps = conn.prepareStatement(getPostID);
+			ps.setString(1, UserID);
+			ps.setString(2, ClassID);
+			ps.setString(3, title);
+			ResultSet rs = ps.executeQuery();
+			String postID = "";
+			if (rs.next()) { // Loop to get all result sets
+				postID = rs.getString(1);
+			}
+			return postID;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+>>>>>>> 92cf105163970ee5beb958dbe02f1704a4020217
 	}
 }

@@ -2,14 +2,15 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ page import="sql.SQLConnection" %>
-<%@ page import="notifications.Notification" %>
+<%@ page import="notifications.*, users.*" %>
 <%@ page import="java.util.ArrayList" %>
 
 <%	
 	SQLConnection sqlCon = new SQLConnection();
 	sqlCon.connect();
 	
-	String username = (String) session.getAttribute("username");
+ 	User curruser = (User) session.getAttribute("currUser");
+	String username = curruser.getUserID();
 	ArrayList<Notification> notifs = sqlCon.getNotifs(username);
 %>
 <html>

@@ -5,6 +5,8 @@ import java.util.List;
 import java.sql.*;
 import java.util.UUID;
 
+import notifications.Notification;
+
 public class SQLConnection {
 	private Connection conn;
 	private final static String addPost = "INSERT INTO Whiteboard.Posts(contentID, userID, classID, Title, Body) VALUES(?, ?, ?, ?, ?)";
@@ -68,6 +70,13 @@ public class SQLConnection {
 		}
 	}
 	
+	public ArrayList<Notification> getNotifs(String username){
+		
+		ArrayList<Notification> notifs = new ArrayList<Notification>();
+		
+		return notifs;
+	}
+	
 	public List<content.Post> getPosts(int classID)
 	{
 		try {
@@ -118,20 +127,18 @@ public class SQLConnection {
 	
 	public String getUserID(String username) {
 		try {
-			try {
-				PreparedStatement ps;
-				ps = conn.prepareStatement(getUserID);
-				ps.setString(1, username);
-				ResultSet rs = ps.executeQuery();
-				String userID = "";
-				if (rs.next()) { // Loop to get all result sets
-					userID = rs.getString("userID");
-				}
-				return userID;
-			} catch (SQLException e) {
-				e.printStackTrace();
-				return null;
+			PreparedStatement ps;
+			ps = conn.prepareStatement(getUserID);
+			ps.setString(1, username);
+			ResultSet rs = ps.executeQuery();
+			String userID = "";
+			if (rs.next()) { // Loop to get all result sets
+				userID = rs.getString("userID");
 			}
+			return userID;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
 		}
 	}
 }

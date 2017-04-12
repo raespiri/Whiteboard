@@ -56,11 +56,10 @@
 
 .whiteboard {
 	position: relative;
+	overflow: hidden;
 
-	.whiteboard__canvas {
+	#whiteboard__canvas {
 		background: #eee;
-		height: 100vh;
-		width: 100%;
 	}
 
 	.whiteboard__toolbar-container {

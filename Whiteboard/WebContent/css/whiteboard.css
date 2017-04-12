@@ -286,14 +286,13 @@ footer {
 /* line 57, ../sass/whiteboard.scss */
 .whiteboard {
   position: relative;
+  overflow: hidden;
 }
-/* line 60, ../sass/whiteboard.scss */
-.whiteboard .whiteboard__canvas {
+/* line 61, ../sass/whiteboard.scss */
+.whiteboard #whiteboard__canvas {
   background: #eee;
-  height: 100vh;
-  width: 100%;
 }
-/* line 66, ../sass/whiteboard.scss */
+/* line 65, ../sass/whiteboard.scss */
 .whiteboard .whiteboard__toolbar-container {
   position: absolute;
   top: 15px;

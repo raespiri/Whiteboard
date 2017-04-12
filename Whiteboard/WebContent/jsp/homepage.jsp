@@ -2,14 +2,15 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ page import="sql.SQLConnection" %>
-<%@ page import="content.Post" %>
-<%@ page import="java.util.List" %>
+<%@ page import="notifications.Notification" %>
+<%@ page import="java.util.ArrayList" %>
 
 <%	
 	SQLConnection sqlCon = new SQLConnection();
 	sqlCon.connect();
 	
-	//List<content.Post> posts = sqlCon.getPosts(Integer.parseInt(request.getParameter("classID")));
+	String username = (String) session.getAttribute("username");
+	ArrayList<Notification> notifs = sqlCon.getNotifs(username);
 %>
 <html>
 	<head>
@@ -35,6 +36,9 @@
 				</ul>
 			</div>
 		</header>	
+		
+		<h1>Welcome,</h1>
+		<%=username %>
 	
 	<div id = "container">
 	

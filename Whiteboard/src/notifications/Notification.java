@@ -5,7 +5,7 @@ import java.sql.Date;
 /*
  * Notification Class
  */
-public class Notification {
+public class Notification implements Comparable<Notification> {
 	private String NotificationID;
 	private String actionType; // Type of action
 	private String actionID; // Content key of action
@@ -81,4 +81,9 @@ public class Notification {
 	public Date getTime() {
 		return time;
 	}
+	
+	@Override
+	public int compareTo(Notification n) {
+		return getTime().compareTo(n.getTime());
+  }
 }

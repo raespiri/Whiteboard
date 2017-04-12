@@ -9,10 +9,10 @@
 	SQLConnection sqlCon = new SQLConnection();
 	sqlCon.connect();
 	
-	User curruser = (User) session.getAttribute("currUser");
-	String userID = curruser.getUserID();
+ 	RegisteredUser curruser = (RegisteredUser) session.getAttribute("currUser");
+	String username = curruser.getUsername();
 	ArrayList<Notification> notifs = sqlCon.getNotifs(username);
-	Collections.sort(notifs);
+	Collections.sort(notifs);//to sort by date
 %>
 <html>
 	<head>

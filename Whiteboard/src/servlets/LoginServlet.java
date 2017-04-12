@@ -43,9 +43,11 @@ public class LoginServlet extends HttpServlet {
 			ds.retrieveData();
 			
 			RegisteredUser currUser = ds.getUser(userID);
+			System.out.println(currUser.getUsername());
 			
 			HttpSession session = request.getSession();
 			session.setAttribute("currUser", currUser); // Set session attribute for current user;
+			//request.getRequestDispatcher("/jsp/homepage.jsp").forward(request, response);
 		}
 		else {
 			errorMsg = "Error, invalid login credentials";

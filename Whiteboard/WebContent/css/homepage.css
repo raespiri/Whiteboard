@@ -32,4 +32,15 @@
     background:#d1d0d2;
 }
 
+.notif-title
+{
+	font-size: 40px;
+	position: relative;
+	top: 15px;
+	left: 5px;
+	font-color: #000000;
+	cursor: pointer;
+	color:black;
+}
+
 

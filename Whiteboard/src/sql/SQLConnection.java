@@ -17,6 +17,7 @@ public class SQLConnection {
 	private final static String getPostID= "SELECT * FROM Posts WHERE userID = ? AND classID = ? AND Title=? ";
 	private final static String getCourseName = "SELECT * FROM Courses WHERE CourseID = ?";
 	private final static String getUserID = "SELECT userID FROM Users WHERE username = ?";
+	private final static String getUsername = "SELECT username FROM Users WHERE userID = ?";
 	private final static String getUser = "SELECT * FROM Users WHERE userID = ?";
 	private final static String getNotif = "SELECT * FROM Notification WHERE username = ?";
 	private final static String getPosts = "SELECT * FROM Posts WHERE ClassID = ";
@@ -222,6 +223,23 @@ public class SQLConnection {
 			return null;
 		}
 	}
+	
+	public String getUsername(String userID) {
+		try {
+			PreparedStatement ps;
+			ps = conn.prepareStatement(getUsername);
+			ps.setString(1, userID);
+			ResultSet rs = ps.executeQuery();
+			String username = "";
+			if (rs.next()) { // Loop to get all result sets
+				username = rs.getString("username");
+			}
+			return username;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}	
 	
 	public boolean validCredentials(String username, String password) {
 		try {

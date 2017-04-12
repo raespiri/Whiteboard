@@ -28,8 +28,14 @@ public class DataStorage {
 	        ResultSet rs;
 	        rs = stmt.executeQuery("SELECT * FROM Users");
 	        while( rs.next() ){
-	        	RegisteredUser u = new RegisteredUser();
-	        	u.setUserID(rs.getString("userID"));
+	        	String password = rs.getString("pass");
+	        	String email = rs.getString("email");
+	        	String fullname =  rs.getString("fullname");
+	        	String username = rs.getString("username");
+	        	String image = rs.getString("image");
+	        	String userID = rs.getString("userID");
+	        	
+	        	RegisteredUser u = new RegisteredUser(password,email,fullname,username,image,userID);
 	        	users.add(u);
 	        }
 	        rs = stmt.executeQuery("SELECT * FROM Courses");

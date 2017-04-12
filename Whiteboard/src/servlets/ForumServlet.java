@@ -41,10 +41,11 @@ public class ForumServlet extends HttpServlet {
 	    	int classID = Integer.parseInt(request.getParameter("classID"));
 			SQLConnection sqlCon = new SQLConnection();
 			sqlCon.connect();
-			sqlCon.addPost(classID, title, body);
 			
 			HttpSession session = request.getSession();
 			RegisteredUser curruser = (RegisteredUser) session.getAttribute("currUser");
+			sqlCon.addPost(classID, title, body, curruser.getUserID());
+			
 			String sql_actionID = sqlCon.getPostID(curruser.getUserID(), Integer.toString(classID), title, body);
 			
 			sqlCon.addNotif("Post", sql_actionID, curruser.getUserID(), title, Integer.toString(classID));

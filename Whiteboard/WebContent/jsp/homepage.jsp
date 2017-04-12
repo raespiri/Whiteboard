@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ page import="sql.SQLConnection" %>
-<%@ page import="notifications.*, users.*" %>
+<%@ page import="notifications.*, users.*, java.util.Collections" %>
 <%@ page import="java.util.ArrayList" %>
 
 <%	
@@ -12,6 +12,7 @@
  	RegisteredUser curruser = (RegisteredUser) session.getAttribute("currUser");
 	String username = curruser.getUsername();
 	ArrayList<Notification> notifs = sqlCon.getNotifs(username);
+	Collections.sort(notifs);//to sort by date
 %>
 <html>
 	<head>
@@ -38,13 +39,25 @@
 			</div>
 		</header>	
 		
-		<h1>Welcome,</h1>
-		<%=username %>
+		<h1>Welcome,</h1> <%=username %>
 	
 	<div id = "container">
 	
 		<div id="leftside">
+			<ul id = "notif-list" style = "list-style: none;">
+			<li><div id="error" style="color:red; font-size: 12px;"> </div></li>
+			<% for(Notification n : notifs){ 
+				String title = n.getContentname();
+				String fullname = n.getFullname();
+			%>
+				<li class = "notif-in-list">
+					<text class = "notif-name"><%=fullname %></text>
+					<text class = "notif-title"><%=title %></text>
+				</li>
+			<%} %>
+		</ul>
 			<div id="qbox">
+				
 				<form id="askquestion">
 					<input type="text" id="questiontext" value="Ask a question...">
 					<input type="submit">
@@ -75,7 +88,7 @@
 		<div id = "rightside">
 			<div id = "mycourses">
 				<h1>My Courses</h1>
-				<h3><a href = "../jsp/forum.jsp?classID=201">CSCI201</a></h3>
+				<h3><a href = "../jsp/forum.jsp?classID=1">CSCI201</a></h3>
 				
 				<h1>Moderating</h1>
 				<h3>CSCI270</h3>

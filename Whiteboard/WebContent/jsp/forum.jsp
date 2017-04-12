@@ -3,13 +3,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ page import="sql.SQLConnection" %>
 <%@ page import="content.Post" %>
-<%@ page import="java.util.List" %>
+<%@ page import="java.util.List, java.util.Collections" %>
 
 <%	
 	SQLConnection sqlCon = new SQLConnection();
 	sqlCon.connect();
 	
 	List<content.Post> posts = sqlCon.getPosts(Integer.parseInt(request.getParameter("classID")));
+	Collections.sort(posts);
 %>
 <html>
 	<head>

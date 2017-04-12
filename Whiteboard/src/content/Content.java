@@ -2,11 +2,16 @@ package content;
 
 import java.sql.Date;
 
-public class Content {
+public class Content  implements Comparable<Content> {
 	private String contentID;
 	private String userID;
 	private String classID;
 	private Date time;
+	
+	@Override
+	public int compareTo(Content c) {
+		return c.getTime().compareTo(getTime());
+  }
 	
 	public Content(String contentID, String userID, String classID, Date time)
 	{

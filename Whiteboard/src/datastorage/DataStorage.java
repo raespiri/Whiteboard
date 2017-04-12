@@ -22,14 +22,20 @@ public class DataStorage {
 	public void retrieveData()
 	{
 		try {
-            String url = "jdbc:msql://192.241.193.125";
-	        java.sql.Connection conn = DriverManager.getConnection(url, "", "");
+            String url = "jdbc:mysql://192.241.193.125/Whiteboard?user=root&password=21d7BIiQypvrDu7Bcbvb&useSSL=false";
+	        java.sql.Connection conn = DriverManager.getConnection(url);
 	        java.sql.Statement stmt = conn.createStatement();
 	        ResultSet rs;
 	        rs = stmt.executeQuery("SELECT * FROM Users");
 	        while( rs.next() ){
-	        	RegisteredUser u = new RegisteredUser();
-	        	u.setUserID(rs.getString("userID"));
+	        	String password = rs.getString("pass");
+	        	String email = rs.getString("email");
+	        	String fullname =  rs.getString("fullname");
+	        	String username = rs.getString("username");
+	        	String image = rs.getString("image");
+	        	String userID = rs.getString("userID");
+	        	
+	        	RegisteredUser u = new RegisteredUser(password,email,fullname,username,image,userID);
 	        	users.add(u);
 	        }
 	        rs = stmt.executeQuery("SELECT * FROM Courses");

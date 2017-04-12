@@ -41,11 +41,12 @@ public class LoginServlet extends HttpServlet {
 			
 			DataStorage ds = new DataStorage();
 			ds.retrieveData();
-			
 			RegisteredUser currUser = ds.getUser(userID);
+			
 			
 			HttpSession session = request.getSession();
 			session.setAttribute("currUser", currUser); // Set session attribute for current user;
+			//request.getRequestDispatcher("/jsp/homepage.jsp").forward(request, response);
 		}
 		else {
 			errorMsg = "Error, invalid login credentials";

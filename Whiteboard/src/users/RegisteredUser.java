@@ -11,13 +11,30 @@ import notifications.Notification;
 public class RegisteredUser extends User {
 	private String password; // User password
 	private String email; // User email
+	private String fullname; // User fullname
+	private String username; // User username
+	private String image; // User image;
 	private ArrayList<String> friends; // List of user's friends
 	private ArrayList<String> classes; // List of user's classes
 	private ArrayList<Notification> actions; // List of user's notifications
 	
 	// Constructor
 	public RegisteredUser() {
-
+		friends =  new ArrayList<String>();
+		classes = new ArrayList<String>();
+		actions = new ArrayList<Notification>();
+	}
+	
+	public RegisteredUser(String password, String email, String fullname, String username, String image, String userID) {
+		friends =  new ArrayList<String>();
+		classes = new ArrayList<String>();
+		actions = new ArrayList<Notification>();
+		this.password = password;
+		this.email = email;
+		this.username = username;
+		this.fullname = fullname;
+		this.image = image;
+		this.userID = userID;
 	}
 	
 	// Getters and Setters
@@ -67,4 +84,27 @@ public class RegisteredUser extends User {
 		friends.add(userID);
 	}
 	
+	public String getFullname() {
+		return fullname;
+	}
+	
+	public void setFullname(String fullname) {
+		this.fullname = fullname;
+	}
+	
+	public String getImage() {
+		return image;
+	}
+	
+	public void setImage(String image) {
+		this.image = image;
+	}
+	
+	public String getUsername() {
+		return username;
+	}
+	
+	public void setUsername(String username) {
+		this.username = username;
+	}
 }

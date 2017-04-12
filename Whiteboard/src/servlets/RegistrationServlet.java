@@ -6,8 +6,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import sql.SQLConnection;
+import users.RegisteredUser;
 
 /**
  * Servlet implementation class RegistrationServlet
@@ -34,6 +36,13 @@ public class RegistrationServlet extends HttpServlet {
 		SQLConnection sqlCon = new SQLConnection(); 
 		sqlCon.connect();
 		sqlCon.addUser(username, password, fullname, imageurl, email);
+		
+		String sql_userID = sqlCon.getUserID(username); // Get SQL's generated userID;
+		
+		RegisteredUser newUser = new RegisteredUser(password, email, fullname, username, imageurl, sql_userID); // Create new user object
+		HttpSession session = request.getSession();
+		session.setAttribute("currUser", newUser); // Set session attribute for current user;
+		
 		sqlCon.stop();
 	}
 

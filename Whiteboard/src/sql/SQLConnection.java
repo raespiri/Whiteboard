@@ -9,6 +9,7 @@ public class SQLConnection {
 	private Connection conn;
 	private final static String addPost = "INSERT INTO Whiteboard.Posts(contentID, userID, classID, Title, Body) VALUES(?, ?, ?, ?, ?)";
 	private final static String addUser = "INSERT INTO Users(username, pass, fullname, image, email) VALUES(?, ?, ?, ?, ?)";
+	private final static String getUserID = "SELECT userID FROM Users WHERE username = ?";
 	private final static String getPosts = "SELECT * FROM Posts WHERE ClassID = ";
 	private final static String upvotePost = "UPDATE Whiteboard.Posts "+
 											"SET score = score + 1 WHERE contentID = '";
@@ -112,6 +113,25 @@ public class SQLConnection {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
+	}
+	
+	public String getUserID(String username) {
+		try {
+			try {
+				PreparedStatement ps;
+				ps = conn.prepareStatement(getUserID);
+				ps.setString(1, username);
+				ResultSet rs = ps.executeQuery();
+				String userID = "";
+				if (rs.next()) { // Loop to get all result sets
+					userID = rs.getString("userID");
+				}
+				return userID;
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return null;
+			}
 		}
 	}
 }

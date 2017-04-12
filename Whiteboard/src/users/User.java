@@ -4,7 +4,7 @@ package users;
  * Base User Class
  */
 public abstract class User {
-	private String userID; // userID key
+	protected String userID; // userID key
 	
 	// Getters and Setters
 	public String getUserID() {

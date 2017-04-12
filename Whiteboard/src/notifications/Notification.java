@@ -84,6 +84,6 @@ public class Notification implements Comparable<Notification> {
 	
 	@Override
 	public int compareTo(Notification n) {
-		return getTime().compareTo(n.getTime());
+		return n.getTime().compareTo(getTime());
   }
 }

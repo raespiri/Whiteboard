@@ -88,7 +88,7 @@
 		<div id = "rightside">
 			<div id = "mycourses">
 				<h1>My Courses</h1>
-				<h3><a href = "../jsp/forum.jsp?classID=201">CSCI201</a></h3>
+				<h3><a href = "../jsp/forum.jsp?classID=1">CSCI201</a></h3>
 				
 				<h1>Moderating</h1>
 				<h3>CSCI270</h3>

@@ -1,25 +1,5 @@
 @CHARSET "ISO-8859-1";
 
-body{
-	font: proxima-nova;
-}
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color:blue;
-}
-
-li {
-    float: left;
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-
 #container{
 	width: 100%;
 	display: inline-block;
@@ -40,3 +20,5 @@ li {
 	width:30%;
 	display: inline-block;
 }
+
+

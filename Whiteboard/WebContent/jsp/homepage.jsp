@@ -1,22 +1,40 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page import="sql.SQLConnection" %>
+<%@ page import="content.Post" %>
+<%@ page import="java.util.List" %>
+
+<%	
+	SQLConnection sqlCon = new SQLConnection();
+	sqlCon.connect();
+	
+	//List<content.Post> posts = sqlCon.getPosts(Integer.parseInt(request.getParameter("classID")));
+%>
 <html>
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-	<title>Whiteboard</title>
-	<link rel="stylesheet" type="text/css" href="../css/homepage.css"/>
-	<link rel="stylesheet" href="../font-awesome-4.7.0/css/font-awesome.min.css">
-	<script src="https://use.typekit.net/ofv3bwh.js"></script>
-	<script>try{Typekit.load({ async: true });}catch(e){}</script>
-</head>
-<body>
-	<ul>
-		<li><img id="mainicon" src="../img/TextLogo@2x.png" style="width:200px"></img></li>
-		<li><i class="fa fa-search" style="color:white"></i></li>
-		<li><h3> Courses</h3></li>
-		<li><h3>Settings</h3> </li>
-	</ul>	
+	<head>
+		<title>Whiteboard</title>
+		<script src="https://use.typekit.net/ofv3bwh.js"></script>
+		<script>try{Typekit.load({ async: true });}catch(e){}</script>
+		<script src="../js/forum.js"></script>
+		<link href="../css/forum.css" rel="stylesheet" type="text/css">
+		<link href="../css/whiteboard.css" rel="stylesheet" type="text/css">
+		<link href="../css/font-awesome.css" rel="stylesheet" type="text/css">
+		<link href="../css/homepage.css" rel="stylesheet" type="text/css">
+	</head>
+	<body>
+		<header>
+			<div class="header__wrapper">
+				<div class="header__logo-container">
+					<a class="logo-container__logo" href="../jsp/homepage.jsp"></a>
+				</div>
+				<ul class="header__navigation-container">
+					<li><button class="navigation__search"><i class="fa fa-search"></i></button></li>
+					<li><a class="navigation__courses">Courses</a></li>
+					<li><a class="navigation__settings">Settings</a></li>
+				</ul>
+			</div>
+		</header>	
 	
 	<div id = "container">
 	
@@ -38,6 +56,7 @@
 				</div>
 				
 				<div>
+				<br>
 					<h4>testtt</h4>
 					<p>Lorem ipsum dolor sit amet,
 					consectetur adipiscing elit, sed do 

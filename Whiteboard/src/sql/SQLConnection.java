@@ -19,7 +19,7 @@ public class SQLConnection {
 	private final static String getUserID = "SELECT userID FROM Users WHERE username = ?";
 	private final static String getUsername = "SELECT username FROM Users WHERE userID = ?";
 	private final static String getUser = "SELECT * FROM Users WHERE userID = ?";
-	private final static String getNotif = "SELECT * FROM Notification WHERE username = ?";
+	private final static String getNotif = "SELECT * FROM Notifications WHERE username = ?";
 	private final static String getPosts = "SELECT * FROM Posts WHERE ClassID = ";
 	private final static String upvotePost = "UPDATE Whiteboard.Posts "+
 											"SET score = score + 1 WHERE contentID = '";
@@ -68,9 +68,9 @@ public class SQLConnection {
 	public String getcoursename(String classID){
 		String cname=null;
 		try {
-			String getcoursename = getCourseName+classID;
 			PreparedStatement ps;
-			ps = conn.prepareStatement(getcoursename);
+			ps = conn.prepareStatement(getCourseName);
+			ps.setString(1, classID);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next())
 			{
@@ -88,9 +88,8 @@ public class SQLConnection {
 		
 		String username=null, fullname = null, coursename=null;
 		try {
-			String getuserinfo = getUser+userID;
-			PreparedStatement ps;
-			ps = conn.prepareStatement(getuserinfo);
+			PreparedStatement ps = conn.prepareStatement(getUser);
+			ps.setString(1, userID);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next())
 			{
@@ -103,6 +102,7 @@ public class SQLConnection {
 		}
 		
 		coursename = getcoursename(classID);
+		System.out.println(coursename);
 		
 		try {
 			PreparedStatement ps = conn.prepareStatement(addNotif);
@@ -119,12 +119,13 @@ public class SQLConnection {
 		}
 	}
 
-	public void addPost(int classID, String title, String body) {
+	public void addPost(int classID, String title, String body, String userID) {
+		int id = Integer.parseInt(userID);
 		try {
 			PreparedStatement ps = conn.prepareStatement(addPost);
 			UUID idOne = UUID.randomUUID();
 			ps.setString(1, idOne.toString());
-			ps.setInt(2, 803850);
+			ps.setInt(2, id);
 			ps.setInt(3, classID);
 			ps.setString(4, title);
 			ps.setString(5, body);
@@ -139,9 +140,10 @@ public class SQLConnection {
 		ArrayList<Notification> notifs = new ArrayList<Notification>();
 		
 		try {
-			String getNotifsforUser = getNotif+username;//just our own notifications
+			String getNotifsforUser = getNotif;//just our own notifications
 			PreparedStatement ps;
 			ps = conn.prepareStatement(getNotifsforUser);
+			ps.setString(1, username);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next())
 			{

@@ -22,8 +22,8 @@ public class DataStorage {
 	public void retrieveData()
 	{
 		try {
-            String url = "jdbc:msql://192.241.193.125";
-	        java.sql.Connection conn = DriverManager.getConnection(url, "", "");
+            String url = "jdbc:mysql://192.241.193.125/Whiteboard?user=root&password=21d7BIiQypvrDu7Bcbvb&useSSL=false";
+	        java.sql.Connection conn = DriverManager.getConnection(url);
 	        java.sql.Statement stmt = conn.createStatement();
 	        ResultSet rs;
 	        rs = stmt.executeQuery("SELECT * FROM Users");

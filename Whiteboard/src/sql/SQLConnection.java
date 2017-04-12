@@ -12,7 +12,7 @@ public class SQLConnection {
 	private Connection conn;
 	private final static String addPost = "INSERT INTO Whiteboard.Posts(contentID, userID, classID, Title, Body) VALUES(?, ?, ?, ?, ?)";
 	private final static String addUser = "INSERT INTO Users(username, pass, fullname, image, email) VALUES(?, ?, ?, ?, ?)";
-	private final static String addNotif = "INSERT INTO Notifications(username, pass, fullname, image, email) VALUES(?, ?, ?, ?, ?)";
+	private final static String addNotif = "INSERT INTO Notifications(ActionType, ActionID, FullName, ContentName, CourseName, username) VALUES(?, ?, ?, ?, ?, ?)";
 	
 	private final static String getUserID = "SELECT userID FROM Users WHERE username = ?";
 	private final static String getNotif = "SELECT * FROM Notification WHERE username = ?";
@@ -53,6 +53,22 @@ public class SQLConnection {
 			ps.setString(3, fullname);
 			ps.setString(4, image);
 			ps.setString(5, email);
+			ps.executeUpdate();
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void addNotif(String actiontype, String actionID, String fullname, String contentname, String coursename, String username ) {
+		try {
+			PreparedStatement ps = conn.prepareStatement(addNotif);
+			
+			ps.setString(1, actiontype);
+			ps.setString(2, actionID);
+			ps.setString(3, fullname);
+			ps.setString(4, contentname);
+			ps.setString(5, coursename);			
+			ps.setString(6, username);
 			ps.executeUpdate();
 		} catch(SQLException e) {
 			e.printStackTrace();

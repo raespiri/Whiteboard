@@ -27,8 +27,9 @@
 		    		req.onreadystatechange = function () {
 		    			if(req.readyState == 4 && req.status == 200) { 
 		    				if(req.responseText === "No Error") { //if there is no error
-		    					//signIn(document.getElementById("username").value, document.getElementById("password").value); //sign in
-		    				}
+		    					var url2 = "homepage.jsp";
+		    		    		document.location.href = url2;
+		    		    	}
 		    				else { //else print error
 		    					document.getElementById("error").innerHTML = req.responseText;
 		    				}

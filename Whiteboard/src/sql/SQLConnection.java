@@ -16,6 +16,7 @@ public class SQLConnection {
 	
 	private final static String getPostID= "SELECT * FROM Posts WHERE userID = ? AND classID = ? AND Title=? ";
 	private final static String getCourseName = "SELECT * FROM Courses WHERE CourseID = ?";
+	private final static String findUser = "SELECT * FROM Users WHERE username = ?";
 	private final static String getUserID = "SELECT userID FROM Users WHERE username = ?";
 	private final static String getUsername = "SELECT username FROM Users WHERE userID = ?";
 	private final static String getUser = "SELECT * FROM Users WHERE userID = ?";
@@ -243,6 +244,21 @@ public class SQLConnection {
 		}
 	}	
 	
+	public boolean usernameExists(String username) {
+		try {
+			PreparedStatement ps;
+			ps = conn.prepareStatement(findUser);
+			ps.setString(1, username);
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) { // Loop to get all result sets
+				return true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}	
+	
 	public boolean validCredentials(String username, String password) {
 		try {
 			PreparedStatement ps;
@@ -262,7 +278,7 @@ public class SQLConnection {
 		return false;
 	}
 
-	public String getPostID(String UserID, String ClassID, String title, String post){
+	public String getPostID(String UserID, String ClassID, String title, String post) {
 		try {
 			PreparedStatement ps;
 			ps = conn.prepareStatement(getPostID);
@@ -280,4 +296,6 @@ public class SQLConnection {
 			return null;
 		}
 	}
+	
+	
 }

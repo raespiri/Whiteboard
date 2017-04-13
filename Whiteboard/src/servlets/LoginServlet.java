@@ -28,6 +28,7 @@ public class LoginServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		String username = request.getParameter("usernameField"); //get usernameField
 		String password = request.getParameter("passwordField"); //get passwordField
 		
@@ -46,7 +47,6 @@ public class LoginServlet extends HttpServlet {
 			
 			HttpSession session = request.getSession();
 			session.setAttribute("currUser", currUser); // Set session attribute for current user;
-			//request.getRequestDispatcher("/jsp/homepage.jsp").forward(request, response);
 		}
 		else {
 			errorMsg = "Error, invalid login credentials";

@@ -2,10 +2,10 @@
 <html lang="en" dir="ltr">
 	<head>
 		<title>Whiteboard</title>
-
 		<script src="https://use.typekit.net/ofv3bwh.js"></script>
 		<script>try{Typekit.load({ async: true });}catch(e){}</script>
-
+		<script src="../js/forum.js"></script>
+		<link href="../css/forum.css" rel="stylesheet" type="text/css">
 		<link href="../css/whiteboard.css" rel="stylesheet" type="text/css">
 		<link href="../css/font-awesome.css" rel="stylesheet" type="text/css">
 	</head>
@@ -13,21 +13,22 @@
 		<header>
 			<div class="header__wrapper">
 				<div class="header__logo-container">
-					<div class="logo-container__logo"></div>
+					<a class="logo-container__logo" href="../jsp/homepage.jsp"></a>
 				</div>
 				<ul class="header__navigation-container">
 					<li><button class="navigation__search"><i class="fa fa-search"></i></button></li>
 					<li><a class="navigation__courses">Courses</a></li>
 					<li><a class="navigation__settings">Settings</a></li>
+					<li><a href="profile.jsp" class="navigation__settings">Profile</a></li>
 				</ul>
 			</div>
-		</header>
+		</header>	
 		<section class="tabs">
 			<h1>CSCI 201</h1>
 			<ul class="tabs__container">
-				<li><button class="tab__button tab__button--selected">Whiteboard</button></li>
-				<li><button class="tab__button">Forum</button></li>
-				<li><button class="tab__button">Docs</button></li>
+				<li><a href = "Whiteboard.html"><button class="tab__button tab__button--selected">Whiteboard</button></a></li>
+				<li><a href = "../jsp/forum.jsp"><button class="tab__button">Forum</button></a></li>
+				<li><a href = "../jsp/documents.jsp"><button class="tab__button">Docs</button></a></li>
 			</ul>
 		</section>
 		<section class="whiteboard">

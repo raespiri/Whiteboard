@@ -8,11 +8,21 @@
 <%	
 	SQLConnection sqlCon = new SQLConnection();
 	sqlCon.connect();
-	
+	ArrayList<Notification> notifs=null;
+	String username =null;
+	//System.out.println("here1");
  	RegisteredUser curruser = (RegisteredUser) session.getAttribute("currUser");
-	String username = curruser.getUsername();
-	ArrayList<Notification> notifs = sqlCon.getNotifs(username);
-	Collections.sort(notifs);//to sort by date
+ 	System.out.println(curruser.getUsername());
+ 	if(curruser != null){
+ 		username = curruser.getUsername();
+ 		notifs = sqlCon.getNotifs(username);
+ 		Collections.sort(notifs);//to sort by date
+ 	}
+ 	else{
+ 		sqlCon.stop();
+		response.sendRedirect("error.jsp");
+ 	}
+
 	
 	sqlCon.stop();
 %>
@@ -49,11 +59,12 @@
 			<div id="leftside">
 				<ul id = "notif-list" style = "list-style: none;">
 					<li><div id="error" style="color:red; font-size: 12px;"> </div></li>
-					<% for(Notification n : notifs){ 
-						String title = n.getContentname();
-						String fullname = n.getFullname();
-						String actiontype = n.getActionType();
-						String coursename = n.getCoursename();
+					<% 	if(notifs != null){
+							for(Notification n : notifs){ 
+							String title = n.getContentname();
+							String fullname = n.getFullname();
+							String actiontype = n.getActionType();
+							String coursename = n.getCoursename();
 					%>
 						<li class = "notif-in-list">
 							<text class = "notif-name"><%=fullname %></text>
@@ -62,7 +73,7 @@
 								<text class = "notif-title"><%=coursename %></text>
 								<br>
 								<text class = "notif-title"><%=title %></text>
-							<%} %>							
+							<%}} %>							
 						</li>
 					<%} %>
 				</ul>	

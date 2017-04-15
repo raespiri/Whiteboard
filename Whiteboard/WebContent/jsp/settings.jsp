@@ -2,25 +2,26 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ page import="sql.SQLConnection" %>
-<%@ page import="content.File" %>
-<%@ page import="java.util.ArrayList, java.util.Collections" %>
+<%@ page import="notifications.*, users.*, java.util.Collections" %>
+<%@ page import="java.util.ArrayList" %>
 
 <%	
 	SQLConnection sqlCon = new SQLConnection();
 	sqlCon.connect();
-	ArrayList<File> docs=null;
-	int ClassID;
-	if(session.getAttribute("currclassID") != null){
-		String currclassID = (String) session.getAttribute("currclassID");
-		docs = sqlCon.getDocs(currclassID);
-		Collections.sort(docs);//to sort by date
-		//System.out.println(request.getParameter("currclassID") + "cid");
+	
+	String username =null;
+	//System.out.println("here1");
+	RegisteredUser curruser = (RegisteredUser) session.getAttribute("currUser");
+	//System.out.println(curruser.getUsername());
+	if(curruser != null){
+		username = curruser.getUsername();
 	}
 	else{
-
 		sqlCon.stop();
 		response.sendRedirect("error.jsp");
 	}
+
+
 	sqlCon.stop();
 %>
 <html>
@@ -48,24 +49,6 @@
 		</div>
 	</header>
 	
-	<section class="tabs">
-		<h1>CSCI 201</h1>
-		<ul class="tabs__container">
-			<li><a href = "../html/Whiteboard.html"><button class="tab__button">Whiteboard</button></a></li>
-			<li><a href = "forum.jsp"><button class="tab__button">Forum</button></a></li>
-			<li><a href = "documents.jsp"><button class="tab__button tab__button--selected">Docs</button></a></li>
-		</ul>
-	</section>
-
-
-	<form method = "GET" action = "forumServlet">
-			<input type="text" name="name" />
-			<input type="submit" name="submit" value="Submit" />
-	</form>
-	<table>
-		<tr><td>filename.xml</td><td>filename.xml</td><td>filename.xml</td></tr>
-		<tr><td>filename.xml</td><td>filename.xml</td><td>filename.xml</td></tr>
-		<tr><td>filename.xml</td><td>filename.xml</td><td>filename.xml</td></tr>
-	</table>
+	
+	
 </body>
-</html>

@@ -11,7 +11,7 @@ public class Content  implements Comparable<Content> {
 	@Override
 	public int compareTo(Content c) {
 		return c.getTime().compareTo(getTime());
-  }
+	}
 	
 	public Content(String contentID, String userID, String classID, Date time)
 	{

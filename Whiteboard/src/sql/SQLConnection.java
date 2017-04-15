@@ -5,6 +5,7 @@ import java.util.List;
 import java.sql.*;
 import java.util.UUID;
 
+import content.File;
 import content.Post;
 import notifications.Notification;
 
@@ -16,6 +17,7 @@ public class SQLConnection {
 	
 	private final static String getPostID= "SELECT * FROM Posts WHERE userID = ? AND classID = ? AND Title=? ";
 	private final static String getCourseName = "SELECT * FROM Courses WHERE CourseID = ?";
+	private final static String getDocs = "SELECT * FROM Documents WHERE CourseID = ?";
 	private final static String findUser = "SELECT * FROM Users WHERE username = ?";
 	private final static String getUserID = "SELECT userID FROM Users WHERE username = ?";
 	private final static String getUsername = "SELECT username FROM Users WHERE userID = ?";
@@ -134,6 +136,34 @@ public class SQLConnection {
 		} catch(SQLException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public ArrayList<File> getDocs(String ClassID){
+		
+		//TODO
+		
+		ArrayList<File> docs = new ArrayList<File>();
+		
+		try {
+			String getdocsforclass = getDocs;//just our own notifications
+			PreparedStatement ps;
+			ps = conn.prepareStatement(getdocsforclass);
+			ps.setString(1, ClassID);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next())
+			{
+				/*java.sql.Date sqlDate = new java.sql.Date(rs.getTime(8).getTime());
+				File newFile = new File(rs.getString(3), rs.getString(2), rs.getString(4), rs.getString(7), rs.getString(6), rs.getString(5), sqlDate);
+				newFile.setNotificationID(rs.getString(1));
+				notifs.add(newNotif);*/
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println("SQL ERROR WHILE FETCHING docs");
+		}
+		
+		return docs;	
 	}
 	
 	public ArrayList<Notification> getNotifs(String username){

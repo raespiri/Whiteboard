@@ -1,7 +1,6 @@
 package notifications;
 
 import java.sql.Date;
-
 /*
  * Notification Class
  */
@@ -14,6 +13,11 @@ public class Notification implements Comparable<Notification> {
 	private String contentname;//name of actual content (e.g. filename)
 	private String coursename;
 	private Date time;
+	
+	@Override
+	public int compareTo(Notification n) {
+		return n.getTime().compareTo(getTime());
+  }
 	
 	public Notification(String actionID, String actiontype, String fullname, String username, String coursename, String contentname, Date time ){
 		this.actionID = actionID;
@@ -82,8 +86,4 @@ public class Notification implements Comparable<Notification> {
 		return time;
 	}
 	
-	@Override
-	public int compareTo(Notification n) {
-		return n.getTime().compareTo(getTime());
-  }
 }

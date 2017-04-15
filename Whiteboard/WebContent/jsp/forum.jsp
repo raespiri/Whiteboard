@@ -8,9 +8,29 @@
 <%	
 	SQLConnection sqlCon = new SQLConnection();
 	sqlCon.connect();
-	
-	List<content.Post> posts = sqlCon.getPosts(Integer.parseInt(request.getParameter("classID")));
-	Collections.sort(posts);//to sort by date
+	List<content.Post> posts=null;
+	if(request.getParameter("classID") != null){
+		posts = sqlCon.getPosts(Integer.parseInt(request.getParameter("classID")));
+		Collections.sort(posts);//to sort by date
+		//System.out.println(request.getParameter("classID") + "cid");
+		session = request.getSession();		
+		session.setAttribute("currclassID", request.getParameter("classID")); // Set session attribute for guest user;
+	}
+	else{
+		//System.out.println(session.getAttribute("currclassID") + "cci");
+		if(session.getAttribute("currclassID") != null){
+			String currclassID = (String) session.getAttribute("currclassID");
+			posts = sqlCon.getPosts(Integer.parseInt(currclassID));
+			Collections.sort(posts);//to sort by date
+			
+		}
+		else{
+			sqlCon.stop();
+			response.sendRedirect("error.jsp");
+		}
+		
+		
+	}
 	
 	sqlCon.stop();
 %>
@@ -41,9 +61,9 @@
 		<section class="tabs">
 			<h1>CSCI 201</h1>
 			<ul class="tabs__container">
-				<li><button class="tab__button">Whiteboard</button></li>
-				<li><button class="tab__button tab__button--selected">Forum</button></li>
-				<li><button class="tab__button">Docs</button></li>
+				<li><a href = "../html/Whiteboard.html"><button class="tab__button">Whiteboard</button></a></li>
+				<li><a href = "forum.jsp"><button class="tab__button tab__button--selected">Forum</button></a></li>
+				<li><a href = "../jsp/documents.jsp"><button class="tab__button">Docs</button></a></li>
 			</ul>
 		</section>
 		<ul id = "post-list" style = "list-style: none;">
@@ -53,10 +73,12 @@
 				<input type="submit" name="submit" onclick="validate()" class = "submit-input"/>
 			</li>
 			<li><div id="error" style="color:red; font-size: 12px;"> </div></li>
-			<% for(content.Post post : posts){ 
-				int score = post.getScore();
-				String title = post.getTitle();
-				String postID = post.getContentID();
+			<% 
+			if(posts != null){
+				for(content.Post post : posts){ 
+					int score = post.getScore();
+					String title = post.getTitle();
+					String postID = post.getContentID();
 			%>
 				<li class = "post-in-list">
 					<button class = "upvote" onclick = "upvote('<%=postID%>')">
@@ -68,7 +90,7 @@
 					<text class = "score"> <%=score %> </text>
 					<text class = "post-title"><%=title %></text>
 				</li>
-			<%} %>
+			<%} } %>
 		</ul>
 	</body>
 </html>

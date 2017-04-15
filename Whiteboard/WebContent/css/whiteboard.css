@@ -392,6 +392,8 @@ footer {
 /* line 111, ../sass/chat.scss */
 .chat--collapsed .chat__scrollview {
   height: 0;
+  padding-top: 0;
+  padding-bottom: 0;
 }
 
 /* line 6, ../sass/whiteboard.scss */

@@ -9,12 +9,14 @@
 	SQLConnection sqlCon = new SQLConnection();
 	sqlCon.connect();
 	List<content.Post> posts=null;
+	String classID = "";
 	if(request.getParameter("classID") != null){
 		posts = sqlCon.getPosts(Integer.parseInt(request.getParameter("classID")));
 		Collections.sort(posts);//to sort by date
 		//System.out.println(request.getParameter("classID") + "cid");
 		session = request.getSession();		
 		session.setAttribute("currclassID", request.getParameter("classID")); // Set session attribute for guest user;
+		classID = request.getParameter("classID");
 	}
 	else{
 		//System.out.println(session.getAttribute("currclassID") + "cci");
@@ -22,14 +24,12 @@
 			String currclassID = (String) session.getAttribute("currclassID");
 			posts = sqlCon.getPosts(Integer.parseInt(currclassID));
 			Collections.sort(posts);//to sort by date
-			
+			classID = request.getParameter("classID");
 		}
 		else{
 			sqlCon.stop();
 			response.sendRedirect("error.jsp");
 		}
-		
-		
 	}
 	
 	sqlCon.stop();
@@ -79,6 +79,7 @@
 					int score = post.getScore();
 					String title = post.getTitle();
 					String postID = post.getContentID();
+					
 			%>
 				<li class = "post-in-list">
 					<button class = "upvote" onclick = "upvote('<%=postID%>')">
@@ -88,7 +89,7 @@
 						<i class="fa fa-arrow-down" aria-hidden="true" onclick = "downvote('<%=postID%>')"></i>
 					</button>
 					<text class = "score"> <%=score %> </text>
-					<text class = "post-title"><%=title %></text>
+					<a href = "forumPost.jsp?postID=<%=postID %>&classID=<%=classID %>" class = "post-title"><%=title %></a>
 				</li>
 			<%} } %>
 		</ul>

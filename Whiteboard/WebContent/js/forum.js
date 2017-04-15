@@ -22,13 +22,10 @@ function validate() {
 		req.open("GET", url, true);
 		req.onreadystatechange = function () {
 			if(req.readyState == 4 && req.status == 200) { 
-				if(req.responseText === "") {
-					console.log("noError");
-				}
-				else {
-					console.log(req.responseText);
-					document.getElementById('error').innerHTML = req.responseText;
-				}
+				var postID = req.responseText;
+				postURL = "forumPost.jsp?postID="+postURL+"&classID="+GetURLParameter("classID");
+				console.log(postURL);
+				document.location.href = postURL;
 			}
 		}
 		req.send(null);

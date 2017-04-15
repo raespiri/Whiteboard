@@ -7,7 +7,7 @@ public class Post extends Content{
 	public String title;
 	private String body;
 	private ArrayList<Post> replies;
-	private int parentID;
+	private String parentID;
 	public int score;
 
 	public Post(String contentID, String userID, String classID, String title, String body, Date time) {
@@ -15,10 +15,10 @@ public class Post extends Content{
 		this.setTitle(title);
 		this.setBody(body);
 		this.setReplies(new ArrayList<Post>());
-		this.parentID = 0;
+		this.parentID = "0";
 	}
 	
-	public Post(String contentID, String userID, String classID, String title, String body, Date time, int parentID) {
+	public Post(String contentID, String userID, String classID, String title, String body, Date time, String parentID) {
 		super(contentID, userID, classID, time);
 		this.setTitle(title);
 		this.setBody(body);
@@ -55,11 +55,11 @@ public class Post extends Content{
 		replies.add(reply);
 	}
 
-	public int getParentID() {
+	public String getParentID() {
 		return parentID;
 	}
 
-	public void setParentID(int parentID) {
+	public void setParentID(String parentID) {
 		this.parentID = parentID;
 	}
 

@@ -44,12 +44,13 @@ public class ForumServlet extends HttpServlet {
 			
 			HttpSession session = request.getSession();
 			RegisteredUser curruser = (RegisteredUser) session.getAttribute("currUser");
-			sqlCon.addPost(classID, title, body, curruser.getUserID());
-			
+			String postID = sqlCon.addPost(classID, title, body, curruser.getUserID());
 			String sql_actionID = sqlCon.getPostID(curruser.getUserID(), Integer.toString(classID), title, body);
-			
 			sqlCon.addNotif("Post", sql_actionID, curruser.getUserID(), title, Integer.toString(classID));
 			sqlCon.stop();
+			response.setContentType("text/plain");  // Set content type of the response
+		    response.setCharacterEncoding("UTF-8");
+		    response.getWriter().write(postID);
 		}
 		else if(request.getParameter("type").equals("upvote"))
 		{

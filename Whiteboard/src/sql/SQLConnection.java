@@ -12,6 +12,7 @@ import notifications.Notification;
 public class SQLConnection {
 	private Connection conn;
 	private final static String addPost = "INSERT INTO Whiteboard.Posts(contentID, userID, classID, Title, Body) VALUES(?, ?, ?, ?, ?)";
+	private final static String addReply = "INSERT INTO Whiteboard.Posts(contentID, userID, classID, Title, Body, parentID) VALUES(?, ?, ?, ?, ?, ?)";
 	private final static String addUser = "INSERT INTO Users(username, pass, fullname, image, email) VALUES(?, ?, ?, ?, ?)";
 	private final static String addNotif = "INSERT INTO Notifications(ActionType, ActionID, FullName, ContentName, CourseName, username) VALUES(?, ?, ?, ?, ?, ?)";
 	
@@ -23,9 +24,11 @@ public class SQLConnection {
 	private final static String getUsername = "SELECT username FROM Users WHERE userID = ?";
 	private final static String getUser = "SELECT * FROM Users WHERE userID = ?";
 	private final static String getNotif = "SELECT * FROM Notifications WHERE username = ?";
-	private final static String getPosts = "SELECT * FROM Posts WHERE ClassID = ";
+	private final static String getPosts = "SELECT * FROM Posts WHERE parentID = 0 AND ClassID = ";
+	private final static String getReplies = "SELECT * FROM Posts WHERE parentID = ?";
 	private final static String upvotePost = "UPDATE Whiteboard.Posts "+
 											"SET score = score + 1 WHERE contentID = '";
+	private final static String getPost = "SELECT * FROM Posts WHERE contentID = ?";
 	private final static String downvotePost = "UPDATE Whiteboard.Posts "+
 			"SET score = score - 1 WHERE contentID = '";
 	private final static String getLoginCredentials = "SELECT pass FROM Users WHERE username = ?";
@@ -121,8 +124,27 @@ public class SQLConnection {
 			e.printStackTrace();
 		}
 	}
-
-	public void addPost(int classID, String title, String body, String userID) {
+	public String addReply(int classID, String title, String body, String userID, String parentID) {
+		int id = Integer.parseInt(userID);
+		System.out.println("SQLCONNECTION FOR REPLY");
+		try {
+			PreparedStatement ps = conn.prepareStatement(addReply);
+			UUID idOne = UUID.randomUUID();
+			ps.setString(1, idOne.toString());
+			ps.setInt(2, id);
+			ps.setInt(3, classID);
+			ps.setString(4, title);
+			ps.setString(5, body);
+			ps.setString(6, parentID);
+			ps.executeUpdate();
+			return idOne.toString();
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public String addPost(int classID, String title, String body, String userID) {
 		int id = Integer.parseInt(userID);
 		try {
 			PreparedStatement ps = conn.prepareStatement(addPost);
@@ -133,11 +155,32 @@ public class SQLConnection {
 			ps.setString(4, title);
 			ps.setString(5, body);
 			ps.executeUpdate();
+			return idOne.toString();
 		} catch(SQLException e) {
 			e.printStackTrace();
 		}
+		return null;
 	}
 	
+	public Post getPost(String postID)
+	{
+		try {
+			PreparedStatement ps;
+			ps = conn.prepareStatement(getPost);
+			ps.setString(1, postID);
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) { 
+				java.sql.Date sqlDate = new java.sql.Date(rs.getTime(6).getTime());
+				content.Post newPost = new content.Post(rs.getString(1), Integer.toString(rs.getInt(2)), Integer.toString(rs.getInt(3)), rs.getString(4), rs.getString(5), sqlDate);
+				newPost.setScore(rs.getInt(7));
+				return newPost;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+		return null;
+	}
 	public ArrayList<File> getDocs(String ClassID){
 		
 		//TODO
@@ -215,7 +258,29 @@ public class SQLConnection {
 		}
 		return null;
 	}
-
+	public List <content.Post> getReplies(String postID)
+	{
+		try {
+			PreparedStatement ps;
+			ps = conn.prepareStatement(getReplies);
+			ps.setString(1, postID);
+			ResultSet rs = ps.executeQuery();
+			List<content.Post> posts = new ArrayList<content.Post>();
+			while(rs.next())
+			{
+				java.sql.Date sqlDate = new java.sql.Date(rs.getTime(6).getTime());
+				content.Post newPost = new content.Post(rs.getString(1), Integer.toString(rs.getInt(2)), Integer.toString(rs.getInt(3)), rs.getString(4), rs.getString(5), sqlDate);
+				newPost.setScore(rs.getInt(7));
+				posts.add(newPost);
+			}
+			return posts;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println("SQL ERROR WHILE FETCHING POSTS");
+		}
+		return null;
+	}
 	public void upvote(String postID) {
 		try {
 			String withID = upvotePost+postID+"'";

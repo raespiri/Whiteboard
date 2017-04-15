@@ -33,39 +33,37 @@
 		<link href="../css/whiteboard.css" rel="stylesheet" type="text/css">
 		<link href="../css/font-awesome.css" rel="stylesheet" type="text/css">
 	</head>
-<body>
-	<header>
-		<div class="header__wrapper">
-			<div class="header__logo-container">
-				<a class="logo-container__logo" href="../jsp/homepage.jsp"></a>
+	<body>
+		<header>
+			<div class="header__wrapper">
+				<div class="header__logo-container">
+					<a class="logo-container__logo" href="../jsp/homepage.jsp"></a>
+				</div>
+				<ul class="header__navigation-container">
+					<li><button class="navigation__search"><i class="fa fa-search"></i></button></li>
+					<li><a class="navigation__courses">Courses</a></li>
+					<li><a class="navigation__settings">Settings</a></li>
+					<li><a href="profile.jsp" class="navigation__settings">Profile</a></li>
+				</ul>
 			</div>
-			<ul class="header__navigation-container">
-				<li><button class="navigation__search"><i class="fa fa-search"></i></button></li>
-				<li><a class="navigation__courses">Courses</a></li>
-				<li><a class="navigation__settings">Settings</a></li>
-				<li><a href="profile.jsp" class="navigation__settings">Profile</a></li>
+		</header>
+		<section class="tabs">
+			<h1>CSCI 201</h1>
+			<ul class="tabs__container">
+				<li><a href = "../html/Whiteboard.html"><button class="tab__button">Whiteboard</button></a></li>
+				<li><a href = "forum.jsp"><button class="tab__button">Forum</button></a></li>
+				<li><a href = "documents.jsp"><button class="tab__button tab__button--selected">Docs</button></a></li>
 			</ul>
-		</div>
-	</header>
-	
-	<section class="tabs">
-		<h1>CSCI 201</h1>
-		<ul class="tabs__container">
-			<li><a href = "../html/Whiteboard.html"><button class="tab__button">Whiteboard</button></a></li>
-			<li><a href = "forum.jsp"><button class="tab__button">Forum</button></a></li>
-			<li><a href = "documents.jsp"><button class="tab__button tab__button--selected">Docs</button></a></li>
-		</ul>
-	</section>
-
-
-	<form method = "GET" action = "forumServlet">
-			<input type="text" name="name" />
-			<input type="submit" name="submit" value="Submit" />
-	</form>
-	<table>
-		<tr><td>filename.xml</td><td>filename.xml</td><td>filename.xml</td></tr>
-		<tr><td>filename.xml</td><td>filename.xml</td><td>filename.xml</td></tr>
-		<tr><td>filename.xml</td><td>filename.xml</td><td>filename.xml</td></tr>
-	</table>
-</body>
+		</section>
+		<h3>File Upload:</h3>
+		Select a document to upload: <br />
+		<form action="../DocumentServlet" method="post" enctype="multipart/form-data">
+			<input type="file" name="file" size="50" />
+			<br />
+			<input type="submit" value="Upload File" />
+		</form>
+		<table>
+			
+		</table>
+	</body>
 </html>

@@ -1,9 +1,8 @@
 package datastorage;
 
-import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.util.ArrayList;
 //import java.util.List;
+import java.sql.*;
 
 import com.mysql.jdbc.Statement;
 
@@ -14,6 +13,8 @@ import users.User;
 public class DataStorage {
 	ArrayList<User> users;
 	ArrayList<Course> courses;
+	
+	private Connection conn;
 	public DataStorage()
 	{
 		users = new ArrayList<User>();
@@ -22,8 +23,8 @@ public class DataStorage {
 	public void retrieveData()
 	{
 		try {
-            String url = "jdbc:mysql://192.241.193.125/Whiteboard?user=root&password=21d7BIiQypvrDu7Bcbvb&useSSL=false";
-	        java.sql.Connection conn = DriverManager.getConnection(url);
+			new com.mysql.jdbc.Driver();
+			conn = DriverManager.getConnection("jdbc:mysql://192.241.193.125/Whiteboard?user=root&password=21d7BIiQypvrDu7Bcbvb&useSSL=false");
 	        java.sql.Statement stmt = conn.createStatement();
 	        ResultSet rs;
 	        rs = stmt.executeQuery("SELECT * FROM Users");
@@ -38,6 +39,8 @@ public class DataStorage {
 	        	RegisteredUser u = new RegisteredUser(password,email,fullname,username,image,userID);
 	        	users.add(u);
 	        }
+	        
+	        
 	        rs = stmt.executeQuery("SELECT * FROM Courses");
 	        while( rs.next() )
 	        {
@@ -48,6 +51,12 @@ public class DataStorage {
 	        System.err.print("Got an exception! ");
 	        System.err.println(e.getMessage());
 	    }
+		
+		try {
+			conn.close();
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public RegisteredUser getUser(String userID) {

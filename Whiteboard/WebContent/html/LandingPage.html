@@ -10,6 +10,13 @@
 	<link rel="stylesheet" href = "../css/main.css">
 	<link href="../css/font-awesome.css" rel="stylesheet" type="text/css">
 	<link href="../css/whiteboard.css" rel="stylesheet" type="text/css">
+	
+	<script type="text/javascript">
+		function guestredirect(){
+			window.location = '../GuestServlet';
+		}			  
+	</script>
+	
 </head>
 <body ontouchstart>
 	<header>
@@ -30,7 +37,10 @@
 		<div id = "virtual-classroom-header">
 			<div><text style="width: 80%; font-weight: bold; font-size:40px; margin-bottom:100cm;">Your Virtual Classroom</text></div>
 			<a class = "sign-button" href = "/Whiteboard/jsp/registration.jsp">Join For Free</a>
-			<a class = "sign-button" href = "/Whiteboard/jsp/homepage.jsp">Guest Access</a>
+			<a class = "sign-button" href = "/Whiteboard/jsp/loginpage.jsp">Login</a>
+			<button class="sign-button" type="submit" name="login" onclick="guestredirect()">Guest Access</button>
+			<!--  <a class = "sign-button" href = "/Whiteboard/servlets/GuestServlet">Guest Access</a>-->
+			
 		</div>
 		<div id = "content-pane" style = "float:left; height:150px; width:150px;">This is an image</div>
 		<div id = "content-pane" style = "float:right;height:150px;width:150px;">This is some text</div>

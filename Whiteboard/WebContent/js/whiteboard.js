@@ -21,10 +21,7 @@ class Point {
 	}
 }
 
-const WBSocketMessage = {
-	DrawAction: "WBSocketMessageDrawAction",
-	ChatMessage: "WBSocketMessageChatMessage",
-}
+const DEFAULT_DRAWING_WIDTH = 5
 
 class Whiteboard {
 
@@ -42,8 +39,8 @@ class Whiteboard {
 		this._refreshInterval = refreshInterval
 
 		// Styles
-		this._selectedColor = "#00DB92"
-		this._selectedWidth = 5
+		this._selectedColor = "black"
+		this._selectedWidth = DEFAULT_DRAWING_WIDTH
 
 		// Setup
 		this.addNetworkHandlers()
@@ -89,6 +86,7 @@ class Whiteboard {
 	addUIEventListeners() {
 		let _this = this
 
+		// Canvas
 		this._canvas.addEventListener("mousedown", function(e) {
 			_this._isPainting = true
 			_this.updatePosition(e)
@@ -103,9 +101,36 @@ class Whiteboard {
 			_this.clearPositions()
 		})
 
+		// Color picker
+		document.querySelectorAll(".toolbar__color").forEach(elem => {
+			elem.addEventListener("click", function(e) {
+				let color = this.getAttribute("data-color")
+				_this.setSelectedColor(color)
+				let width = this.getAttribute("data-width")
+				_this.setSelectedWidth(width)
+
+				document.querySelectorAll(".toolbar__color").forEach(elem => {
+					elem.classList.remove("toolbar__color--selected")
+				})
+
+				this.classList.add("toolbar__color--selected")
+			})
+		})
+
 		window.addEventListener("resize", function() {
 			_this.fitCanvas()
 		})
+	}
+
+	// MARK: - Accessors
+	setSelectedColor(color) {
+		this._selectedColor = color;
+		console.log("Set selected color to:", color)
+	}
+	setSelectedWidth(width) {
+		if (!width || typeof width === "undefined") width = DEFAULT_DRAWING_WIDTH;
+		this._selectedWidth = parseInt(width)
+		console.log("Set selected width to:", width)
 	}
 
 	// MARK: - Helpers
@@ -172,6 +197,7 @@ class Whiteboard {
 		this._context.beginPath()
 		this._context.moveTo(startPoint.x, startPoint.y)
 		this._context.lineTo(endPoint.x, endPoint.y)
+		this._context.closePath()
 		this._context.stroke()
 
 		console.log("Drawing at:", isLocal, startPoint.toString(), endPoint.toString())

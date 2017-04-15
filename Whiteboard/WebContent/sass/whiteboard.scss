@@ -1,57 +1,10 @@
 @import "partials/main.scss";
+@import "chat.scss";
 
-.tabs {
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	justify-content: flex-start;
+$canvasBgColor: #eee;
 
-	max-width: $maxBodyWidth;
-	margin: 0 auto;
-	padding: $sideMargins*2 $sideMargins;
-
-	h1 {
-		font-size: 2em;
-		font-weight: 800;
-		margin-right: 15px;
-	}
-
-	.tabs__container {
-		display: flex;
-		flex-direction: row;
-		align-items: center;
-		justify-content: flex-start;
-
-		li {
-			margin: 0 10px;
-			
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			
-			
-			.tab__button {
-				background: none;
-				font-size: 1.3em;
-				font-weight: 700;
-				border: none;
-				outline: none;
-				padding: 5px 15px;
-				border: 3px solid black;
-				border-radius: 30px;
-
-				transition: all $transitionTime ease-out;
-
-				cursor: pointer;
-			}
-
-			.tab__button--selected {
-				background: $accentColor;
-				color: white;
-				border-color: $accentColor;
-			}
-		}
-	}
+body, html {
+	background: $canvasBgColor;
 }
 
 .whiteboard {
@@ -59,15 +12,61 @@
 	overflow: hidden;
 
 	#whiteboard__canvas {
-		background: #eee;
+		background: $canvasBgColor;
 	}
 
 	.whiteboard__toolbar-container {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-around;
+		align-items: center;
+
 		position: absolute;
 		top: 15px;
 		left: 15px;
 		width: 50px;
 		height: 300px;
 		background: white;
+
+		box-shadow: 0 3px 3px rgba(0,0,0,0.05);
+
+		border-radius: 25px;
+		padding: 5px 0;
+	}
+
+	.toolbar__color {
+		width: 30px;
+		height: 30px;
+		border-radius: 15px;
+		box-shadow: 0 0 5px rgba(0, 0, 0, 0.25);
+		border: none;
+		outline: none;
+		background: white;
+		cursor: pointer;
+	}
+
+	.toolbar__color--selected {
+		border: 3px solid #E5DE50;
+		box-shadow: none;
+	}
+
+	.toolbar__color--red {
+		background: #DB0060;
+	}
+
+	.toolbar__color--orange {
+		background: #F0712B;
+	}
+
+	.toolbar__color--green {
+		background: $accentColor;
+	}
+
+	.toolbar__color--blue {
+		background: #0079DB;
+	}
+
+	.toolbar__color--black {
+		background: black;
 	}
 }

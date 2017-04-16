@@ -206,14 +206,18 @@ class Whiteboard {
 	fitCanvas() {
 		console.log("Resizing canvas...")
 
+		let imageData = this._context.getImageData(0, 0, this._canvas.width, this._canvas.height)
+
 		// Resize canvas to fit
 		this._canvas.width = window.innerWidth
 
 		let headerHeight = document.querySelector("header").offsetHeight
 		let tabHeight = document.querySelector(".tabs").offsetHeight
 		this._canvas.height = window.innerHeight - (headerHeight+tabHeight) - 10
+
+		this._context.putImageData(imageData, 0, 0)
 	}
 
 }
 
-new Whiteboard("ws://localhost:8080/Whiteboard/server/v1/whiteboard", "#whiteboard__canvas", 25)
+new Whiteboard(`ws${location.protocol==="https:" ? "s" : ""}://${location.host}/Whiteboard/server/v1/whiteboard`, "#whiteboard__canvas", 25)

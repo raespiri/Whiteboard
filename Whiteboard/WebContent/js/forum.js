@@ -35,6 +35,12 @@ function validate() {
 
 function upvote(postID)
 {
+	var id = 'score'+postID;
+	var score = document.getElementById(id);
+	var intScore = parseInt(score.innerHTML);
+	intScore+=1;
+	score.innerHTML = intScore;
+	
 	var url = "../ForumServlet?postID="+postID+"&type=upvote";
 	var req = new XMLHttpRequest();
 	req.open("GET", url, true);
@@ -54,6 +60,12 @@ function upvote(postID)
 
 function downvote(postID)
 {
+	var id = 'score'+postID;
+	var score = document.getElementById(id);
+	var intScore = parseInt(score.innerHTML);
+	intScore-=1;
+	score.innerHTML = intScore;
+	
 	var url = "../ForumServlet?postID="+postID+"&type=downvote";
 	var req = new XMLHttpRequest();
 	req.open("GET", url, true);

@@ -63,7 +63,12 @@
 	font-size: 40px;
 	position: relative;
 	font-color: #000000;
-	color:black;
+	color: white;
+}
+
+.post-title-on-page:hover
+{
+	color: black;
 }
 
 .title-input
@@ -162,13 +167,14 @@
 .post-body-box
 {
 	background: #ccc;
-    color: black;
-    border: 1px solid;
-    border-color: #00DB92;
-    border-radius: 16px 16px 16px 16px;
-    min-height:100px;
-    font-size:20px;
-    margin: 0px;
+	color: black;
+	border: 1px solid;
+	border-color: #00DB92;
+	border-radius: 16px 16px 16px 16px;
+	min-height:100px;
+	font-size:20px;
+	margin: 0px;
+	padding: 10px;
 }
 
 #reply-list li

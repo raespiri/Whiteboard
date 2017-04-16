@@ -4,8 +4,7 @@
 		<title>Whiteboard</title>
 		<script src="https://use.typekit.net/ofv3bwh.js"></script>
 		<script>try{Typekit.load({ async: true });}catch(e){}</script>
-		<script src="../js/forum.js"></script>
-		<link href="../css/forum.css" rel="stylesheet" type="text/css">
+
 		<link href="../css/whiteboard.css" rel="stylesheet" type="text/css">
 		<link href="../css/font-awesome.css" rel="stylesheet" type="text/css">
 	</head>
@@ -66,7 +65,7 @@
 		<script src="../js/whiteboard.js" type="text/javascript"></script>
 		<script src="../js/chat.js" type="text/javascript"></script>
 		<script type="text/javascript">
-			new Chat("ws://localhost:8080/Whiteboard/server/v1/chat", "username")
+			new Chat(`ws${location.protocol==="https:" ? "s" : ""}://${location.host}/Whiteboard/server/v1/chat`, "username")
 		</script>
 	</body>
 </html>

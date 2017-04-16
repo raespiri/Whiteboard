@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+ <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ page import="sql.SQLConnection" %>
@@ -62,7 +62,7 @@
 				<button class = "upvote-in-box" onclick = "upvote('<%=postID%>')">
 					<i class="fa fa-arrow-up" aria-hidden="true"></i>
 				</button>
-				<text class = "score-in-box">
+				<text id="score<%=postID %>" class = "score-in-box">
 					<%=score %>
 				</text>	
 				<button class = "downvote-in-box">
@@ -74,7 +74,8 @@
 			<a style = "color: black; margin-left: 20px;">posted by: <%=postername %></a>
 			<div class="post-body-box" ><%=body %></div>
 		</li>
-	<li style = "position: relative; top: 50px;">
+		<li><br></li>
+	<li>
 		<input type ="hidden" id = "title" class = "title-input" value = "reply"/>
 		<input type="text" id="body" class = "reply-input"  placeholder = "Reply to this Post."/>
 		<input type="submit" name="Reply" onclick="reply('<%=postID %>')" class = "submit-reply-input"/>

@@ -20,10 +20,11 @@ function validate() {
 		// create AJAX request
 		var req = new XMLHttpRequest();
 		req.open("GET", url, true);
+		
 		req.onreadystatechange = function () {
 			if(req.readyState == 4 && req.status == 200) { 
 				var postID = req.responseText;
-				postURL = "forumPost.jsp?postID="+postURL+"&classID="+GetURLParameter("classID");
+				var postURL = "forumPost.jsp?postID="+postID+"&classID="+GetURLParameter("classID");
 				console.log(postURL);
 				document.location.href = postURL;
 			}

@@ -8,10 +8,13 @@
 	SQLConnection sqlCon = new SQLConnection();
 	sqlCon.connect();
 	Post post = null;
+	String classID = request.getParameter("classID");
+	int score = 0;
 	List<content.Post> replies=null;
 	if(request.getParameter("postID") != null){
 		String postID = request.getParameter("postID");
 		post = sqlCon.getPost(postID);
+		score = post.getScore();
 		String title = post.getTitle();
 		String body = post.getBody();
 		replies = sqlCon.getReplies(postID);
@@ -19,21 +22,59 @@
 %>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Whiteboard: <%=title %></title>
+	<link href="../css/forum.css" rel="stylesheet" type="text/css">
+	<link href="../css/whiteboard.css" rel="stylesheet" type="text/css">
+	<link href="../css/font-awesome.css" rel="stylesheet" type="text/css">
+	<script src="../js/forum.js"></script>
 </head>
 <body>
+	<header>
+		<div class="header__wrapper">
+			<div class="header__logo-container">
+				<a class="logo-container__logo" href="../jsp/homepage.jsp"></a>
+			</div>
+			<ul class="header__navigation-container">
+				<li><button class="navigation__search"><i class="fa fa-search"></i></button></li>
+				<li><a class="navigation__courses">Courses</a></li>
+				<li><a class="navigation__settings">Settings</a></li>
+				<li><a href="profile.jsp" class="navigation__settings">Profile</a></li>
+			</ul>
+		</div>
+	</header>
+	<section class="tabs">
+		<h1>CSCI 201</h1>
+		<ul style = "position: relative: left:2%;" class="tabs__container">
+			<li><a href = "../html/Whiteboard.html?classID=<%=classID%>"><button class="tab__button">Whiteboard</button></a></li>
+			<li><a href = "forum.jsp?classID=<%=classID%>"><button class="tab__button tab__button--selected">Forum</button></a></li>
+			<li><a href = "../jsp/documents.jsp?classID=<%=classID%>"><button class="tab__button">Docs</button></a></li>
+		</ul>
+	</section>
 	<ul style = "list-style: none;">
-		<li><span><button class = "vote-button" id = "upvote" >UP</button><button style = "position: relative; top:30" class = "vote-button" id = "downvote">DOWN</button>
-		<img></img>
-		<a><%=title%></a><a> <%=body %></a>
-	</span></li>
+		<li class="post-in-list" style="margin-top: 10px; background-color: #00DB92; min-height:200px;">
+			<div class = "ballot-box">
+				<button class = "upvote-in-box" onclick = "upvote('<%=postID%>')">
+					<i class="fa fa-arrow-up" aria-hidden="true"></i>
+				</button>
+				<text class = "score-in-box">
+					<%=score %>
+				</text>	
+				<button class = "downvote-in-box">
+					<i class="fa fa-arrow-down" aria-hidden="true" onclick = "downvote('<%=postID%>')"></i>
+				</button>
+			</div>	
+			<img></img>
+			<a class = "post-title-on-page"><%=title%></a>
+			<div class="post-body-box" ><%=body %></div>
+		</li>
 	<li>
 		<input type ="hidden" id = "title" class = "title-input" value = "reply"/>
-		<input type="text" id="body" class = "body-input"  placeholder = "Reply to this Post."/>
-		<input type="submit" name="Reply" onclick="reply('<%=postID %>')" class = "submit-input"/>
+		<input type="text" id="body" class = "reply-input"  placeholder = "Reply to this Post."/>
+		<input type="submit" name="Reply" onclick="reply('<%=postID %>')" class = "submit-reply-input"/>
 	</li>
-	<li>Answers sorted by best</li>
+	</ul>
+	<ul id = "reply-list">
 	<% 
 	if(replies != null){
 		for(content.Post reply : replies){ 
@@ -42,7 +83,7 @@
 			String replyBody = reply.getBody();
 			String replyPostID = reply.getContentID();
 	%>
-	<li class = "post-in-list">
+	<li>
 		<button class = "upvote" onclick = "upvote('<%=replyPostID%>')">
 			<i class="fa fa-arrow-up" aria-hidden="true"></i>
 		</button>
@@ -71,6 +112,12 @@
 	}
 	function reply(parentID)
 	{
+		var list = document.getElementById('reply-list');
+		var entry = document.createElement('li');
+		var body = document.getElementById('body').value;
+		console.log(body);
+		entry.appendChild(document.createTextNode(body));
+		list.insertBefore(entry, list.childNodes[0]);
 		if(document.getElementById('body').value === "") {
 			console.log("no body text");
 		}
@@ -81,6 +128,7 @@
 			var req = new XMLHttpRequest();
 			req.open("GET", url, true);
 			if(req.readyState == 4 && req.status == 200) { 
+				
 				console.log("sent to post servlet");
 			}
 			req.send(null);

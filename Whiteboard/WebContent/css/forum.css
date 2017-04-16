@@ -11,6 +11,12 @@
     margin-left:20%;
     background:#d1d0d2;
 }
+.tabs h1
+{
+	margin-left:20%;
+}
+.tabs__container
+{margin-left:18%;}
 
 .upvote
 {
@@ -52,6 +58,14 @@
 	color:black;
 }
 
+.post-title-on-page
+{
+	font-size: 40px;
+	position: relative;
+	font-color: #000000;
+	color:black;
+}
+
 .title-input
 {
 	border: 1px solid #ccc!important;
@@ -73,7 +87,31 @@
     bottom:26px;
     font-size: 24px;
 }
-
+.reply-input
+{
+	border: 1px solid #ccc!important;
+    border-radius: 16px 0px 0px 16px;
+    height: 72px;
+    width:42%;
+    margin-left:20%;
+    position:relative;
+    font-size: 24px;
+}
+.submit-reply-input
+{
+	background: #00DB92;
+	color: white;
+	border: 1px solid;
+	border-color: #00DB92;
+	height:78px;
+	border-radius: 0px 16px 16px 0px;
+	display:inline-block;
+	width: 13%;
+	font-size: 25px;
+	margin: 0px;
+	/* position: relative; */
+	/* top: 5px; */
+}
 .submit-input
 {
 	background: #00DB92;
@@ -89,4 +127,26 @@
     width:18%;
     font-size:40px;
     margin: 0px;
+}
+.ballot-box
+{
+	margin: 20px;
+	height:60px;
+	width:20px;
+	display: inline-block;
+}
+.upvote-in-box
+{
+	height:20px;
+	width:30px;
+	margin:0px;
+	display: inline-block;
+}
+
+.downvote-in-box
+{
+	height:20px;
+	width:30px;
+	margin:0px;
+	display: inline-block;
 }

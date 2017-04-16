@@ -8,6 +8,7 @@
 	SQLConnection sqlCon = new SQLConnection();
 	sqlCon.connect();
 	Post post = null;
+	String classID = request.getParameter("classID");
 	List<content.Post> replies=null;
 	if(request.getParameter("postID") != null){
 		String postID = request.getParameter("postID");
@@ -19,21 +20,53 @@
 %>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Whiteboard: <%=title %></title>
+	<link href="../css/forum.css" rel="stylesheet" type="text/css">
+	<link href="../css/whiteboard.css" rel="stylesheet" type="text/css">
+	<link href="../css/font-awesome.css" rel="stylesheet" type="text/css">
 </head>
 <body>
+	<header>
+		<div class="header__wrapper">
+			<div class="header__logo-container">
+				<a class="logo-container__logo" href="../jsp/homepage.jsp"></a>
+			</div>
+			<ul class="header__navigation-container">
+				<li><button class="navigation__search"><i class="fa fa-search"></i></button></li>
+				<li><a class="navigation__courses">Courses</a></li>
+				<li><a class="navigation__settings">Settings</a></li>
+				<li><a href="profile.jsp" class="navigation__settings">Profile</a></li>
+			</ul>
+		</div>
+	</header>
+	<section class="tabs">
+		<h1>CSCI 201</h1>
+		<ul class="tabs__container">
+			<li><a href = "../html/Whiteboard.html?classID=<%=classID%>"><button class="tab__button">Whiteboard</button></a></li>
+			<li><a href = "forum.jsp?classID=<%=classID%>"><button class="tab__button tab__button--selected">Forum</button></a></li>
+			<li><a href = "../jsp/documents.jsp?classID=<%=classID%>"><button class="tab__button">Docs</button></a></li>
+		</ul>
+	</section>
 	<ul style = "list-style: none;">
-		<li><span><button class = "vote-button" id = "upvote" >UP</button><button style = "position: relative; top:30" class = "vote-button" id = "downvote">DOWN</button>
-		<img></img>
-		<a><%=title%></a><a> <%=body %></a>
-	</span></li>
+		<li class="post-in-list">
+			<div class = "ballot-box">
+				<button class = "upvote-in-box" onclick = "upvote('<%=postID%>')">
+					<i class="fa fa-arrow-up" aria-hidden="true"></i>
+				</button>	
+				<button class = "downvote-in-box">
+					<i class="fa fa-arrow-down" aria-hidden="true" onclick = "downvote('<%=postID%>')"></i>
+				</button>
+			</div>	
+			<img></img>
+			<text class = "post-title-on-page"><%=title%></text><a> <%=body %></a>
+		</li>
 	<li>
 		<input type ="hidden" id = "title" class = "title-input" value = "reply"/>
-		<input type="text" id="body" class = "body-input"  placeholder = "Reply to this Post."/>
-		<input type="submit" name="Reply" onclick="reply('<%=postID %>')" class = "submit-input"/>
+		<input type="text" id="body" class = "reply-input"  placeholder = "Reply to this Post."/>
+		<input type="submit" name="Reply" onclick="reply('<%=postID %>')" class = "submit-reply-input"/>
 	</li>
-	<li>Answers sorted by best</li>
+	<li style="margin-left:20%;">Answers sorted by best</li>
 	<% 
 	if(replies != null){
 		for(content.Post reply : replies){ 

@@ -61,9 +61,9 @@
 		<section class="tabs">
 			<h1>CSCI 201</h1>
 			<ul class="tabs__container">
-				<li><a href = "../html/Whiteboard.html"><button class="tab__button">Whiteboard</button></a></li>
-				<li><a href = "forum.jsp"><button class="tab__button tab__button--selected">Forum</button></a></li>
-				<li><a href = "../jsp/documents.jsp"><button class="tab__button">Docs</button></a></li>
+				<li><a href = "../html/Whiteboard.html?classID=<%=classID%>"><button class="tab__button">Whiteboard</button></a></li>
+				<li><a href = "forum.jsp?classID=<%=classID%>"><button class="tab__button tab__button--selected">Forum</button></a></li>
+				<li><a href = "../jsp/documents.jsp?classID=<%=classID%>"><button class="tab__button">Docs</button></a></li>
 			</ul>
 		</section>
 		<ul id = "post-list" style = "list-style: none;">

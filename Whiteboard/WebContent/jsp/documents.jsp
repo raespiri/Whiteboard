@@ -10,8 +10,9 @@
 	sqlCon.connect();
 	ArrayList<File> docs=null;
 	int ClassID;
+	String currclassID = "";
 	if(session.getAttribute("currclassID") != null){
-		String currclassID = (String) session.getAttribute("currclassID");
+		currclassID = (String) session.getAttribute("currclassID");
 		docs = sqlCon.getDocs(currclassID);
 		Collections.sort(docs);//to sort by date
 		//System.out.println(request.getParameter("currclassID") + "cid");
@@ -51,9 +52,9 @@
 	<section class="tabs">
 		<h1>CSCI 201</h1>
 		<ul class="tabs__container">
-			<li><a href = "../html/Whiteboard.html"><button class="tab__button">Whiteboard</button></a></li>
-			<li><a href = "forum.jsp"><button class="tab__button">Forum</button></a></li>
-			<li><a href = "documents.jsp"><button class="tab__button tab__button--selected">Docs</button></a></li>
+			<li><a href = "../html/Whiteboard.html?classID=<%=currclassID%>"><button class="tab__button">Whiteboard</button></a></li>
+			<li><a href = "forum.jsp?classID=<%=currclassID%>"><button class="tab__button">Forum</button></a></li>
+			<li><a href = "documents.jsp?classID=<%=currclassID%>"><button class="tab__button tab__button--selected">Docs</button></a></li>
 		</ul>
 	</section>
 

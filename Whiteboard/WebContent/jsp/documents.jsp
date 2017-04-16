@@ -76,7 +76,7 @@
 			for(int i = 0; i < Documents.size(); i++) {
 		%>
 		<div id="doc">
-			<a href="<%=file+Documents.get(i).getFilepath() %>" download><b><%=Documents.get(i).getFilename()%></b></a>
+			<a href="<%=Documents.get(i).getFilepath() %>" download><b><%=Documents.get(i).getFilename()%></b></a>
 					<br>
 					<div id="timestamp">Uploaded: <%=Documents.get(i).getTimestamp()%></div>
 		</div>

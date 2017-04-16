@@ -7,9 +7,11 @@ import java.util.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.UUID;
+import java.util.Vector;
 
 import content.File;
 import content.Post;
+import course.Course;
 import notifications.Notification;
 
 public class SQLConnection {
@@ -20,6 +22,7 @@ public class SQLConnection {
 	private final static String addNotif = "INSERT INTO Notifications(ActionType, ActionID, FullName, ContentName, CourseName, username) VALUES(?, ?, ?, ?, ?, ?)";
 	private final static String addDocument = "INSERT INTO Documents(courseID, userID, docPath, docname, time_stamp) VALUES(?, ?, ?, ?, ?)";
 	
+	private final static String getCourse = "SELECT * FROM Courses WHERE CoursePrefix = ?";
 	private final static String getPostID= "SELECT * FROM Posts WHERE userID = ? AND classID = ? AND Title=? ";
 	private final static String getDocuments = "SELECT * FROM Documents WHERE courseID = ?";
 	private final static String getCourseName = "SELECT * FROM Courses WHERE CourseID = ?";
@@ -111,6 +114,26 @@ public class SQLConnection {
 		}
 		
 		return cname;
+	}
+	
+	public Vector<Course> getCourses(String CoursePrefix) {
+		Vector<Course> courses = new Vector<Course>();
+		try {
+			PreparedStatement ps;
+			ps = conn.prepareStatement(getCourse);
+			ps.setString(1, CoursePrefix);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next())
+			{
+				int CourseID = rs.getInt("CourseID");
+				String CourseName = rs.getString("CourseName");
+				Course temp = new Course(CourseID, CourseName, CoursePrefix);
+				courses.add(temp);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return courses;
 	}
 	
 	public void addNotif(String actiontype, String actionID, String userID, String contentname, String classID) {

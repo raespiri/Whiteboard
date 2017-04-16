@@ -150,3 +150,37 @@
 	margin:0px;
 	display: inline-block;
 }
+.score-in-box
+{
+	font-size:20px;
+	display: inline-block;
+	margin:0px;
+	width:30px;
+	text-align:center;
+}
+
+.post-body-box
+{
+	background: #ccc;
+    color: black;
+    border: 1px solid;
+    border-color: #00DB92;
+    border-radius: 16px 16px 16px 16px;
+    min-height:100px;
+    font-size:20px;
+    margin: 0px;
+}
+
+#reply-list li
+{
+	height: 80px;
+    border: 1px solid #ccc!important;
+    border-radius: 16px!important;
+    margin-bottom:5px;
+    margin-top:5px;
+    width:55%;
+    margin-left:20%;
+    background:#d1d0d2;
+}
+
+

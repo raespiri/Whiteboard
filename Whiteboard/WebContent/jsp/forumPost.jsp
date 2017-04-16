@@ -17,6 +17,8 @@
 		score = post.getScore();
 		String title = post.getTitle();
 		String body = post.getBody();
+		String userID = post.getUserID();
+		String postername = sqlCon.getUsername(userID);
 		replies = sqlCon.getReplies(postID);
 		Collections.sort(replies);//to sort by date
 %>
@@ -52,7 +54,7 @@
 		</ul>
 	</section>
 	<ul style = "list-style: none;">
-		<li class="post-in-list" style="margin-top: 10px; background-color: #00DB92; min-height:200px;">
+		<li class="post-in-list" style="margin-top: 10px; background-color: #00DB92; min-height:200px; margin-bottom: 30px;">
 			<div class = "ballot-box">
 				<button class = "upvote-in-box" onclick = "upvote('<%=postID%>')">
 					<i class="fa fa-arrow-up" aria-hidden="true"></i>
@@ -65,10 +67,11 @@
 				</button>
 			</div>	
 			<img></img>
-			<a class = "post-title-on-page"><%=title%></a>
+			<a class = "post-title-on-page"><%=title%></a><br>
+			<a style = "color: black; margin-left: 20px;">posted by: <%=postername %></a>
 			<div class="post-body-box" ><%=body %></div>
 		</li>
-	<li>
+	<li style = "position: relative; top: 50px;">
 		<input type ="hidden" id = "title" class = "title-input" value = "reply"/>
 		<input type="text" id="body" class = "reply-input"  placeholder = "Reply to this Post."/>
 		<input type="submit" name="Reply" onclick="reply('<%=postID %>')" class = "submit-reply-input"/>

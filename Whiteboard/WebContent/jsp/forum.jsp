@@ -32,7 +32,6 @@
 		}
 	}
 	
-	sqlCon.stop();
 %>
 <html>
 	<head>
@@ -79,7 +78,8 @@
 					int score = post.getScore();
 					String title = post.getTitle();
 					String postID = post.getContentID();
-					
+					String userID = post.getUserID();
+					String username = sqlCon.getUsername(userID);
 			%>
 				<li class = "post-in-list">
 					<button class = "upvote" onclick = "upvote('<%=postID%>')">
@@ -88,8 +88,9 @@
 					<button class = "downvote">
 						<i class="fa fa-arrow-down" aria-hidden="true" onclick = "downvote('<%=postID%>')"></i>
 					</button>
-					<text class = "score"> <%=score %> </text>
-					<a href = "forumPost.jsp?postID=<%=postID %>&classID=<%=classID %>" class = "post-title"><%=title %></a>
+					<text class = "score" id = "score<%=postID%>"> <%=score %> </text>
+					<a href = "forumPost.jsp?postID=<%=postID %>&classID=<%=classID %>" class = "post-title"><%=title %></a><br>
+					<a style = "position: relative; top:15px; margin-left: 18%; margin-top: 5px; color: black;">posted by: <%=username %></a>
 				</li>
 			<%} } %>
 		</ul>

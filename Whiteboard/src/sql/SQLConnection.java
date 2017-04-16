@@ -3,6 +3,9 @@ package sql;
 import java.util.ArrayList;
 import java.util.List;
 import java.sql.*;
+import java.util.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.UUID;
 
 import content.File;
@@ -15,8 +18,10 @@ public class SQLConnection {
 	private final static String addReply = "INSERT INTO Whiteboard.Posts(contentID, userID, classID, Title, Body, parentID) VALUES(?, ?, ?, ?, ?, ?)";
 	private final static String addUser = "INSERT INTO Users(username, pass, fullname, image, email) VALUES(?, ?, ?, ?, ?)";
 	private final static String addNotif = "INSERT INTO Notifications(ActionType, ActionID, FullName, ContentName, CourseName, username) VALUES(?, ?, ?, ?, ?, ?)";
+	private final static String addDocument = "INSERT INTO Documents(courseID, userID, docPath, docname, time_stamp) VALUES(?, ?, ?, ?, ?)";
 	
 	private final static String getPostID= "SELECT * FROM Posts WHERE userID = ? AND classID = ? AND Title=? ";
+	private final static String getDocuments = "SELECT * FROM Documents WHERE courseID = ?";
 	private final static String getCourseName = "SELECT * FROM Courses WHERE CourseID = ?";
 	private final static String getDocs = "SELECT * FROM Documents WHERE CourseID = ?";
 	private final static String findUser = "SELECT * FROM Users WHERE username = ?";
@@ -70,6 +75,24 @@ public class SQLConnection {
 			e.printStackTrace();
 		}
 	}
+	
+	public void addDocument(int courseID, int userID, String docPath, String docname) {
+		try {
+			PreparedStatement ps = conn.prepareStatement(addDocument);
+			ps.setInt(1, courseID);
+			ps.setInt(2, userID);
+			ps.setString(3, docPath);
+			ps.setString(4, docname);
+			DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm");
+			Date date = new Date();
+			String time_stamp = dateFormat.format(date);
+			ps.setString(5, time_stamp);
+			ps.executeUpdate();
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	
 	public String getcoursename(String classID){
 		String cname=null;
@@ -320,6 +343,28 @@ public class SQLConnection {
 			e.printStackTrace();
 			return null;
 		}
+	}
+	
+	public ArrayList<File> getDocuments(String courseID) {
+		ArrayList<File> Documents = new ArrayList<File>();
+		try {
+			PreparedStatement ps;
+			ps = conn.prepareStatement(getDocuments);
+			ps.setString(1, courseID);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) { // Loop to get all result sets
+				String userID = rs.getString("userID");
+				String documentID = rs.getString("documentID");
+				String docPath = rs.getString("docPath");
+				String docname = rs.getString("docname");
+				String date = rs.getString("time_stamp");
+				File temp = new File(documentID, userID, courseID, date, docname, docPath);
+				Documents.add(temp);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return Documents;
 	}
 	
 	public String getUsername(String userID) {

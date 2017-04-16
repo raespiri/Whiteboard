@@ -29,9 +29,11 @@
 		<script src="https://use.typekit.net/ofv3bwh.js"></script>
 		<script>try{Typekit.load({ async: true });}catch(e){}</script>
 		<script src="../js/forum.js"></script>
+		<script type="text/javascript" src="js/bootstrap-filestyle.min.js"> </script>
 		<link href="../css/forum.css" rel="stylesheet" type="text/css">
 		<link href="../css/whiteboard.css" rel="stylesheet" type="text/css">
 		<link href="../css/font-awesome.css" rel="stylesheet" type="text/css">
+		<link href="../css/documents.css" rel="stylesheet" type="text/css">
 	</head>
 	<body>
 		<header>
@@ -55,15 +57,30 @@
 				<li><a href = "documents.jsp"><button class="tab__button tab__button--selected">Docs</button></a></li>
 			</ul>
 		</section>
-		<h3>File Upload:</h3>
-		Select a document to upload: <br />
-		<form action="../DocumentServlet" method="post" enctype="multipart/form-data">
-			<input type="file" name="file" size="50" />
-			<br />
-			<input type="submit" value="Upload File" />
-		</form>
-		<table>
+		<div id="fileUpload">
+			<p id="uploadTitle">Upload your own documents:</p>
+			<form action="../DocumentServlet" method="post" enctype="multipart/form-data">
+				<input id="choosefile" type="file" name="file" size="50" />
+				<input id="submitfile" type="submit" value="Upload File" />
+			</form>
+		</div>
+		<div id="docTitle">Uploaded Documents</div>
+		<%
+			SQLConnection sql = new SQLConnection();
+			sql.connect();
 			
-		</table>
+			String courseID = (String) session.getAttribute("currclassID");
+			ArrayList<File> Documents = sql.getDocuments(courseID);
+			String file = "file://";
+			for(int i = 0; i < Documents.size(); i++) {
+		%>
+		<div id="doc">
+			<a href="<%=Documents.get(i).getFilepath() %>" download><b><%=Documents.get(i).getFilename()%></b></a>
+					<br>
+					<div id="timestamp">Uploaded: <%=Documents.get(i).getTimestamp()%></div>
+		</div>
+		<%	
+			}
+		%>
 	</body>
 </html>

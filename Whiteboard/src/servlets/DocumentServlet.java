@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 import sql.SQLConnection;
+import users.RegisteredUser;
 
 /**
  * Servlet implementation class DocumentServlet
@@ -55,11 +56,25 @@ public class DocumentServlet extends HttpServlet {
 	        real_uploadDir.mkdir();
 	    }
 	    
+	    String docPath = "";
+	    String docname = "";
+	
 	    for (Part part : request.getParts()) { // loop through parts and get filename
 	        String fileName = getFileName(part);
 	        fileName = new File(fileName).getName();
+	        docname = fileName;
+	        docPath = uploadPath + File.separator + fileName;
 	        part.write(uploadPath + File.separator + fileName); // Write file
 	    }
+	    
+	    RegisteredUser curruser = (RegisteredUser) session.getAttribute("currUser");
+	    
+	    int courseID = Integer.parseInt(CourseID);
+	    int userID = Integer.parseInt(curruser.getUserID());
+	    sqlCon.addDocument(courseID, userID, docPath, docname);
+	    
+	    sqlCon.stop();
+	    
 		response.sendRedirect("jsp/documents.jsp"); //redirect to documents page
 
 	}

@@ -1,0 +1,53 @@
+@CHARSET "UTF-8";
+
+#doc {
+	background-color: white;
+	margin: 5%;
+	padding: 3%;
+	border-radius: 25px;
+	border:5px solid black;
+	padding-bottom: 0%;
+	font-size: 110%;
+	float: left;
+	align:center;
+}
+
+#timestamp {
+	margin-top: 30%;
+	color: #adadad;
+	padding: 5px;
+	background-color: black;
+	margin-right: 0px;
+	margin-left: 0px;
+	font-size: 80%;
+	text-align:center;
+}
+
+#docTitle {
+	font-size: 200%;
+	text-align: center;
+	text-decoration: underline;
+}
+
+#fileUpload {
+	text-align: right;
+	padding: 4%;
+	padding-top:2%;
+}
+
+#choosefile {
+	margin:0;
+	padding: 0;
+	
+}
+
+#submitfile {
+	margin:0;
+	padding: 0;
+	margin-right: 5%;
+}
+
+#uploadTitle {
+	margin-right:9%;
+	margin-bottom: 3%;
+}

@@ -20,6 +20,13 @@ public class Content  implements Comparable<Content> {
 		this.setClassID(classID);
 		this.setTime(time);
 	}
+	
+	public Content(String contentID, String userID, String classID)
+	{
+		this.setContentID(contentID);
+		this.setUserID(userID);
+		this.setClassID(classID);
+	}
 
 	public Date getTime() {
 		return time;

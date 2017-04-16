@@ -46,11 +46,6 @@
 				<div class="header__logo-container">
 					<a class="logo-container__logo" href="../jsp/homepage.jsp"></a>
 				</div>
-				<ul class="header__navigation-container">
-					<li><button class="navigation__search"><i class="fa fa-search"></i></button></li>
-					<li><a class="navigation__courses">Courses</a></li>
-					<li><a class="navigation__settings">Settings</a></li>
-				</ul>
 			</div>
 		</header>	
     	<div class="wrapper">

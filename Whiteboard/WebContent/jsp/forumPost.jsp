@@ -31,17 +31,20 @@
 </head>
 <body>
 	<header>
-		<div class="header__wrapper">
-			<div class="header__logo-container">
-				<a class="logo-container__logo" href="../jsp/homepage.jsp"></a>
+		<form action="../SearchServlet" method="get">
+			<div class="header__wrapper">
+				<div class="header__logo-container">
+					<a class="logo-container__logo" href="../jsp/homepage.jsp"></a>
+				</div>
+				<ul class="header__navigation-container">
+					<li><input style="float: left" type="text" name="searchField"></li>
+					<li><button class="navigation__search" type="submit"><i class="fa fa-search"></i></button></li>
+					<li><a class="navigation__courses">Courses</a></li>
+					<li><a class="navigation__settings">Settings</a></li>
+					<li><a href="profile.jsp" class="navigation__settings">Profile</a></li>
+				</ul>
 			</div>
-			<ul class="header__navigation-container">
-				<li><button class="navigation__search"><i class="fa fa-search"></i></button></li>
-				<li><a class="navigation__courses">Courses</a></li>
-				<li><a class="navigation__settings">Settings</a></li>
-				<li><a href="profile.jsp" class="navigation__settings">Profile</a></li>
-			</ul>
-		</div>
+		</form>	
 	</header>
 	<section class="tabs">
 		<h1>CSCI 201</h1>

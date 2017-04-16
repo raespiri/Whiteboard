@@ -10,6 +10,8 @@ import content.Whiteboard;
 public class Course {
 	
 	private int courseID;
+	private String name;
+	private String prefix; 
 	
 	private Vector<String> students;
 	private Vector<Post> forum;
@@ -19,5 +21,23 @@ public class Course {
 	
 	public Course(int courseID){
 		this.courseID = courseID;
+	}
+	
+	public Course(int courseID, String name, String prefix){
+		this.courseID = courseID;
+		this.name = name;
+		this.prefix = prefix;
+	}
+	
+	public int getCourseID() {
+		return courseID;
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
+	public String getPrefix() {
+		return prefix;
 	}
 }

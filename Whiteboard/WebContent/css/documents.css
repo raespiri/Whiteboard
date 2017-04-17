@@ -463,6 +463,7 @@ footer {
   font-size: 1.2em;
   display: flex;
   height: 100%;
+  width: 100%;
   flex-grow: 1;
   align-items: center;
   justify-content: center;
@@ -472,9 +473,10 @@ footer {
   word-break: break-all;
   text-overflow: ellipsis;
   text-decoration: none !important;
+  box-sizing: border-box;
 }
 
-/* line 139, ../sass/documents.scss */
+/* line 141, ../sass/documents.scss */
 .document__timestamp {
   padding: 15px;
   background: black;

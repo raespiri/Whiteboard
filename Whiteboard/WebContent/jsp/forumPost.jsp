@@ -52,23 +52,23 @@
 </head>
 <body>
 	<header>
-			<div class="header__wrapper">
-				<div class="header__logo-container">
-					<a class="logo-container__logo" href="../jsp/homepage.jsp"></a>
-				</div>
-				<ul class="header__navigation-container">
-					<form style = "display:inline-block;" action="/Whiteboard/SearchServlet" method="get">
-					<ul class="header__navigation-container">
-					<li><input style="float: left" type="text" name="searchField"></li>
-					<li><button class="navigation__search" type="submit"><i class="fa fa-search"></i></button></li>
-					</ul>
-					</form>
-					<li><a href="courses.jsp" class="navigation__courses">Courses</a></li>
-					<li><a href="settings.jsp" class="navigation__settings">Settings</a></li>
-					<li><a href="profile.jsp" class="navigation__settings">Profile</a></li>
-					<li><button onclick="logout()" class="logout"><i class="fa fa-sign-out"  aria-hidden="true"></i></button></li>
-				</ul>
+		<div class="header__wrapper">
+			<div class="header__logo-container">
+				<a class="logo-container__logo" href="../jsp/homepage.jsp"></a>
 			</div>
+			<ul class="header__navigation-container">
+				<li class="navigation__search">
+					<form action="/Whiteboard/SearchServlet" method="get">
+						<input type="text" name="searchField" placeholder="Search...">
+						<button class="navigation__search" type="submit"><i class="fa fa-search"></i></button>
+					</form>
+				</li>
+				<li><a href="courses.jsp" class="navigation__courses">Courses</a></li>
+				<li><a href="settings.jsp" class="navigation__settings">Settings</a></li>
+				<li><a href="profile.jsp" class="navigation__settings">Profile</a></li>
+				<li><button onclick="logout()" class="navigation__logout"><i class="fa fa-sign-out"  aria-hidden="true"></i></button></li>
+			</ul>
+		</div>
 	</header>
 	<section class="tabs">
 		<div class="tabs__wrapper">

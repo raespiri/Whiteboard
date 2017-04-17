@@ -206,19 +206,51 @@ header .header__navigation-container li {
 }
 /* line 154, ../sass/partials/main.scss */
 header .header__navigation-container .navigation__search {
-  font-size: 1.3em;
+  font-size: 1.1em;
   color: #00DB92;
   background: none;
   border: none;
   outline: none;
 }
+/* line 155, ../sass/partials/main.scss */
+header .header__navigation-container .navigation__search form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
+/* line 161, ../sass/partials/main.scss */
+header .header__navigation-container .navigation__search form input {
+  height: 20px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  outline: none;
+  margin-right: 5px;
+  font-size: 0.8em;
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+/* line 171, ../sass/partials/main.scss */
+header .header__navigation-container .navigation__search form input:focus {
+  border-color: #00DB92;
+}
+/* line 183, ../sass/partials/main.scss */
+header .header__navigation-container .navigation__logout {
+  transition: all 70ms ease-out;
+  font-size: 1.3em;
+  color: #00DB92;
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
 
-/* line 172, ../sass/partials/main.scss */
+/* line 203, ../sass/partials/main.scss */
 .tabs {
   width: 100%;
   background: white;
 }
-/* line 176, ../sass/partials/main.scss */
+/* line 207, ../sass/partials/main.scss */
 .tabs .tabs__wrapper {
   max-width: 850px;
   margin: 0 auto;
@@ -228,27 +260,27 @@ header .header__navigation-container .navigation__search {
   align-items: center;
   justify-content: flex-start;
 }
-/* line 187, ../sass/partials/main.scss */
+/* line 218, ../sass/partials/main.scss */
 .tabs h1 {
   font-size: 2em;
   font-weight: 800;
   margin-right: 15px;
 }
-/* line 193, ../sass/partials/main.scss */
+/* line 224, ../sass/partials/main.scss */
 .tabs .tabs__container {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
 }
-/* line 199, ../sass/partials/main.scss */
+/* line 230, ../sass/partials/main.scss */
 .tabs .tabs__container li {
   margin: 0 10px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-/* line 207, ../sass/partials/main.scss */
+/* line 238, ../sass/partials/main.scss */
 .tabs .tabs__container li .tab__button {
   background: none;
   font-size: 1.3em;
@@ -262,46 +294,46 @@ header .header__navigation-container .navigation__search {
   transition: all 70ms ease-out;
   cursor: pointer;
 }
-/* line 223, ../sass/partials/main.scss */
+/* line 254, ../sass/partials/main.scss */
 .tabs .tabs__container li .tab__button:hover, .tabs .tabs__container li .tab__button:focus {
   color: white;
   background: black;
 }
-/* line 228, ../sass/partials/main.scss */
+/* line 259, ../sass/partials/main.scss */
 .tabs .tabs__container li .tab__button--selected {
   background: #00DB92;
   color: white;
   border-color: #00DB92;
 }
-/* line 234, ../sass/partials/main.scss */
+/* line 265, ../sass/partials/main.scss */
 .tabs .tabs__container li .tab__button--selected:hover, .tabs .tabs__container li .tab__button--selected:focus {
   background: #00f5a3;
   border-color: #00f5a3;
 }
 
-/* line 242, ../sass/partials/main.scss */
+/* line 273, ../sass/partials/main.scss */
 .error-message {
   color: #db004d;
 }
 
-/* line 246, ../sass/partials/main.scss */
+/* line 277, ../sass/partials/main.scss */
 .logo {
   color: white;
   font-size: 3em;
   font-weight: 700;
 }
 
-/* line 252, ../sass/partials/main.scss */
+/* line 283, ../sass/partials/main.scss */
 template {
   display: none !important;
 }
 
-/* line 256, ../sass/partials/main.scss */
+/* line 287, ../sass/partials/main.scss */
 a, a:hover, a:focus, a:active, a:visited {
   color: #00DB92;
 }
 
-/* line 260, ../sass/partials/main.scss */
+/* line 291, ../sass/partials/main.scss */
 footer {
   background: white;
   color: #737373;

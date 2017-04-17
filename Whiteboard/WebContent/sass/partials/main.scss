@@ -152,11 +152,42 @@ header {
 		}
 
 		.navigation__search {
+			form {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				flex-direction: row;
+
+				input {
+					height: 20px;
+					border-radius: 10px;
+					border: 1px solid transparent;
+					outline: none;
+					margin-right: 5px;
+					font-size: 0.8em;
+					padding: 0 10px;
+					box-sizing: border-box;
+				}
+				input:focus {
+					border-color: $accentColor;
+				}
+			}
+
+			font-size: 1.1em;
+			color: $accentColor;
+			background: none;
+			border: none;
+			outline: none;
+		}
+
+		.navigation__logout {
+			transition: all $transitionTime ease-out;
 			font-size: 1.3em;
 			color: $accentColor;
 			background: none;
 			border: none;
 			outline: none;
+			cursor: pointer;
 		}
 	}
 

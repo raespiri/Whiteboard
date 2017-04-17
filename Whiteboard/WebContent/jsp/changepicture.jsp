@@ -73,6 +73,7 @@
 						<li><a href="courses.jsp" class="navigation__courses">Courses</a></li>
 						<li><a href="settings.jsp" class="navigation__settings">Settings</a></li>
 						<li><a href="profile.jsp" class="navigation__settings">Profile</a></li>
+						<li><button onclick="logout()" class="navigation__logout"><i class="fa fa-sign-out"  aria-hidden="true"></i></button></li>
 					</ul>
 				</div>
 			</form>	

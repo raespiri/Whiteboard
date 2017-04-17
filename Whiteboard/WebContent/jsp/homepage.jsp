@@ -4,6 +4,8 @@
 <%@ page import="sql.SQLConnection" %>
 <%@ page import="notifications.*, users.*, java.util.Collections" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.Vector" %>
+<%@ page import="course.*" %>
 
 <%	
 	SQLConnection sqlCon = new SQLConnection();
@@ -88,8 +90,17 @@
 			<div id = "rightside">
 				<div id = "mycourses">
 					<h1>My Courses</h1>
-					<h3><a href = "forum.jsp?classID=1">CSCI201</a></h3>
-					
+					<%
+						SQLConnection sql = new SQLConnection();
+						sql.connect();
+						int UserID = Integer.parseInt(curruser.getUserID());
+						Vector<Course> courses  = sql.getUserCourses(UserID);
+						for(int i = 0; i < courses.size(); i++) {
+					%>
+							<h3><a href = "forum.jsp?classID=<%= courses.get(i).getCourseID() %>"><%=courses.get(i).getName() %></a></h3>
+					<% 
+						}
+					%>					
 					<br>
 					<h1>Moderating</h1>
 					<h3>CSCI270</h3>

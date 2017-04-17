@@ -168,12 +168,12 @@ public class SQLConnection {
 		return courses;
 	}
 	
-	public Vector<Course> getUserCourses(int courseID) {
+	public Vector<Course> getUserCourses(int userID) {
 		Vector<Course> courses = new Vector<Course>();
 		try {
 			PreparedStatement ps;
 			ps = conn.prepareStatement(getUserCourses);
-			ps.setInt(1, courseID);
+			ps.setInt(1, userID);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next())
 			{

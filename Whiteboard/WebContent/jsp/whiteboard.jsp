@@ -6,6 +6,9 @@
 
 <%	
 	RegisteredUser curUser = (RegisteredUser) session.getAttribute("currUser");
+
+	if (curUser == null) response.sendRedirect("error.jsp");
+
 	String username = curUser.getUsername();
 
 	String classID = (String)request.getParameter("classID");
@@ -43,7 +46,7 @@
 				<ul class="header__navigation-container">
 					<li><button class="navigation__search"><i class="fa fa-search"></i></button></li>
 					<li><a class="navigation__courses">Courses</a></li>
-					<li><a class="navigation__settings">Settings</a></li>
+					<li><a href="settings.jsp" class="navigation__settings">Settings</a></li>
 					<li><a href="profile.jsp" class="navigation__settings">Profile</a></li>
 				</ul>
 			</div>

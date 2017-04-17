@@ -14,7 +14,7 @@
 	String username =null;
 	//System.out.println("here1");
  	RegisteredUser curruser = (RegisteredUser) session.getAttribute("currUser");
- 	System.out.println(curruser.getUsername());
+
  	if(curruser != null){
  		username = curruser.getUsername();
  		notifs = sqlCon.getNotifs(username);
@@ -24,7 +24,6 @@
  		sqlCon.stop();
 		response.sendRedirect("error.jsp");
  	}
-
 	
 	sqlCon.stop();
 %>
@@ -54,7 +53,7 @@
 						<li><input style="float: left" type="text" name="searchField"></li>
 						<li><button class="navigation__search" type="submit"><i class="fa fa-search"></i></button></li>
 						<li><a class="navigation__courses">Courses</a></li>
-						<li><a class="navigation__settings">Settings</a></li>
+						<li><a href="settings.jsp" class="navigation__settings">Settings</a></li>
 						<li><a href="profile.jsp" class="navigation__settings">Profile</a></li>
 					</ul>
 				</div>

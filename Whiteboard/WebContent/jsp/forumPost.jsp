@@ -3,8 +3,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ page import="sql.SQLConnection" %>
 <%@ page import="content.Post" %>
+<%@ page import="notifications.*, users.*" %>
 <%@ page import="java.util.List, java.util.Collections" %>
 <%
+	RegisteredUser curUser = (RegisteredUser) session.getAttribute("currUser");
+	if (curUser == null) response.sendRedirect("error.jsp");
+
 	SQLConnection sqlCon = new SQLConnection();
 	sqlCon.connect();
 	Post post = null;
@@ -50,7 +54,7 @@
 					<li><input style="float: left" type="text" name="searchField"></li>
 					<li><button class="navigation__search" type="submit"><i class="fa fa-search"></i></button></li>
 					<li><a class="navigation__courses">Courses</a></li>
-					<li><a class="navigation__settings">Settings</a></li>
+					<li><a href="settings.jsp" class="navigation__settings">Settings</a></li>
 					<li><a href="profile.jsp" class="navigation__settings">Profile</a></li>
 				</ul>
 			</div>

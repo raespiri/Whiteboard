@@ -12,7 +12,7 @@
 	String username =null;
 	//System.out.println("here1");
  	RegisteredUser curruser = (RegisteredUser) session.getAttribute("currUser");
- 	System.out.println(curruser.getUsername());
+
  	if(curruser != null){
  		username = curruser.getUsername();
  		notifs = sqlCon.getNotifs(username);
@@ -22,7 +22,6 @@
  		sqlCon.stop();
 		response.sendRedirect("error.jsp");
  	}
-
 	
 	sqlCon.stop();
 %>

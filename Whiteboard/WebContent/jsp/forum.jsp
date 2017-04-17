@@ -6,6 +6,9 @@
 <%@ page import="java.util.List, java.util.Collections" %>
 
 <%	
+	RegisteredUser curUser = (RegisteredUser) session.getAttribute("currUser");
+	if (curUser == null) response.sendRedirect("error.jsp");
+	
 	SQLConnection sqlCon = new SQLConnection();
 	sqlCon.connect();
 	List<content.Post> posts=null;

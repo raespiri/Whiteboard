@@ -6,6 +6,9 @@
 
 <%	
 	RegisteredUser curUser = (RegisteredUser) session.getAttribute("currUser");
+
+	if (curUser == null) response.sendRedirect("error.jsp");
+
 	String username = curUser.getUsername();
 
 	String classID = (String)request.getParameter("classID");

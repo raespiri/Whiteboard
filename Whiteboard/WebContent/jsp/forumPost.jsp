@@ -3,8 +3,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ page import="sql.SQLConnection" %>
 <%@ page import="content.Post" %>
+<%@ page import="notifications.*, users.*" %>
 <%@ page import="java.util.List, java.util.Collections" %>
 <%
+	RegisteredUser curUser = (RegisteredUser) session.getAttribute("currUser");
+	if (curUser == null) response.sendRedirect("error.jsp");
+
 	SQLConnection sqlCon = new SQLConnection();
 	sqlCon.connect();
 	Post post = null;

@@ -10,6 +10,7 @@ $secondaryTextColor: rgb(115, 115, 115);
 $errorTextColor: red;
 
 $backgroundColor: #121314;
+$lightBackgroundColor: #eee;
 
 /**
  * Fonts
@@ -220,10 +221,20 @@ header {
 				cursor: pointer;
 			}
 
+			.tab__button:hover, .tab__button:focus {
+				color: white;
+				background: black;
+			}
+
 			.tab__button--selected {
 				background: $accentColor;
 				color: white;
 				border-color: $accentColor;
+			}
+
+			.tab__button--selected:hover, .tab__button--selected:focus {
+				background: lighten($accentColor, 5%);
+				border-color: lighten($accentColor, 5%);
 			}
 		}
 	}

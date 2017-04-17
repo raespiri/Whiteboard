@@ -9,6 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.UUID;
 import java.util.Vector;
 
+import content.Action;
 import content.File;
 import content.Post;
 import course.Course;
@@ -55,7 +56,7 @@ public class SQLConnection {
 	private final static String changePicture = "UPDATE Users SET image = ? WHERE userID = ?";
 	private final static String deleteUser = "DELETE FROM Users WHERE userID = ?";
 	
-	private final static String getUserPosts = "SELECT c.CourseName FROM Posts p, User u, Courses c WHERE u.userID = ? AND c.CourseID = p.classID"
+	private final static String getUserPosts = "SELECT c.CourseName, p.Title FROM Posts p, User u, Courses c WHERE u.userID = ? AND c.CourseID = p.classID";
 	
 	public SQLConnection() {
 		try {
@@ -156,6 +157,26 @@ public class SQLConnection {
 		}
 		
 		return cname;
+	}
+	
+	public ArrayList<Action> getUsersPosts(String userID){
+		ArrayList<Action> actions = new ArrayList<Action>();
+		try {
+			PreparedStatement ps;
+			ps = conn.prepareStatement(getUserPosts);
+			ps.setInt(1, Integer.parseInt(userID));
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				String course = rs.getString("c.CourseName");
+				String post = rs.getString("p.title");
+				Action temp = new Action(post, course);
+				actions.add(temp);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("SQL ERROR WHILE FETCHING coursename");
+		}	
+		return actions;
 	}
 	
 	public Vector<Course> getCourses(String CoursePrefix) {

@@ -605,12 +605,38 @@ public class SQLConnection {
 	
 	public Boolean isTAForClass(String UserID, int classID)
 	{
-		
+		try {
+			PreparedStatement ps;
+			ps = conn.prepareStatement(isTA);
+			ps.setString(1, UserID);
+			ps.setInt(2, classID);
+			ResultSet rs = ps.executeQuery();
+			int s = 0;
+			if (rs.next()) { 
+				s = rs.getInt("ta");
+				return s == 1;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return false;
 	}
 	public Boolean isInstructorForClass(String UserID, int classID)
 	{
-		
+		try {
+			PreparedStatement ps;
+			ps = conn.prepareStatement(isInstructor);
+			ps.setString(1, UserID);
+			ps.setInt(2, classID);
+			ResultSet rs = ps.executeQuery();
+			int s = 0;
+			if (rs.next()) { 
+				s = rs.getInt("teacher");
+				return s == 1;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return false;
 	}
 	public void changePassword(String UserID, String newpass) {

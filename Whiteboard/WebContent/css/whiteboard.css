@@ -182,7 +182,7 @@ header .header__logo-container {
 }
 /* line 129, ../sass/partials/main.scss */
 header .logo-container__logo {
-  background-image: url("../img/TextLogo-light.svg");
+  background-image: url("/Whiteboard/img/TextLogo-light.svg");
   background-size: contain;
   background-position: left center;
   background-repeat: no-repeat;
@@ -261,31 +261,31 @@ header .header__navigation-container .navigation__search {
   transition: all 70ms ease-out;
   cursor: pointer;
 }
-/* line 221, ../sass/partials/main.scss */
+/* line 223, ../sass/partials/main.scss */
 .tabs .tabs__container li .tab__button--selected {
   background: #00DB92;
   color: white;
   border-color: #00DB92;
 }
 
-/* line 230, ../sass/partials/main.scss */
+/* line 232, ../sass/partials/main.scss */
 .logo {
   color: white;
   font-size: 3em;
   font-weight: 700;
 }
 
-/* line 236, ../sass/partials/main.scss */
+/* line 238, ../sass/partials/main.scss */
 template {
   display: none !important;
 }
 
-/* line 240, ../sass/partials/main.scss */
+/* line 242, ../sass/partials/main.scss */
 a, a:hover, a:focus, a:active, a:visited {
   color: #00DB92;
 }
 
-/* line 244, ../sass/partials/main.scss */
+/* line 246, ../sass/partials/main.scss */
 footer {
   background: white;
   color: #737373;

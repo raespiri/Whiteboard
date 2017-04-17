@@ -258,44 +258,45 @@ header .header__navigation-container .navigation__search {
   padding: 5px 15px;
   border: 3px solid black;
   border-radius: 30px;
+  letter-spacing: 0.03em;
   transition: all 70ms ease-out;
   cursor: pointer;
 }
-/* line 224, ../sass/partials/main.scss */
+/* line 223, ../sass/partials/main.scss */
 .tabs .tabs__container li .tab__button:hover, .tabs .tabs__container li .tab__button:focus {
   color: white;
   background: black;
 }
-/* line 229, ../sass/partials/main.scss */
+/* line 228, ../sass/partials/main.scss */
 .tabs .tabs__container li .tab__button--selected {
   background: #00DB92;
   color: white;
   border-color: #00DB92;
 }
-/* line 235, ../sass/partials/main.scss */
+/* line 234, ../sass/partials/main.scss */
 .tabs .tabs__container li .tab__button--selected:hover, .tabs .tabs__container li .tab__button--selected:focus {
   background: #00f5a3;
   border-color: #00f5a3;
 }
 
-/* line 243, ../sass/partials/main.scss */
+/* line 242, ../sass/partials/main.scss */
 .logo {
   color: white;
   font-size: 3em;
   font-weight: 700;
 }
 
-/* line 249, ../sass/partials/main.scss */
+/* line 248, ../sass/partials/main.scss */
 template {
   display: none !important;
 }
 
-/* line 253, ../sass/partials/main.scss */
+/* line 252, ../sass/partials/main.scss */
 a, a:hover, a:focus, a:active, a:visited {
   color: #00DB92;
 }
 
-/* line 257, ../sass/partials/main.scss */
+/* line 256, ../sass/partials/main.scss */
 footer {
   background: white;
   color: #737373;

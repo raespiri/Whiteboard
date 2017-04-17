@@ -263,7 +263,7 @@ class Whiteboard {
 		console.log("Saving network canvas...")
 
 		$.ajax({
-			url: "../BoardStateServlet",
+			url: "/Whiteboard/BoardStateServlet",
 			type: "POST",
 			// Ajax events
 			success: function(data) {

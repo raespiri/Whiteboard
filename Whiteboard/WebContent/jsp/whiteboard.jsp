@@ -8,11 +8,17 @@
 	RegisteredUser curUser = (RegisteredUser) session.getAttribute("currUser");
 	String username = curUser.getUsername();
 
-	SQLConnection sqlCon = new SQLConnection();
-	sqlCon.connect();
 	String classID = (String)request.getParameter("classID");
-	String courseName = sqlCon.getcoursename(classID);
-	sqlCon.stop();
+	String courseName = "";
+
+	if (classID != null) {
+		SQLConnection sqlCon = new SQLConnection();
+		sqlCon.connect();
+		courseName = sqlCon.getcoursename(classID);
+		sqlCon.stop();
+	} else {
+		response.sendRedirect("error.jsp");
+	}
 %>
 
 <html lang="en" dir="ltr">
@@ -20,6 +26,10 @@
 		<title>Whiteboard</title>
 		<script src="https://use.typekit.net/ofv3bwh.js"></script>
 		<script>try{Typekit.load({ async: true });}catch(e){}</script>
+
+		<meta name="viewport" content="initial-scale=1.0, user-scalable=yes, width=device-width">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<link rel="shortcut icon" href="/Whiteboard/favicon.png">
 
 		<link href="../css/whiteboard.css" rel="stylesheet" type="text/css">
 		<link href="../css/font-awesome.css" rel="stylesheet" type="text/css">
@@ -42,9 +52,9 @@
 			<div class="tabs__wrapper">
 				<h1><%= courseName %></h1>
 				<ul class="tabs__container">
-					<li><a href = "../html/Whiteboard.html?classID=<%=classID%>"><button class="tab__button tab__button--selected">Whiteboard</button></a></li>
+					<li><a href = "whiteboard.jsp?classID=<%=classID%>"><button class="tab__button tab__button--selected">Whiteboard</button></a></li>
 				<li><a href = "forum.jsp?classID=<%=classID%>"><button class="tab__button">Forum</button></a></li>
-				<li><a href = "../jsp/documents.jsp?classID=<%=classID%>"><button class="tab__button">Docs</button></a></li>
+				<li><a href = "documents.jsp?classID=<%=classID%>"><button class="tab__button">Docs</button></a></li>
 				</ul>
 			</div>
 		</section>

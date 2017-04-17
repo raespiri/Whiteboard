@@ -28,14 +28,20 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>Whiteboard: <%=title %></title>
+	<script src="https://use.typekit.net/ofv3bwh.js"></script>
+	<script>try{Typekit.load({ async: true });}catch(e){}</script>
+
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=yes, width=device-width">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<link rel="shortcut icon" href="/Whiteboard/favicon.png">
+
 	<link href="../css/forum.css" rel="stylesheet" type="text/css">
 	<link href="../css/whiteboard.css" rel="stylesheet" type="text/css">
 	<link href="../css/font-awesome.css" rel="stylesheet" type="text/css">
-	<script src="../js/forum.js"></script>
 </head>
 <body>
 	<header>
-		<form action="../SearchServlet" method="get">
+		<form action="/Whiteboard/SearchServlet" method="get">
 			<div class="header__wrapper">
 				<div class="header__logo-container">
 					<a class="logo-container__logo" href="../jsp/homepage.jsp"></a>
@@ -54,9 +60,9 @@
 		<div class="tabs__wrapper">
 			<h1><%= courseName %></h1>
 			<ul style = "position: relative: left:2%;" class="tabs__container">
-				<li><a href = "../html/Whiteboard.html?classID=<%=classID%>"><button class="tab__button">Whiteboard</button></a></li>
+				<li><a href = "whiteboard.jsp?classID=<%=classID%>"><button class="tab__button">Whiteboard</button></a></li>
 				<li><a href = "forum.jsp?classID=<%=classID%>"><button class="tab__button tab__button--selected">Forum</button></a></li>
-				<li><a href = "../jsp/documents.jsp?classID=<%=classID%>"><button class="tab__button">Docs</button></a></li>
+				<li><a href = "documents.jsp?classID=<%=classID%>"><button class="tab__button">Docs</button></a></li>
 			</ul>
 		</div>
 	</section>
@@ -110,82 +116,9 @@
 	<%}} %>
 	</ul>
 	
+	<!-- Scripts -->
+	<script src="../js/forum.js" type="text/javascript"></script>
+	<script src="../js/forumPost.js" type="text/javascript"></script>
 </body>
-<script>
-	function GetURLParameter(sParam){
-	    var sPageURL = window.location.search.substring(1);
-	    var sURLVariables = sPageURL.split('&');
-	    for (var i = 0; i < sURLVariables.length; i++) 
-	    {
-	        var sParameterName = sURLVariables[i].split('=');
-	        if (sParameterName[0] == sParam) 
-	        {
-	            return sParameterName[1];
-	        }
-	    }
-	}
-	function reply(parentID, userID)
-	{
-		if(document.getElementById('body').value === "") {
-			console.log("no body text");
-		}
-		else {
-			console.log('replying');
-			var url = "../ForumPostServlet?title="+document.getElementById('title').value+"&body="
-					+document.getElementById('body').value+"&type=submit"+"&classID="+GetURLParameter("classID")+"&parentID="+parentID;
-			var req = new XMLHttpRequest();
-			req.open("GET", url, true);
-			req.onreadystatechange = function() {
-				if(req.readyState == 4 && req.status == 200) { 
-					
-					var postID = req.responseText;
-					console.log(postID);
-					var list = document.getElementById('reply-list');
-					var entry = document.createElement('li');
-					
-					var body = document.getElementById('body').value;
-					var bodyNode = document.createElement('text');
-					bodyNode.className = 'post-reply';
-					bodyNode.innerHTML = body;
-					
-					var upButton = document.createElement('button');
-					upButton.className = 'upvote';
-					upButton.onclick = function(){upvote(postID)};
-					var upArrow = document.createElement('i');
-					upArrow.className = 'fa fa-arrow-up';
-					upButton.appendChild(upArrow);
-					entry.appendChild(upButton);
-					
-					var dButton = document.createElement('button');
-					dButton.className = 'downvote';
-					dButton.onclick = function(){downvote(postID)};
-					var dArrow = document.createElement('i');
-					dArrow.className = 'fa fa-arrow-down';
-					dButton.appendChild(dArrow);
-					entry.appendChild(dButton);
-					
-					var score = document.createElement('text');
-					score.className = 'score';
-					var scoreID = 'score'+postID;
-					score.id = scoreID;
-					score.innerHTML = '1';
-					entry.appendChild(score);
-			
-					entry.appendChild(bodyNode);
-					
-					var br = document.createElement('br');
-					entry.appendChild(br);
-					var posterName = document.createElement('text');
-					posterName.className = 'poster-name';
-					posterName.innerHTML = 'posted by:'+userID;
-					entry.appendChild(posterName);
-					
-					list.insertBefore(entry, list.childNodes[0]);
-				}
-			}
-			req.send(null);
-		}
-	}
-</script>
 </html>
 <%}%>

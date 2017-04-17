@@ -29,7 +29,11 @@
 		<title>Whiteboard</title>
 		<script src="https://use.typekit.net/ofv3bwh.js"></script>
 		<script>try{Typekit.load({ async: true });}catch(e){}</script>
-		<script src="../js/forum.js"></script>
+
+		<meta name="viewport" content="initial-scale=1.0, user-scalable=yes, width=device-width">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<link rel="shortcut icon" href="/Whiteboard/favicon.png">
+
 		<link href="../css/forum.css" rel="stylesheet" type="text/css">
 		<link href="../css/whiteboard.css" rel="stylesheet" type="text/css">
 		<link href="../css/font-awesome.css" rel="stylesheet" type="text/css">
@@ -62,7 +66,7 @@
 	</head>
 	<body>
 		<header>
-			<form action="../SearchServlet" method="get">
+			<form action="/Whiteboard/SearchServlet" method="get">
 				<div class="header__wrapper">
 					<div class="header__logo-container">
 						<a class="logo-container__logo" href="../jsp/homepage.jsp"></a>
@@ -92,5 +96,8 @@
 			<div id="error" style="color:red; font-size: 12px;"></div>
       	</div>
       	<div id="foot"></div>
+
+      	<!-- Scripts -->
+      	<script src="../js/forum.js" type="text/javascript"></script>
 	</body>
 </html>

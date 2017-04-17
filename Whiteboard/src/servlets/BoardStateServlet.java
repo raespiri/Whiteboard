@@ -70,7 +70,5 @@ public class BoardStateServlet extends HttpServlet {
 	    }
 	    
 	    sqlCon.stop();
-	    
-		response.sendRedirect("jsp/whiteboard.jsp"); //redirect to documents page
 	}
 }

@@ -16,7 +16,8 @@
 	String classID = "";
 	String courseName = "";
 	String username = curUser.getUsername();
-
+	String curUserID = curUser.getUserID();
+	
 	if(request.getParameter("classID") != null){
 		posts = sqlCon.getPosts(Integer.parseInt(request.getParameter("classID")));
 		Collections.sort(posts);//to sort by date
@@ -106,7 +107,14 @@
 						<i class="fa fa-arrow-down" aria-hidden="true" onclick = "downvote('<%=postID%>')"></i>
 					</button>
 					<text class = "score" id = "score<%=postID%>"> <%=score %> </text>
-					<a href = "forumPost.jsp?postID=<%=postID %>&classID=<%=classID %>" class = "post-title"><%=title %></a><button class = 'delete-button' style = "float:right; display:none;">x</button><br>
+					<a href = "forumPost.jsp?postID=<%=postID %>&classID=<%=classID %>" class = "post-title"><%=title %></a>
+					<%if(sqlCon.isModerator(curUserID) || sqlCon.isAdmin(curUserID)
+							|| sqlCon.isTAForClass(curUserID, Integer.parseInt(request.getParameter("classID")))
+							|| sqlCon.isInstructorForClass(curUserID, Integer.parseInt(request.getParameter("classID"))))
+							
+					{ %>
+					<button id = 'delete' onclick = "deletePost('<%=postID %>')" class = 'delete-button' style = "float:right;">x</button><br>
+					<%} %>
 					<a style = "position: relative; top:15px; margin-left: 18%; margin-top: 5px; color: black;">posted by: <%=postUsername %></a>
 				</li>
 			<%} } %>
@@ -137,5 +145,6 @@
 		<script src="../js/forum.js" type="text/javascript"></script>
 		<script src="../js/WBSocketMessage.js" type="text/javascript"></script>
 		<script src="../js/chat.js" type="text/javascript"></script>
+		<script src="../js/mod.js" type="text/javascript"></script>
 	</body>
 </html>

@@ -50,8 +50,8 @@ public class SQLConnection {
 	private final static String isTA = "SELECT ta FROM Whiteboard.Students WHERE userID = ? AND courseID = ?";
 	private final static String isInstructor = "SELECT teacher FROM Whiteboard.Students WHERE userID = ? AND courseID = ?";
 
-	private final static String changePassword = "UPDATE Users SET pass = ?, WHERE userID = ?";
-	private final static String changePicture = "UPDATE Users SET image = ?, WHERE userID = ?";
+	private final static String changePassword = "UPDATE Users SET pass = ? WHERE userID = ?";
+	private final static String changePicture = "UPDATE Users SET image = ? WHERE userID = ?";
 	private final static String deleteUser = "DELETE FROM Users WHERE userID = ?";
 	
 	public SQLConnection() {

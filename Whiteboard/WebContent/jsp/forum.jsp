@@ -93,7 +93,7 @@
 		</section>
 		<%if(!username.equals("guest")){%>
 		<ul id = "post-list" style = "list-style: none;">
-			<li class = "post-in-list">
+			<li class = "post-in-list" style = "height:60px;">
 				<input type = "text" id = "title" class = "title-input" placeholder = "Ask a Question..."/>
 				<input type="text" id="body" class = "body-input"  placeholder = "Provide some more detail (Optional)."/>
 				<input type="submit" name="submit" onclick="validate()" class = "submit-input"/>
@@ -124,6 +124,7 @@
 					{ %>
 					<button id = 'delete' onclick = "deletePost('<%=postID %>')" class = 'delete-button' style = "float:right;">x</button><br>
 					<%} %>
+					<br>
 					<a style = "position: relative; top:15px; margin-left: 18%; margin-top: 5px; color: black;">posted by: <%=postUsername %></a>
 				</li>
 			<%} } %>

@@ -89,7 +89,7 @@
 				String file = "file://";
 				for(int i = 0; i < Documents.size(); i++) {
 			%>
-			<a href="<%=Documents.get(i).getFilepath() %>" download class="document">
+			<a href="/Whiteboard/docUploads/<%= courseName + "/" + Documents.get(i).getFilename() %>" download class="document">
 				<div class="document--title"><h1><%=Documents.get(i).getFilename()%></h1></div>
 				<div class="document--timestamp"><h2><%=Documents.get(i).getTimestamp()%></h2></div>
 			</a>

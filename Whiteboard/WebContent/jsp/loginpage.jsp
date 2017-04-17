@@ -42,7 +42,7 @@
     	<header>
 			<div class="header__wrapper">
 				<div class="header__logo-container">
-					<a class="logo-container__logo" href="../jsp/homepage.jsp"></a>
+					<a class="logo-container__logo" href="../html/LandingPage.html"></a>
 				</div>
 			</div>
 		</header>	

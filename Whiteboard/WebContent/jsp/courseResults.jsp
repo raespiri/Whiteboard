@@ -12,6 +12,7 @@
 		<script>try{Typekit.load({ async: true });}catch(e){}</script>
 		<link href="../css/whiteboard.css" rel="stylesheet" type="text/css">
 		<link href="../css/font-awesome.css" rel="stylesheet" type="text/css">
+		<link href="../css/courseResults.css" rel="stylesheet" type="text/css">
 	</head>
 	<body>
 		<header>
@@ -30,13 +31,17 @@
 				</div>
 			</form>	
 		</header>	
+		<div id="results">Search Results</div>
 		<div>
 		<%
 			Vector<Course> course = (Vector<Course>) session.getAttribute("searchResults"); 
 			session.setAttribute("searchResults", null);
 			for(int i = 0; i < course.size(); i++) {
 		%>
-				<%= course.get(i).getName()%>
+			<div id="course">
+				<h1 id="courseName"><%= course.get(i).getName()%></h1>
+				<button id="add"> + </button>
+			</div>
 		<%
 			}
 		%>

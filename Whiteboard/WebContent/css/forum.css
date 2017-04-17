@@ -51,6 +51,15 @@
 	cursor: pointer;
 	color:black;
 }
+.post-reply
+{
+	font-size: 24px;
+	position: relative;
+	top: 15px;
+	left: 5px;
+	font-color: #000000;
+	color:black;
+}
 
 .post-title-on-page
 {
@@ -170,10 +179,17 @@
 	margin: 0px;
 	padding: 10px;
 }
+.poster-name
+{
+	position: relative; top:15px; margin-left: 18%; margin-top: 5px; color: black;
+}
 
 #reply-list li
 {
-	height: 80px;
+	min-height: 40px;
+	padding-top:20px;
+		padding-bottom:20px;
+	
     border: 1px solid #ccc!important;
     border-radius: 16px!important;
     margin-bottom:5px;

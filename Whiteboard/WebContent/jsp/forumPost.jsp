@@ -11,6 +11,7 @@
 	String classID = request.getParameter("classID");
 	String courseName = sqlCon.getcoursename(classID);
 	int score = 0;
+	String userID = "";
 	List<content.Post> replies=null;
 	if(request.getParameter("postID") != null){
 		String postID = request.getParameter("postID");
@@ -18,7 +19,7 @@
 		score = post.getScore();
 		String title = post.getTitle();
 		String body = post.getBody();
-		String userID = post.getUserID();
+		userID = post.getUserID();
 		String postername = sqlCon.getUsername(userID);
 		replies = sqlCon.getReplies(postID);
 		Collections.sort(replies);//to sort by date
@@ -81,7 +82,7 @@
 	<li>
 		<input type ="hidden" id = "title" class = "title-input" value = "reply"/>
 		<input type="text" id="body" class = "reply-input"  placeholder = "Reply to this Post."/>
-		<input type="submit" name="Reply" onclick="reply('<%=postID %>')" class = "submit-reply-input"/>
+		<input type="submit" name="Reply" onclick="reply('<%=postID %>', '<%=userID %>')" class = "submit-reply-input"/>
 	</li>
 	</ul>
 	<ul id = "reply-list">
@@ -92,6 +93,8 @@
 			String replyTitle = reply.getTitle();
 			String replyBody = reply.getBody();
 			String replyPostID = reply.getContentID();
+			String replyUserID = reply.getUserID();
+			String replyUsername = sqlCon.getUsername(replyUserID);
 	%>
 	<li>
 		<button class = "upvote" onclick = "upvote('<%=replyPostID%>')">
@@ -101,7 +104,8 @@
 			<i class="fa fa-arrow-down" aria-hidden="true" onclick = "downvote('<%=replyPostID%>')"></i>
 		</button>
 		<text id = "score<%=replyPostID%>" class = "score"> <%=replyScore %> </text>
-		<text class = "post-title"><%=replyBody %></text>
+		<text class = "post-reply"><%=replyBody %></text><br>
+		<text class = 'poster-name'>posted by: <%=replyUsername %></text>
 	</li>
 	<%}} %>
 	</ul>
@@ -120,7 +124,7 @@
 	        }
 	    }
 	}
-	function reply(parentID)
+	function reply(parentID, userID)
 	{
 		if(document.getElementById('body').value === "") {
 			console.log("no body text");
@@ -131,43 +135,53 @@
 					+document.getElementById('body').value+"&type=submit"+"&classID="+GetURLParameter("classID")+"&parentID="+parentID;
 			var req = new XMLHttpRequest();
 			req.open("GET", url, true);
-			if(req.readyState == 4 && req.status == 200) { 
-				console.log('doing this now');
-				
-				var postID = req.responseText;
-				var list = document.getElementById('reply-list');
-				var entry = document.createElement('li');
-				entry.className = 'post-in-list';
-				
-				var body = document.getElementById('body').value;
-				var bodyNode = document.createTextNode(body)
-				bodyNode.className = 'post-title';
-				
-				var upButton = document.createElement('button');
-				upButton.className = 'upvote';
-				upButton.onclick = upvote(postID);
-				var upArrow = document.createElement('i');
-				upArrow.className = 'fa fa-arrow-up';
-				upButton.appendChild(upArrow);
-				entry.appendChild(upButton);
-				
-				var dButton = document.createElement('button');
-				dButton.className = 'downvote';
-				dButton.onclick = downvote(postID);
-				var dArrow = document.createElement('i');
-				dArrow.className = 'fa fa-arrow-down';
-				dButton.appendChild(dArrow);
-				entry.appendChild(dButton);
-				
-				var score = document.createElement('text');
-				score.className = 'score';
-				var scoreID = 'score'+postID;
-				score.id = scoreID;
-				score.innerHTML = '1';
-				entry.appendChild(score);
-				
-				entry.appendChild(bodyNode);
-				list.insertBefore(entry, list.childNodes[0]);
+			req.onreadystatechange = function() {
+				if(req.readyState == 4 && req.status == 200) { 
+					
+					var postID = req.responseText;
+					console.log(postID);
+					var list = document.getElementById('reply-list');
+					var entry = document.createElement('li');
+					
+					var body = document.getElementById('body').value;
+					var bodyNode = document.createElement('text');
+					bodyNode.className = 'post-reply';
+					bodyNode.innerHTML = body;
+					
+					var upButton = document.createElement('button');
+					upButton.className = 'upvote';
+					upButton.onclick = function(){upvote(postID)};
+					var upArrow = document.createElement('i');
+					upArrow.className = 'fa fa-arrow-up';
+					upButton.appendChild(upArrow);
+					entry.appendChild(upButton);
+					
+					var dButton = document.createElement('button');
+					dButton.className = 'downvote';
+					dButton.onclick = function(){downvote(postID)};
+					var dArrow = document.createElement('i');
+					dArrow.className = 'fa fa-arrow-down';
+					dButton.appendChild(dArrow);
+					entry.appendChild(dButton);
+					
+					var score = document.createElement('text');
+					score.className = 'score';
+					var scoreID = 'score'+postID;
+					score.id = scoreID;
+					score.innerHTML = '1';
+					entry.appendChild(score);
+			
+					entry.appendChild(bodyNode);
+					
+					var br = document.createElement('br');
+					entry.appendChild(br);
+					var posterName = document.createElement('text');
+					posterName.className = 'poster-name';
+					posterName.innerHTML = 'posted by:'+userID;
+					entry.appendChild(posterName);
+					
+					list.insertBefore(entry, list.childNodes[0]);
+				}
 			}
 			req.send(null);
 		}

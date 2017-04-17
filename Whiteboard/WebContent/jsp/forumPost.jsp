@@ -11,6 +11,7 @@
 	String classID = request.getParameter("classID");
 	String courseName = sqlCon.getcoursename(classID);
 	int score = 0;
+	String userID = "";
 	List<content.Post> replies=null;
 	if(request.getParameter("postID") != null){
 		String postID = request.getParameter("postID");
@@ -18,7 +19,7 @@
 		score = post.getScore();
 		String title = post.getTitle();
 		String body = post.getBody();
-		String userID = post.getUserID();
+		userID = post.getUserID();
 		String postername = sqlCon.getUsername(userID);
 		replies = sqlCon.getReplies(postID);
 		Collections.sort(replies);//to sort by date
@@ -81,7 +82,7 @@
 	<li>
 		<input type ="hidden" id = "title" class = "title-input" value = "reply"/>
 		<input type="text" id="body" class = "reply-input"  placeholder = "Reply to this Post."/>
-		<input type="submit" name="Reply" onclick="reply('<%=postID %>')" class = "submit-reply-input"/>
+		<input type="submit" name="Reply" onclick="reply('<%=postID %>', '<%=userID %>')" class = "submit-reply-input"/>
 	</li>
 	</ul>
 	<ul id = "reply-list">
@@ -92,6 +93,8 @@
 			String replyTitle = reply.getTitle();
 			String replyBody = reply.getBody();
 			String replyPostID = reply.getContentID();
+			String replyUserID = reply.getUserID();
+			String replyUsername = sqlCon.getUsername(replyUserID);
 	%>
 	<li>
 		<button class = "upvote" onclick = "upvote('<%=replyPostID%>')">
@@ -101,7 +104,8 @@
 			<i class="fa fa-arrow-down" aria-hidden="true" onclick = "downvote('<%=replyPostID%>')"></i>
 		</button>
 		<text id = "score<%=replyPostID%>" class = "score"> <%=replyScore %> </text>
-		<text class = "post-title"><%=replyBody %></text>
+		<text class = "post-reply"><%=replyBody %></text><br>
+		<text class = 'poster-name'>posted by: <%=replyUsername %></text>
 	</li>
 	<%}} %>
 	</ul>
@@ -120,7 +124,7 @@
 	        }
 	    }
 	}
-	function reply(parentID)
+	function reply(parentID, userID)
 	{
 		if(document.getElementById('body').value === "") {
 			console.log("no body text");
@@ -138,11 +142,10 @@
 					console.log(postID);
 					var list = document.getElementById('reply-list');
 					var entry = document.createElement('li');
-					entry.className = 'post-in-list';
 					
 					var body = document.getElementById('body').value;
 					var bodyNode = document.createElement('text');
-					bodyNode.className = 'post-title';
+					bodyNode.className = 'post-reply';
 					bodyNode.innerHTML = body;
 					
 					var upButton = document.createElement('button');
@@ -167,8 +170,16 @@
 					score.id = scoreID;
 					score.innerHTML = '1';
 					entry.appendChild(score);
-					
+			
 					entry.appendChild(bodyNode);
+					
+					var br = document.createElement('br');
+					entry.appendChild(br);
+					var posterName = document.createElement('text');
+					posterName.className = 'poster-name';
+					posterName.innerHTML = 'posted by:'+userID;
+					entry.appendChild(posterName);
+					
 					list.insertBefore(entry, list.childNodes[0]);
 				}
 			}

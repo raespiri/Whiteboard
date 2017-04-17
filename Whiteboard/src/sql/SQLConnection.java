@@ -46,6 +46,7 @@ public class SQLConnection {
 	private final static String isModerator = "SELECT moderator FROM Users WHERE userID = ?";
 	private final static String isAdmin = "SELECT admin FROM Users WHERE userID = ?";	
 	private final static String changePassword = "UPDATE Users SET pass = ?, WHERE userID = ?";
+	private final static String deleteUser = "DELETE FROM Users WHERE userID = ?";
 	
 	public SQLConnection() {
 		try {
@@ -557,6 +558,15 @@ public class SQLConnection {
 		}
 	}
 
-	
+	public void deleteUser(String UserID){
+		try {
+			PreparedStatement ps;
+			ps = conn.prepareStatement(deleteUser);
+			ps.setInt(1, Integer.parseInt(UserID));
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 	
 }

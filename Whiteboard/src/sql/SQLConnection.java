@@ -54,8 +54,8 @@ public class SQLConnection {
 	private final static String changePassword = "UPDATE Users SET pass = ? WHERE userID = ?";
 	private final static String changePicture = "UPDATE Users SET image = ? WHERE userID = ?";
 	private final static String deleteUser = "DELETE FROM Users WHERE userID = ?";
-	
-	private final static String getUserPosts = "SELECT c.CourseName FROM Posts p, User u, Courses c WHERE u.userID = ? AND c.CourseID = p.classID"
+	private final static String getFriends = "SELECT * FROM Friends WHERE user1_ID = ? OR user2_ID = ? ";
+	private final static String getUserPosts = "SELECT c.CourseName FROM Posts p, User u, Courses c WHERE u.userID = ? AND c.CourseID = p.classID";
 	
 	public SQLConnection() {
 		try {
@@ -648,4 +648,41 @@ public class SQLConnection {
 			e.printStackTrace();
 		}
 	}
+	
+public ArrayList<String> getFriends(String userID) {
+		
+		ArrayList<String> friendusernames = new ArrayList<String>();
+		
+		try {
+			PreparedStatement ps;
+			ps = conn.prepareStatement(getFriends);
+			ps.setString(1, userID);
+			ps.setString(2, userID);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next())
+			{
+				String frienduname = null;
+				String uname1 = rs.getString(1);
+				String uname2 = rs.getString(2);
+				if(uname1.equals(userID)){
+					frienduname = uname2;
+				}
+				else{
+					frienduname = uname1;
+				}
+				
+				if(frienduname != null) friendusernames.add(frienduname);
+			}
+		} 
+		catch (SQLException e) {
+				e.printStackTrace();
+				System.out.println("SQL ERROR WHILE FETCHING POSTS");
+				return null;
+		}	
+		
+		return friendusernames;
+	}
+
+
+
 }

@@ -699,7 +699,7 @@ public class SQLConnection {
 	
 public ArrayList<String> getFriends(String userID) {
 		
-		ArrayList<String> friendusernames = new ArrayList<String>();
+		ArrayList<String> frienduserIDs = new ArrayList<String>();
 		
 		try {
 			PreparedStatement ps;
@@ -710,8 +710,8 @@ public ArrayList<String> getFriends(String userID) {
 			while(rs.next())
 			{
 				String frienduname = null;
-				String uname1 = rs.getString(1);
-				String uname2 = rs.getString(2);
+				String uname1 = rs.getString(2);
+				String uname2 = rs.getString(3);
 				if(uname1.equals(userID)){
 					frienduname = uname2;
 				}
@@ -719,7 +719,7 @@ public ArrayList<String> getFriends(String userID) {
 					frienduname = uname1;
 				}
 				
-				if(frienduname != null) friendusernames.add(frienduname);
+				if(frienduname != null) frienduserIDs.add(frienduname);
 			}
 		} 
 		catch (SQLException e) {
@@ -728,7 +728,7 @@ public ArrayList<String> getFriends(String userID) {
 				return null;
 		}	
 		
-		return friendusernames;
+		return frienduserIDs;
 	}
 
 

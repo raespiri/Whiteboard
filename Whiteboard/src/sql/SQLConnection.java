@@ -56,7 +56,7 @@ public class SQLConnection {
 	private final static String changePicture = "UPDATE Users SET image = ? WHERE userID = ?";
 	private final static String deleteUser = "DELETE FROM Users WHERE userID = ?";
 	
-	private final static String getUserPosts = "SELECT c.CourseName, p.Title FROM Posts p, User u, Courses c WHERE u.userID = ? AND c.CourseID = p.classID";
+	private final static String getUserPosts = "SELECT c.CourseName, p.Title FROM Posts p, Users u, Courses c WHERE u.userID = ? AND c.CourseID = p.classID AND u.userID = p.userID";
 	private final static String getFriends = "SELECT * FROM Friends WHERE user1_ID = ? OR user2_ID = ? ";
 	
 	public SQLConnection() {
@@ -160,12 +160,12 @@ public class SQLConnection {
 		return cname;
 	}
 	
-	public ArrayList<Action> getUsersPosts(String userID){
+	public ArrayList<Action> getUsersPosts(int userID){
 		ArrayList<Action> actions = new ArrayList<Action>();
 		try {
 			PreparedStatement ps;
 			ps = conn.prepareStatement(getUserPosts);
-			ps.setInt(1, Integer.parseInt(userID));
+			ps.setInt(1, userID);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
 				String course = rs.getString("c.CourseName");

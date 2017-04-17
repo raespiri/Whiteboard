@@ -10,8 +10,8 @@
 
 	SQLConnection sqlCon = new SQLConnection();
 	sqlCon.connect();
-	
-	String courseName = sqlCon.getcoursename((String)request.getParameter("classID"));
+	String classID = (String)request.getParameter("classID");
+	String courseName = sqlCon.getcoursename(classID);
 	sqlCon.stop();
 %>
 

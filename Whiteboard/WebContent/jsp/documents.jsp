@@ -71,31 +71,32 @@
 				</ul>
 			</div>
 		</section>
-		<div id="fileUpload">
-			<p id="uploadTitle">Upload your own documents:</p>
+		<div class="upload-container">
+			<h1>Upload a Document</h1>
 			<form action="/Whiteboard/DocumentServlet" method="post" enctype="multipart/form-data">
-				<input id="choosefile" type="file" name="file" size="50" />
-				<input id="submitfile" type="submit" value="Upload File" />
+				<input type="file" name="file" size="50" />
+				<input type="submit" value="Upload File" />
 			</form>
 		</div>
 
-		<%
-			SQLConnection sql = new SQLConnection();
-			sql.connect();
-			
-			String courseID = (String) session.getAttribute("currclassID");
-			ArrayList<File> Documents = sql.getDocuments(courseID);
-			String file = "file://";
-			for(int i = 0; i < Documents.size(); i++) {
-		%>
-		<div class="document-container">
-			<a href="<%=Documents.get(i).getFilepath() %>" download><b><%=Documents.get(i).getFilename()%></b></a>
-			<br>
-			<div class="document--timestamp">Uploaded: <%=Documents.get(i).getTimestamp()%></div>
+		<div class="documents-container">
+			<%
+				SQLConnection sql = new SQLConnection();
+				sql.connect();
+				
+				String courseID = (String) session.getAttribute("currclassID");
+				ArrayList<File> Documents = sql.getDocuments(courseID);
+				String file = "file://";
+				for(int i = 0; i < Documents.size(); i++) {
+			%>
+			<a href="<%=Documents.get(i).getFilepath() %>" download class="document">
+				<div class="document--title"><h1><%=Documents.get(i).getFilename()%></h1></div>
+				<div class="document--timestamp"><h2><%=Documents.get(i).getTimestamp()%></h2></div>
+			</a>
+			<%	
+				}
+			%>
 		</div>
-		<%	
-			}
-		%>
 
 		<!-- BEGIN CHAT MODULE -->
 		<section class="chat">

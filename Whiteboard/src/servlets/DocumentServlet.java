@@ -42,7 +42,7 @@ public class DocumentServlet extends HttpServlet {
 		String courseName = sqlCon.getcoursename(CourseID);
 		
 		// constructs the directory path to store upload file
-	    String uploadPath = "/srv/Whiteboard/docUploads"; //getServletContext().getRealPath("/") + "docUploads";
+	    String uploadPath = "/Whiteboard/docUploads"; //getServletContext().getRealPath("/") + "docUploads";
 	    
 	    System.out.println("Upload path is " + uploadPath);
 

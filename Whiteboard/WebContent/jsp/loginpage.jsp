@@ -46,7 +46,7 @@
 				</div>
 			</div>
 		</header>	
-      	<div class="login-container">
+      	<section class="login-container">
       		<h1>Log In</h1>
 
 			<input type="text" placeholder="Username" id="usernameField"/>
@@ -56,6 +56,6 @@
 				<button type="submit" name="login" onclick="validate()">Log In</button>
 				<div class="login__error-message"></div>
 			</div>
-      	</div>
+      	</section>
   	</body>
 </html>

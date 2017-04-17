@@ -63,35 +63,37 @@
 			</form>	
 		</header>	
 		
-		<br>
-		<h1>Welcome, <%=username %></h1>
-	
-		<div id = "container">	
-			<div id="leftside">
-				<ul id = "notif-list" style = "list-style: none;">
-					<li><div id="error" style="color:red; font-size: 12px;"> </div></li>
+		<div class="main-wrapper">
+			<section class="content">
+				<h1>Welcome, <%=username %></h1>
+			
+				<div class="feed-container">	
+					<div id="error" class="error-message"></div>
 					<% 	if(notifs != null){
-							for(Notification n : notifs){ 
-							String title = n.getContentname();
-							String fullname = n.getFullname();
-							String actiontype = n.getActionType();
-							String coursename = n.getCoursename();
+							for (Notification n : notifs) { 
+								String title = n.getContentname();
+								String fullname = n.getFullname();
+								String actiontype = n.getActionType();
+								String coursename = n.getCoursename();
 					%>
-						<li class = "notif-in-list">
-							<text class = "notif-name"><%=fullname %></text>
-							<%if( actiontype.equals("Post")){%>
-								posted in
-								<text class = "notif-title"><%=coursename %></text>
-								<br>
-								<text class = "notif-title"><%=title %></text>
-							<%}} %>							
-						</li>
-					<%} %>
-				</ul>	
-			</div>	
-			<div id = "rightside">
-				<div id = "mycourses">
+								<div class="feed-element">
+									<div class="feed-element__username"><%=fullname %></div>
+
+									<%if (actiontype.equals("Post")) {%>
+										posted in
+										<div class="feed-element__coursename"><%=coursename %></div>
+										<div class="feed-element__title"><%=title %></div>
+									<% } %>
+								</div>
+							<% } %>
+					<% } %>
+				</div>
+			</section>
+
+			<section class="sidebar">
+				<div class="sidebar__container">
 					<h1>My Courses</h1>
+
 					<%
 						SQLConnection sql = new SQLConnection();
 						sql.connect();
@@ -99,15 +101,16 @@
 						Vector<Course> courses  = sql.getUserCourses(UserID);
 						for(int i = 0; i < courses.size(); i++) {
 					%>
-							<h3><a href = "forum.jsp?classID=<%= courses.get(i).getCourseID() %>"><%=courses.get(i).getName() %></a></h3>
+							<h3><a href="forum.jsp?classID=<%= courses.get(i).getCourseID() %>"><%=courses.get(i).getName() %></a></h3>
 					<% 
 						}
-					%>					
-					<br>
+					%>				
+				</div>
+				<div class="sidebar__container">
 					<h1>Moderating</h1>
 					<h3>CSCI270</h3>
 				</div>
-			</div>
+			</section>
 		</div>
 
 		<!-- Scripts -->

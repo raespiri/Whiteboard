@@ -54,7 +54,7 @@
 					<ul class="header__navigation-container">
 						<li><input style="float: left" type="text" name="searchField"></li>
 						<li><button class="navigation__search" type="submit"><i class="fa fa-search"></i></button></li>
-						<li><a class="navigation__courses">Courses</a></li>
+						<li><a href="courses.jsp" class="navigation__courses">Courses</a></li>
 						<li><a href="settings.jsp" class="navigation__settings">Settings</a></li>
 						<li><a href="profile.jsp" class="navigation__settings">Profile</a></li>
 					</ul>
@@ -90,7 +90,7 @@
 				for(int i = 0; i < Documents.size(); i++) {
 			%>
 			<a href="/Whiteboard/docUploads/<%= courseName + "/" + Documents.get(i).getFilename() %>" download class="document">
-				<div class="document--title"><h1><%=Documents.get(i).getFilename()%></h1></div>
+				<div data="<%=Documents.get(i).getContentID()%>" class="document--title"><h1><%=Documents.get(i).getFilename()%></h1></div>
 				<div class="document--timestamp"><h2><%=Documents.get(i).getTimestamp()%></h2></div>
 			</a>
 			<%	

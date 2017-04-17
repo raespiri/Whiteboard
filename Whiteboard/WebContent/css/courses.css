@@ -1,0 +1,36 @@
+@CHARSET "UTF-8";
+
+#courseheader {
+	margin-top: 4%;
+	font-size: 200%;
+	text-align: center;
+	text-decoration: underline;
+	margin-bottom: 4%;
+	font-weight: bold;
+}
+
+#courselist {
+	margin: auto;
+	align: center;
+}
+
+td {
+	padding: 5%;
+	margin: 20%;
+	padding-left: 35%;
+	padding-right: 35%;
+	font-size: 150%;
+    font-weight: bold;
+}
+
+tr:nth-child(even) {
+	margin: auto;
+    background-color: grey;
+    color: #00DB92;
+}
+
+tr:nth-child(odd) {
+	margin: auto;
+    background-color: #dddddd;
+    color: #00DB92;
+}

@@ -60,27 +60,23 @@ public class DocumentServlet extends HttpServlet {
 	        real_uploadDir.mkdir();
 	    }
 	    
-	    String docPath = "";
-	    String docname = "";
-	
+	    RegisteredUser curruser = (RegisteredUser) session.getAttribute("currUser");
+
 	    for (Part part : request.getParts()) { // loop through parts and get filename
 	        String fileName = getFileName(part);
 	        fileName = new File(fileName).getName();
-	        docname = fileName;
-	        docPath = uploadPath + File.separator + fileName;
-	        part.write(uploadPath + File.separator + fileName); // Write file
+	        
+	        String documentPath = uploadPath + File.separator + fileName;
+	        new DocumentWriteThread(part, documentPath);
+	        
+	        int courseID = Integer.parseInt(CourseID);
+		    int userID = Integer.parseInt(curruser.getUserID());
+		    sqlCon.addDocument(courseID, userID, documentPath, fileName);
 	    }
-	    
-	    RegisteredUser curruser = (RegisteredUser) session.getAttribute("currUser");
-	    
-	    int courseID = Integer.parseInt(CourseID);
-	    int userID = Integer.parseInt(curruser.getUserID());
-	    sqlCon.addDocument(courseID, userID, docPath, docname);
 	    
 	    sqlCon.stop();
 	    
 		response.sendRedirect("jsp/documents.jsp"); //redirect to documents page
-
 	}
 	
 	private String getFileName(Part part) {
@@ -92,5 +88,26 @@ public class DocumentServlet extends HttpServlet {
 	        }
 	    }
 	    return "";
+	}
+}
+
+class DocumentWriteThread extends Thread {
+	
+	private Part part;
+	private String filePath;
+	
+	public DocumentWriteThread(Part part, String filePath) {
+		this.part = part;
+		this.filePath = filePath;
+		this.start();
+	}
+	
+	public void run() {
+		try {
+			part.write(filePath);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

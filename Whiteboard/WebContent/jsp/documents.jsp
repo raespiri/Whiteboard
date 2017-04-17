@@ -72,10 +72,10 @@
 			</div>
 		</section>
 		<div class="upload-container">
-			<h1>Upload a Document</h1>
+			<h1>Upload Documents</h1>
 			<form action="/Whiteboard/DocumentServlet" method="post" enctype="multipart/form-data">
-				<input type="file" name="file" size="50" />
-				<input type="submit" value="Upload File" />
+				<input type="file" name="file" size="50" multiple />
+				<input type="submit" value="Upload" />
 			</form>
 		</div>
 

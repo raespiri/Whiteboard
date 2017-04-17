@@ -92,17 +92,19 @@
 				String file = "file://";
 				for(int i = 0; i < Documents.size(); i++) {
 			%>
-			<a href="/Whiteboard/docUploads/<%= courseName + "/" + Documents.get(i).getFilename() %>" download class="document">
+			<div class="document">
 				<%
 					if(sql.isPrivileged(userID, currclassID))
 					{
 				%>
-				<button style="display:inline-block;" onclick = "deleteDocument('<%=Documents.get(i).getContentID()%>')" >x</button>
+				<button class="document__remove-button" onclick="deleteDocument('<%=Documents.get(i).getContentID()%>')" >&times;</button>
 				<%	} %>
-				<div class="document--title"><h1><%=Documents.get(i).getFilename()%></h1></div>
+				<a href="/Whiteboard/docUploads/<%= courseName + "/" + Documents.get(i).getFilename() %>" download class="document__title">
+					<h1><%=Documents.get(i).getFilename()%></h1>
+				</a>
 				
-				<div class="document--timestamp"><h2><%=Documents.get(i).getTimestamp()%></h2></div>
-			</a>
+				<div class="document__timestamp"><h2><%=Documents.get(i).getTimestamp()%></h2></div>
+			</div>
 			<%	
 				}
 			%>

@@ -9,16 +9,27 @@
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%
+	String pageuser= (String)request.getAttribute("curruser");
+
+	SQLConnection sqlCon = new SQLConnection();
+	sqlCon.connect();
+	//String pagefullname = sqlCon.getUser
+	String username =null;
+	//System.out.println("here1");
 	RegisteredUser curruser = (RegisteredUser) session.getAttribute("currUser");
+	//System.out.println(curruser.getUsername());
+	if(curruser != null){
+		username = curruser.getUsername();
+	}
+	else{
+		sqlCon.stop();
+		response.sendRedirect("error.jsp");
+		return;
+	}
 	
-		try{
-			curruser.getUserID();
-			curruser.getUsername();
-		}
-		catch(NullPointerException e){
-			response.sendRedirect("error.jsp");
-			return;
-		}
+		
+	String userID = curruser.getUserID();
+	ArrayList<String> uIDs = sqlCon.getFriends(userID);
 %>
 
 <html>
@@ -88,6 +99,16 @@
 					%>				
 			
 			</div>
+			<h3> Friends:</h3>
+			<%
+				for(int i=0; i < uIDs.size(); i++){
+					String curruserid = sqlCon.getUsername(uIDs.get(i));
+					String uID = uIDs.get(i);
+					System.out.println(uID);
+					%>
+					<a href="profile.jsp?curruser=<%=uID%>" ><%=curruserid%> </a>
+				<% }%>
+			
 		</div>
 	</body>
 </html>

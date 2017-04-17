@@ -1,9 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="users.*" %>
+<%@ page import="content.*" %>
 <%@ page import="java.util.Vector" %>
 <%@ page import="course.*" %>
 <%@ page import="sql.SQLConnection" %>
+<%@ page import="java.util.ArrayList"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%
@@ -73,7 +75,19 @@
 						}
 					%>					
 			</div>
-			<div id="userActions">Actions:</div>
+			<div id="userActions">Actions:
+					<%
+						SQLConnection sql2 = new SQLConnection();
+						sql2.connect();
+						ArrayList<Action> actions  = sql2.getUsersPosts(UserID);
+						for(int i = 0; i < actions.size(); i++) {
+					%>
+							<h3 id="post" >You posted a post with the title <%=actions.get(i).getPost()%> in <%=actions.get(i).getCourse()%>.</h3>
+					<% 
+						}
+					%>				
+			
+			</div>
 		</div>
 	</body>
 </html>

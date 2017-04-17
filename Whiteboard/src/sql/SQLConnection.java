@@ -9,6 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.UUID;
 import java.util.Vector;
 
+import content.Action;
 import content.File;
 import content.Post;
 import course.Course;
@@ -54,6 +55,9 @@ public class SQLConnection {
 	private final static String changePassword = "UPDATE Users SET pass = ? WHERE userID = ?";
 	private final static String changePicture = "UPDATE Users SET image = ? WHERE userID = ?";
 	private final static String deleteUser = "DELETE FROM Users WHERE userID = ?";
+	
+	private final static String getUserPosts = "SELECT c.CourseName, p.Title FROM Posts p, Users u, Courses c WHERE u.userID = ? AND c.CourseID = p.classID AND u.userID = p.userID";
+	private final static String getFriends = "SELECT * FROM Friends WHERE user1_ID = ? OR user2_ID = ? ";
 	
 	public SQLConnection() {
 		try {
@@ -154,6 +158,26 @@ public class SQLConnection {
 		}
 		
 		return cname;
+	}
+	
+	public ArrayList<Action> getUsersPosts(int userID){
+		ArrayList<Action> actions = new ArrayList<Action>();
+		try {
+			PreparedStatement ps;
+			ps = conn.prepareStatement(getUserPosts);
+			ps.setInt(1, userID);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				String course = rs.getString("c.CourseName");
+				String post = rs.getString("p.title");
+				Action temp = new Action(post, course);
+				actions.add(temp);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("SQL ERROR WHILE FETCHING coursename");
+		}	
+		return actions;
 	}
 	
 	public Vector<Course> getCourses(String CoursePrefix) {
@@ -581,12 +605,38 @@ public class SQLConnection {
 	
 	public Boolean isTAForClass(String UserID, int classID)
 	{
-		
+		try {
+			PreparedStatement ps;
+			ps = conn.prepareStatement(isTA);
+			ps.setString(1, UserID);
+			ps.setInt(2, classID);
+			ResultSet rs = ps.executeQuery();
+			int s = 0;
+			if (rs.next()) { 
+				s = rs.getInt("ta");
+				return s == 1;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return false;
 	}
 	public Boolean isInstructorForClass(String UserID, int classID)
 	{
-		
+		try {
+			PreparedStatement ps;
+			ps = conn.prepareStatement(isInstructor);
+			ps.setString(1, UserID);
+			ps.setInt(2, classID);
+			ResultSet rs = ps.executeQuery();
+			int s = 0;
+			if (rs.next()) { 
+				s = rs.getInt("teacher");
+				return s == 1;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return false;
 	}
 	public void changePassword(String UserID, String newpass) {
@@ -646,4 +696,41 @@ public class SQLConnection {
 			e.printStackTrace();
 		}
 	}
+	
+public ArrayList<String> getFriends(String userID) {
+		
+		ArrayList<String> friendusernames = new ArrayList<String>();
+		
+		try {
+			PreparedStatement ps;
+			ps = conn.prepareStatement(getFriends);
+			ps.setString(1, userID);
+			ps.setString(2, userID);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next())
+			{
+				String frienduname = null;
+				String uname1 = rs.getString(1);
+				String uname2 = rs.getString(2);
+				if(uname1.equals(userID)){
+					frienduname = uname2;
+				}
+				else{
+					frienduname = uname1;
+				}
+				
+				if(frienduname != null) friendusernames.add(frienduname);
+			}
+		} 
+		catch (SQLException e) {
+				e.printStackTrace();
+				System.out.println("SQL ERROR WHILE FETCHING POSTS");
+				return null;
+		}	
+		
+		return friendusernames;
+	}
+
+
+
 }

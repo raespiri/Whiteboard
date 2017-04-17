@@ -488,3 +488,13 @@ body, html {
 .whiteboard .toolbar__color--black {
   background: black;
 }
+
+.logout
+{
+	transition: all 70ms ease-out !important;
+	    font-size: 1.3em;
+    color: #00DB92;
+    background: none;
+    border: none;
+    outline: none;
+}

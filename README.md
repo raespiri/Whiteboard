@@ -10,4 +10,6 @@ Known bugs (Work-in-progress):
 
 Non-local connection link:
 - https://whiteboard.carbontechsoftware.com/Whiteboard/
-- Note this is hosted through Andrew's (awesomely janky) server setup so if you wish to access the hosted version please contact Andrew first so he can make sure it's up and running (chan489@usc.edu | andrew@carbontechsoftware.com)
+- Note this is hosted through Andrew's (awesomely janky) server setup so if you wish to access the hosted version please contact Andrew first so he can make sure it's up and running:
+  - chan489@usc.edu
+  - andrew@carbontechsoftware.com

@@ -11,14 +11,14 @@
 	ArrayList<File> docs=null;
 	int ClassID;
 	String currclassID = "";
-	if(session.getAttribute("currclassID") != null){
+	String courseName = "";
+	if (session.getAttribute("currclassID") != null){
 		currclassID = (String) session.getAttribute("currclassID");
 		docs = sqlCon.getDocs(currclassID);
 		Collections.sort(docs);//to sort by date
+		courseName = sqlCon.getcoursename(currclassID);
 		//System.out.println(request.getParameter("currclassID") + "cid");
-	}
-	else{
-
+	} else {
 		sqlCon.stop();
 		response.sendRedirect("error.jsp");
 	}
@@ -54,12 +54,14 @@
 			</form>				
 		</header>
 		<section class="tabs">
-			<h1>CSCI 201</h1>
-			<ul class="tabs__container">
-				<li><a href = "../html/Whiteboard.html?classID=<%=currclassID%>"><button class="tab__button">Whiteboard</button></a></li>
-				<li><a href = "forum.jsp?classID=<%=currclassID%>"><button class="tab__button">Forum</button></a></li>
-				<li><a href = "documents.jsp?classID=<%=currclassID%>"><button class="tab__button tab__button--selected">Docs</button></a></li>
-			</ul>
+			<div class="tabs__wrapper">
+				<h1><%= courseName %></h1>
+				<ul class="tabs__container">
+					<li><a href = "whiteboard.jsp?classID=<%=currclassID%>"><button class="tab__button">Whiteboard</button></a></li>
+					<li><a href = "forum.jsp?classID=<%=currclassID%>"><button class="tab__button">Forum</button></a></li>
+					<li><a href = "documents.jsp?classID=<%=currclassID%>"><button class="tab__button tab__button--selected">Docs</button></a></li>
+				</ul>
+			</div>
 		</section>
 		<div id="fileUpload">
 			<p id="uploadTitle">Upload your own documents:</p>

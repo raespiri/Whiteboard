@@ -10,6 +10,7 @@
 	sqlCon.connect();
 	List<content.Post> posts=null;
 	String classID = "";
+	String courseName = "";
 	if(request.getParameter("classID") != null){
 		posts = sqlCon.getPosts(Integer.parseInt(request.getParameter("classID")));
 		Collections.sort(posts);//to sort by date
@@ -17,6 +18,7 @@
 		session = request.getSession();		
 		session.setAttribute("currclassID", request.getParameter("classID")); // Set session attribute for guest user;
 		classID = request.getParameter("classID");
+		courseName = sqlCon.getcoursename(classID);
 	}
 	else{
 		//System.out.println(session.getAttribute("currclassID") + "cci");
@@ -38,7 +40,7 @@
 		<title>Whiteboard</title>
 		<script src="https://use.typekit.net/ofv3bwh.js"></script>
 		<script>try{Typekit.load({ async: true });}catch(e){}</script>
-		<script src="../js/forum.js"></script>
+
 		<link href="../css/forum.css" rel="stylesheet" type="text/css">
 		<link href="../css/whiteboard.css" rel="stylesheet" type="text/css">
 		<link href="../css/font-awesome.css" rel="stylesheet" type="text/css">
@@ -61,12 +63,14 @@
 			</form>	
 		</header>
 		<section class="tabs">
-			<h1>CSCI 201</h1>
-			<ul class="tabs__container">
-				<li><a href = "../html/Whiteboard.html?classID=<%=classID%>"><button class="tab__button">Whiteboard</button></a></li>
-				<li><a href = "forum.jsp?classID=<%=classID%>"><button class="tab__button tab__button--selected">Forum</button></a></li>
-				<li><a href = "../jsp/documents.jsp?classID=<%=classID%>"><button class="tab__button">Docs</button></a></li>
-			</ul>
+			<div class="tabs__wrapper">
+				<h1><%= courseName %></h1>
+				<ul class="tabs__container">
+					<li><a href = "whiteboard.jsp?classID=<%=classID%>"><button class="tab__button">Whiteboard</button></a></li>
+					<li><a href = "forum.jsp?classID=<%=classID%>"><button class="tab__button  tab__button--selected">Forum</button></a></li>
+					<li><a href = "documents.jsp?classID=<%=classID%>"><button class="tab__button">Docs</button></a></li>
+				</ul>
+			</div>
 		</section>
 		<ul id = "post-list" style = "list-style: none;">
 			<li class = "post-in-list">
@@ -97,5 +101,8 @@
 				</li>
 			<%} } %>
 		</ul>
+
+		<!-- Scripts -->
+		<script src="../js/forum.js" type="text/javascript"></script>
 	</body>
 </html>

@@ -26,11 +26,13 @@ const DEFAULT_DRAWING_WIDTH = 5
 class Whiteboard {
 
 	// MARK: - Basic constructor
-	constructor(websocketURI, canvasSelector, refreshInterval) {
+	constructor(websocketURI, canvasSelector, refreshInterval, courseName) {
 		// Set instance variables
 		this._socket = new WebSocket(websocketURI)
 		this._canvas = document.querySelector(canvasSelector)
 		this._context = this._canvas.getContext("2d") // Drawing context
+
+		this._courseName = courseName
 
 		// Internal rendering
 		this._isPainting = false
@@ -47,6 +49,7 @@ class Whiteboard {
 		this.addUIEventListeners()
 		this.startRunLoop()
 		this.fitCanvas()
+		this.loadBoardState()
 	}
 
 	// MARK: - Initialization
@@ -94,11 +97,12 @@ class Whiteboard {
 
 		this._canvas.addEventListener("mousemove", function(e) {
 			if (_this._isPainting) _this.updatePosition(e);
- 		})
+		})
 
 		this._canvas.addEventListener("mouseup", function(e) {
 			_this._isPainting = false
 			_this.clearPositions()
+			_this.saveToNetwork()
 		})
 
 		// Color picker
@@ -119,6 +123,16 @@ class Whiteboard {
 
 		window.addEventListener("resize", function() {
 			_this.fitCanvas()
+		})
+	}
+
+	loadBoardState() {
+		let _this = this
+
+		var img = new Image()
+		img.src = `../boardStates/${this._courseName}/board.png`
+		img.addEventListener("load", function() {
+			_this.drawInitialBoardImage(img)
 		})
 	}
 
@@ -203,21 +217,51 @@ class Whiteboard {
 		console.log("Drawing at:", isLocal, startPoint.toString(), endPoint.toString())
 	}
 
-	fitCanvas() {
-		console.log("Resizing canvas...")
+	drawInitialBoardImage(initialBoardState) {
+		let currentBoardState = this._context.getImageData(0, 0, this._canvas.width, this._canvas.height)
 
-		let imageData = this._context.getImageData(0, 0, this._canvas.width, this._canvas.height)
+		try {
+			this._context.drawImage(initialBoardState, 0, 0)
+		} catch (e) {};
+
+		try {
+			if (currentBoardState !== null) this._context.drawImage(currentBoardState, 0, 0)
+		} catch (e) {};
+	}
+
+	fitCanvas() {
+		console.log("Resizing canvas wrapper...")
+
+		//let imageData = this._context.getImageData(0, 0, this._canvas.width, this._canvas.height)
 
 		// Resize canvas to fit
-		this._canvas.width = window.innerWidth
+		//this._canvas.width = window.innerWidth
 
 		let headerHeight = document.querySelector("header").offsetHeight
 		let tabHeight = document.querySelector(".tabs").offsetHeight
-		this._canvas.height = window.innerHeight - (headerHeight+tabHeight) - 10
+		document.querySelector(".whiteboard__canvas-wrapper").style.height = (window.innerHeight - (headerHeight+tabHeight)) + "px"
 
-		this._context.putImageData(imageData, 0, 0)
+		// this._context.putImageData(imageData, 0, 0)
 	}
 
+	saveToNetwork() {
+		let imageData = this._canvas.toDataURL("image/png", 1)
+		console.log("Saving network canvas...")
+
+		$.ajax({
+			url: "../BoardStateServlet",
+			type: "POST",
+			// Ajax events
+			success: function(data) {
+				console.log("Saved board state over network")
+			},
+			error: function() {
+				console.log("FATAL: Could not save board state over network")
+			},
+			// Form data
+			data: { image: imageData },
+		})
+	}
 }
 
-new Whiteboard(`ws${location.protocol==="https:" ? "s" : ""}://${location.host}/Whiteboard/server/v1/whiteboard`, "#whiteboard__canvas", 25)
+let whiteboard = new Whiteboard(`ws${location.protocol==="https:" ? "s" : ""}://${location.host}/Whiteboard/server/v1/whiteboard`, "#whiteboard__canvas", 25, SESSION_COURSENAME)

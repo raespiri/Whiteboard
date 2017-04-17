@@ -126,3 +126,5 @@ class Chat {
 		this._chatScrollView.scrollTop = this._chatScrollView.scrollHeight
 	}
 }
+
+let chat = new Chat(`ws${location.protocol==="https:" ? "s" : ""}://${location.host}/Whiteboard/server/v1/chat`, SESSION_USERNAME)

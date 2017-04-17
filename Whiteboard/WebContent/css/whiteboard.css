@@ -399,18 +399,23 @@ footer {
 /* line 6, ../sass/whiteboard.scss */
 body, html {
   background: #eee;
+  overflow: hidden;
 }
 
-/* line 10, ../sass/whiteboard.scss */
+/* line 11, ../sass/whiteboard.scss */
 .whiteboard {
   position: relative;
   overflow: hidden;
 }
-/* line 14, ../sass/whiteboard.scss */
+/* line 15, ../sass/whiteboard.scss */
+.whiteboard .whiteboard__canvas-wrapper {
+  overflow: auto;
+}
+/* line 19, ../sass/whiteboard.scss */
 .whiteboard #whiteboard__canvas {
   background: #eee;
 }
-/* line 18, ../sass/whiteboard.scss */
+/* line 23, ../sass/whiteboard.scss */
 .whiteboard .whiteboard__toolbar-container {
   display: flex;
   flex-direction: column;
@@ -426,7 +431,7 @@ body, html {
   border-radius: 25px;
   padding: 5px 0;
 }
-/* line 37, ../sass/whiteboard.scss */
+/* line 42, ../sass/whiteboard.scss */
 .whiteboard .toolbar__color {
   width: 30px;
   height: 30px;
@@ -437,28 +442,28 @@ body, html {
   background: white;
   cursor: pointer;
 }
-/* line 48, ../sass/whiteboard.scss */
+/* line 53, ../sass/whiteboard.scss */
 .whiteboard .toolbar__color--selected {
   border: 3px solid #E5DE50;
   box-shadow: none;
 }
-/* line 53, ../sass/whiteboard.scss */
+/* line 58, ../sass/whiteboard.scss */
 .whiteboard .toolbar__color--red {
   background: #DB0060;
 }
-/* line 57, ../sass/whiteboard.scss */
+/* line 62, ../sass/whiteboard.scss */
 .whiteboard .toolbar__color--orange {
   background: #F0712B;
 }
-/* line 61, ../sass/whiteboard.scss */
+/* line 66, ../sass/whiteboard.scss */
 .whiteboard .toolbar__color--green {
   background: #00DB92;
 }
-/* line 65, ../sass/whiteboard.scss */
+/* line 70, ../sass/whiteboard.scss */
 .whiteboard .toolbar__color--blue {
   background: #0079DB;
 }
-/* line 69, ../sass/whiteboard.scss */
+/* line 74, ../sass/whiteboard.scss */
 .whiteboard .toolbar__color--black {
   background: black;
 }

@@ -15,17 +15,20 @@
 	//System.out.println("here1");
  	RegisteredUser curruser = (RegisteredUser) session.getAttribute("currUser");
 
- 	if(curruser != null){
+ 	try{
+ 		curruser.getUserID();
+ 		curruser.getUsername();
+ 	}
+ 	catch(NullPointerException e){
+ 		sqlCon.stop();
+ 		response.sendRedirect("error.jsp");
+ 		return;
+ 	}
+
  		username = curruser.getUsername();
  		notifs = sqlCon.getNotifs(username);
- 		Collections.sort(notifs);//to sort by date
- 	}
- 	else{
- 		sqlCon.stop();
-		response.sendRedirect("error.jsp");
- 	}
-	
-	sqlCon.stop();
+ 		Collections.sort(notifs);//to sort by date	 	
+		sqlCon.stop();
 %>
 <html>
 	<head>

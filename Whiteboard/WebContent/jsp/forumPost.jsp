@@ -7,7 +7,10 @@
 <%@ page import="java.util.List, java.util.Collections" %>
 <%
 	RegisteredUser curUser = (RegisteredUser) session.getAttribute("currUser");
-	if (curUser == null) response.sendRedirect("error.jsp");
+	if (curUser == null){
+		response.sendRedirect("error.jsp");
+		return;
+	}
 
 	SQLConnection sqlCon = new SQLConnection();
 	sqlCon.connect();

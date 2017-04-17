@@ -2,6 +2,19 @@
     pageEncoding="UTF-8"%>
 <%@ page import="users.*" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%
+	RegisteredUser curruser = (RegisteredUser) session.getAttribute("currUser");
+	
+		try{
+			curruser.getUserID();
+			curruser.getUsername();
+		}
+		catch(NullPointerException e){
+			response.sendRedirect("error.jsp");
+			return;
+		}
+%>
+
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">

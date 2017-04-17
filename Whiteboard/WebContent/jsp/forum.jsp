@@ -19,6 +19,7 @@
 
 	if (curUser == null) {
 		response.sendRedirect("error.jsp");
+		return;
 	} else {
 		username = curUser.getUsername();
 		curUser.getUserID();

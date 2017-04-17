@@ -8,7 +8,10 @@
 
 <%	
 	RegisteredUser curUser = (RegisteredUser) session.getAttribute("currUser");
-	if (curUser == null) response.sendRedirect("error.jsp");
+	if (curUser == null){
+		response.sendRedirect("error.jsp");
+		return;
+	}
 	String username = curUser.getUsername();
 
 	SQLConnection sqlCon = new SQLConnection();

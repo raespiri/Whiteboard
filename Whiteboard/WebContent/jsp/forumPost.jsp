@@ -9,6 +9,7 @@
 	sqlCon.connect();
 	Post post = null;
 	String classID = request.getParameter("classID");
+	String courseName = sqlCon.getcoursename(classID);
 	int score = 0;
 	List<content.Post> replies=null;
 	if(request.getParameter("postID") != null){
@@ -49,12 +50,14 @@
 		</form>	
 	</header>
 	<section class="tabs">
-		<h1>CSCI 201</h1>
-		<ul style = "position: relative: left:2%;" class="tabs__container">
-			<li><a href = "../html/Whiteboard.html?classID=<%=classID%>"><button class="tab__button">Whiteboard</button></a></li>
-			<li><a href = "forum.jsp?classID=<%=classID%>"><button class="tab__button tab__button--selected">Forum</button></a></li>
-			<li><a href = "../jsp/documents.jsp?classID=<%=classID%>"><button class="tab__button">Docs</button></a></li>
-		</ul>
+		<div class="tabs__wrapper">
+			<h1><%= courseName %></h1>
+			<ul style = "position: relative: left:2%;" class="tabs__container">
+				<li><a href = "../html/Whiteboard.html?classID=<%=classID%>"><button class="tab__button">Whiteboard</button></a></li>
+				<li><a href = "forum.jsp?classID=<%=classID%>"><button class="tab__button tab__button--selected">Forum</button></a></li>
+				<li><a href = "../jsp/documents.jsp?classID=<%=classID%>"><button class="tab__button">Docs</button></a></li>
+			</ul>
+		</div>
 	</section>
 	<ul style = "list-style: none;">
 		<li class="post-in-list" style="margin-top: 10px; background-color: #00DB92; min-height:200px; margin-bottom: 30px;">

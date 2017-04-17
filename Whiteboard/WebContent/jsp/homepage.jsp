@@ -107,29 +107,7 @@
 			</div>
 		</div>
 
-		<!-- BEGIN CHAT MODULE -->
-		<section class="chat">
-			<div class="chat__header"><h1>Chat</h1></div>
-			<div class="chat__scrollview">
-				<template class="chat__message">
-					<h2 class="chat__message--sender">Sender</h2>
-					<div class="chat__message--message">The quick brown fox jumps over the lazy dog</div>
-				</template>
-			</div>
-			<div class="chat__input-container">
-				<input class="chat__message-input" type="text" placeholder="Type a message..." />
-				<button class="chat__message-send">Send</button>
-			</div>
-		</section>
-		<!-- END CHAT MODULE -->
-
 		<!-- Scripts -->
-		<script type="text/javascript">
-			const SESSION_USERNAME = `<%= username %>`
-			const SESSION_COURSENAME = `<%= courseName %>`
-		</script>
 		<script src="../js/forum.js" type="text/javascript"></script>
-		<script src="../js/WBSocketMessage.js" type="text/javascript"></script>
-		<script src="../js/chat.js" type="text/javascript"></script>
 	</body>
 </html>

@@ -85,6 +85,7 @@
 			</div>	
 			<img></img>
 			<a class = "post-title-on-page"><%=title%></a><br>
+
 			<a style = "color: black; margin-left: 20px;">posted by: <%=postername %></a>
 			<div class="post-body-box" ><%=body %></div>
 		</li>
@@ -107,6 +108,12 @@
 			String replyUsername = sqlCon.getUsername(replyUserID);
 	%>
 	<li>
+		<%if(sqlCon.isModerator(userID) || sqlCon.isAdmin(userID)
+				|| sqlCon.isTAForClass(userID, Integer.parseInt(request.getParameter("classID")))
+				|| sqlCon.isInstructorForClass(userID, Integer.parseInt(request.getParameter("classID"))))
+		{ %>
+		<button id = 'delete' onclick = "deletePost('<%=replyPostID %>')" class = 'delete-button' style = "float:right;"><i class="icon-remove-sign">x</i></button><br>
+		<%} %>
 		<button class = "upvote" onclick = "upvote('<%=replyPostID%>')">
 			<i class="fa fa-arrow-up" aria-hidden="true"></i>
 		</button>
@@ -123,6 +130,7 @@
 	<!-- Scripts -->
 	<script src="../js/forum.js" type="text/javascript"></script>
 	<script src="../js/forumPost.js" type="text/javascript"></script>
+	<script src="../js/mod.js" type="text/javascript"></script>
 </body>
 </html>
 <%}%>

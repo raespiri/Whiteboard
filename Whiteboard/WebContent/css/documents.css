@@ -364,10 +364,11 @@ footer {
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-around;
-  padding: 0 10px;
+  max-width: 850px;
+  margin: 0 auto;
 }
 
-/* line 67, ../sass/documents.scss */
+/* line 68, ../sass/documents.scss */
 .document {
   display: flex;
   flex-direction: column;
@@ -376,19 +377,19 @@ footer {
   flex-shrink: 0;
   border-radius: 5px;
   overflow: hidden;
-  width: 200px;
-  height: 200px;
+  width: 190px;
+  height: 190px;
   text-decoration: none !important;
   margin: 10px 10px;
   transition: all 70ms ease-out;
 }
 
-/* line 83, ../sass/documents.scss */
+/* line 86, ../sass/documents.scss */
 .document:hover, .document:focus {
   background-color: #e1e1e1;
 }
 
-/* line 87, ../sass/documents.scss */
+/* line 90, ../sass/documents.scss */
 .document--title {
   font-size: 1.2em;
   display: flex;
@@ -403,7 +404,7 @@ footer {
   text-overflow: ellipsis;
 }
 
-/* line 101, ../sass/documents.scss */
+/* line 104, ../sass/documents.scss */
 .document--timestamp {
   padding: 15px;
   background: black;

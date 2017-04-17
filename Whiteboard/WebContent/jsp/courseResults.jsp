@@ -13,6 +13,22 @@
 		<link href="../css/whiteboard.css" rel="stylesheet" type="text/css">
 		<link href="../css/font-awesome.css" rel="stylesheet" type="text/css">
 		<link href="../css/courseResults.css" rel="stylesheet" type="text/css">
+		<script>
+	    	function addCourse(courseID) {
+    			var url = "../CourseAddServlet?courseID="+courseID;
+    			// create AJAX request
+	    		var req = new XMLHttpRequest();
+	    		req.open("GET", url, true);
+	    		req.onreadystatechange = function () {
+	    			if(req.readyState == 4 && req.status == 200) { 
+	    				if(req.responseText === "You have already added this course") { //if there is no error
+	    					alert(req.responseText);
+	    				}
+	    			}
+	    		}
+	    		req.send(null);
+	    	}
+    	</script>
 	</head>
 	<body>
 		<header>
@@ -32,6 +48,7 @@
 			</form>	
 		</header>	
 		<div id="results">Search Results</div>
+		<div id="error" style="color:red; font-size: 12px;"></div>
 		<div>
 		<%
 			Vector<Course> course = (Vector<Course>) session.getAttribute("searchResults"); 
@@ -40,7 +57,7 @@
 		%>
 			<div id="course">
 				<h1 id="courseName"><%= course.get(i).getName()%></h1>
-				<button id="add"> + </button>
+				<button id="add" onclick="addCourse(<%=course.get(i).getCourseID() %>)"> + </button>
 			</div>
 		<%
 			}

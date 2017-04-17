@@ -21,7 +21,9 @@ public class SQLConnection {
 	private final static String addUser = "INSERT INTO Users(username, pass, fullname, image, email) VALUES(?, ?, ?, ?, ?)";
 	private final static String addNotif = "INSERT INTO Notifications(ActionType, ActionID, FullName, ContentName, CourseName, username) VALUES(?, ?, ?, ?, ?, ?)";
 	private final static String addDocument = "INSERT INTO Documents(courseID, userID, docPath, docname, time_stamp) VALUES(?, ?, ?, ?, ?)";
+	private final static String addStudent = "INSERT INTO Students(courseID, userID) VALUES(?, ?)";
 	
+	private final static String getStudent = "SELECT * FROM Students WHERE courseID = ? AND userID = ?";
 	private final static String getCourse = "SELECT * FROM Courses WHERE CoursePrefix = ?";
 	private final static String getPostID= "SELECT * FROM Posts WHERE userID = ? AND classID = ? AND Title=? ";
 	private final static String getDocuments = "SELECT * FROM Documents WHERE courseID = ?";
@@ -80,6 +82,32 @@ public class SQLConnection {
 		} catch(SQLException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void addStudent(int courseID, int userID) {
+		try {
+			PreparedStatement ps = conn.prepareStatement(addStudent);
+			ps.setInt(1, courseID);
+			ps.setInt(2, userID);
+			ps.executeUpdate();
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public boolean isStudent(int courseID, int userID) {
+		try {
+			PreparedStatement ps = conn.prepareStatement(getStudent);
+			ps.setInt(1, courseID);
+			ps.setInt(2, userID);
+			ResultSet rs = ps.executeQuery();
+			if(rs.next()) {
+				return true;
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
 	}
 	
 	public void addDocument(int courseID, int userID, String docPath, String docname) {

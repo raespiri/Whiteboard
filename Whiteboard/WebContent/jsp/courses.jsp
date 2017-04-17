@@ -1,9 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.Vector" %>
-<%@ page import="course.*" %>
+<%@ page import="course.*, users.*" %>
 <%@ page import="sql.SQLConnection" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<%
+	RegisteredUser curruser = (RegisteredUser) session.getAttribute("currUser");
+	
+		try{
+			curruser.getUserID();
+			curruser.getUsername();
+		}
+		catch(NullPointerException e){
+			response.sendRedirect("error.jsp");
+			return;
+		}
+%>
 <html>
 	<head>
 		<title>Courses</title>

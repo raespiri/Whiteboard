@@ -280,23 +280,28 @@ header .header__navigation-container .navigation__search {
 }
 
 /* line 242, ../sass/partials/main.scss */
+.error-message {
+  color: #db004d;
+}
+
+/* line 246, ../sass/partials/main.scss */
 .logo {
   color: white;
   font-size: 3em;
   font-weight: 700;
 }
 
-/* line 248, ../sass/partials/main.scss */
+/* line 252, ../sass/partials/main.scss */
 template {
   display: none !important;
 }
 
-/* line 252, ../sass/partials/main.scss */
+/* line 256, ../sass/partials/main.scss */
 a, a:hover, a:focus, a:active, a:visited {
   color: #00DB92;
 }
 
-/* line 256, ../sass/partials/main.scss */
+/* line 260, ../sass/partials/main.scss */
 footer {
   background: white;
   color: #737373;
@@ -385,19 +390,44 @@ footer {
   margin: 10px 10px;
   transition: all 70ms ease-out;
   box-shadow: 0 3px 3px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+/* line 90, ../sass/documents.scss */
+.document .document__remove-button {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 30px;
+  height: 30px;
+  background: #00DB92;
+  color: white;
+  font-weight: 800;
+  font-size: 1.3em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom-left-radius: 5px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  transition: all 70ms ease-out;
+}
+/* line 111, ../sass/documents.scss */
+.document .document__remove-button:hover, .document .document__remove-button:focus {
+  background: #db004d;
 }
 
-/* line 90, ../sass/documents.scss */
+/* line 116, ../sass/documents.scss */
 .document:hover, .document:focus {
   background-color: #e1e1e1;
 }
-/* line 93, ../sass/documents.scss */
-.document:hover .document--timestamp, .document:focus .document--timestamp {
+/* line 119, ../sass/documents.scss */
+.document:hover .document__timestamp, .document:focus .document__timestamp {
   background: #1e2021;
 }
 
-/* line 98, ../sass/documents.scss */
-.document--title {
+/* line 124, ../sass/documents.scss */
+.document__title {
   font-size: 1.2em;
   display: flex;
   height: 100%;
@@ -409,10 +439,11 @@ footer {
   padding: 15px;
   word-break: break-all;
   text-overflow: ellipsis;
+  text-decoration: none !important;
 }
 
-/* line 112, ../sass/documents.scss */
-.document--timestamp {
+/* line 139, ../sass/documents.scss */
+.document__timestamp {
   padding: 15px;
   background: black;
   color: white;

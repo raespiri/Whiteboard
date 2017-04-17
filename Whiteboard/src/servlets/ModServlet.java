@@ -29,6 +29,13 @@ public class ModServlet extends HttpServlet {
 			sqlCon.connect();
 			sqlCon.deletePost(postID);
 		}
+		if(request.getParameter("type").equals("doc"))
+		{
+			String docID = request.getParameter("id");
+			SQLConnection sqlCon = new SQLConnection();
+			sqlCon.connect();
+			sqlCon.deleteDoc(docID);
+		}
 	}
 
 }

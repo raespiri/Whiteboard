@@ -19,6 +19,7 @@
 	else{
 		sqlCon.stop();
 		response.sendRedirect("error.jsp");
+		return;
 	}
 	String userID = curruser.getUserID();
 	String password = curruser.getPassword();

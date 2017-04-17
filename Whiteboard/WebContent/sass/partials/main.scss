@@ -7,7 +7,7 @@ $accentColor: #00DB92;
 $accentColorDark: #00DC90;
 
 $secondaryTextColor: rgb(115, 115, 115);
-$errorTextColor: red;
+$errorTextColor: #db004d;
 
 $backgroundColor: #121314;
 $lightBackgroundColor: #eee;
@@ -237,6 +237,10 @@ header {
 			}
 		}
 	}
+}
+
+.error-message {
+	color: $errorTextColor;
 }
 
 .logo {

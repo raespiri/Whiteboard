@@ -85,17 +85,43 @@
 	transition: all $transitionTime ease-out;
 
 	box-shadow: 0 3px 3px rgba(0,0,0,0.1);
+	position: relative;
+
+	.document__remove-button {
+		position: absolute;
+		right: 0;
+		top: 0;
+		width: 30px;
+		height: 30px;
+		background: $accentColor;
+		color: white;
+		font-weight: 800;
+		font-size: 1.3em;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border-bottom-left-radius: 5px;
+		border: none;
+		outline: none;
+		cursor: pointer;
+
+		transition: all $transitionTime ease-out;
+	}
+
+	.document__remove-button:hover, .document__remove-button:focus {
+		background: $errorTextColor;
+	}
 }
 
 .document:hover, .document:focus {
 	background-color: darken($lightBackgroundColor, 5%);
 
-	.document--timestamp {
+	.document__timestamp {
 		background: lighten($backgroundColor, 5%);
 	}
 }
 
-.document--title {
+.document__title {
 	font-size: 1.2em;
 	display: flex;
 	height: 100%;
@@ -107,9 +133,10 @@
 	padding: 15px;
 	word-break: break-all;
 	text-overflow: ellipsis;
+	text-decoration: none !important;
 }
 
-.document--timestamp {
+.document__timestamp {
 	padding: 15px;
 	background: black;
 	color: white;

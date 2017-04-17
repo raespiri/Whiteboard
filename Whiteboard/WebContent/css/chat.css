@@ -280,23 +280,28 @@ header .header__navigation-container .navigation__search {
 }
 
 /* line 242, ../sass/partials/main.scss */
+.error-message {
+  color: #db004d;
+}
+
+/* line 246, ../sass/partials/main.scss */
 .logo {
   color: white;
   font-size: 3em;
   font-weight: 700;
 }
 
-/* line 248, ../sass/partials/main.scss */
+/* line 252, ../sass/partials/main.scss */
 template {
   display: none !important;
 }
 
-/* line 252, ../sass/partials/main.scss */
+/* line 256, ../sass/partials/main.scss */
 a, a:hover, a:focus, a:active, a:visited {
   color: #00DB92;
 }
 
-/* line 256, ../sass/partials/main.scss */
+/* line 260, ../sass/partials/main.scss */
 footer {
   background: white;
   color: #737373;

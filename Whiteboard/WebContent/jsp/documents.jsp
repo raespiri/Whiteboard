@@ -8,9 +8,12 @@
 
 <%	
 	RegisteredUser curUser = (RegisteredUser) session.getAttribute("currUser");
-	if (curUser == null) response.sendRedirect("error.jsp");
+	if (curUser == null){
+		response.sendRedirect("error.jsp");
+		return;
+	}
 	String username = curUser.getUsername();
-
+	String userID = curUser.getUserID();
 	SQLConnection sqlCon = new SQLConnection();
 	sqlCon.connect();
 	ArrayList<File> docs=null;
@@ -89,10 +92,19 @@
 				String file = "file://";
 				for(int i = 0; i < Documents.size(); i++) {
 			%>
-			<a href="/Whiteboard/docUploads/<%= courseName + "/" + Documents.get(i).getFilename() %>" download class="document">
-				<div data="<%=Documents.get(i).getContentID()%>" class="document--title"><h1><%=Documents.get(i).getFilename()%></h1></div>
-				<div class="document--timestamp"><h2><%=Documents.get(i).getTimestamp()%></h2></div>
-			</a>
+			<div class="document">
+				<%
+					if(sql.isPrivileged(userID, currclassID))
+					{
+				%>
+				<button class="document__remove-button" onclick="deleteDocument('<%=Documents.get(i).getContentID()%>')" >&times;</button>
+				<%	} %>
+				<a href="/Whiteboard/docUploads/<%= courseName + "/" + Documents.get(i).getFilename() %>" download class="document__title">
+					<h1><%=Documents.get(i).getFilename()%></h1>
+				</a>
+				
+				<div class="document__timestamp"><h2><%=Documents.get(i).getTimestamp()%></h2></div>
+			</div>
 			<%	
 				}
 			%>
@@ -123,6 +135,6 @@
 		<script src="../js/forum.js" type="text/javascript"></script>
 		<script src="../js/WBSocketMessage.js" type="text/javascript"></script>
 		<script src="../js/chat.js" type="text/javascript"></script>
-		
+		<script src="../js/mod.js" type="text/javascript"></script>
 	</body>
 </html>

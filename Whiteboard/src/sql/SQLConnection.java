@@ -23,6 +23,7 @@ public class SQLConnection {
 	private final static String addDocument = "INSERT INTO Documents(courseID, userID, docPath, docname, time_stamp) VALUES(?, ?, ?, ?, ?)";
 	private final static String addStudent = "INSERT INTO Students(courseID, userID) VALUES(?, ?)";
 	
+	private final static String getAllCourses = "SELECT * FROM Courses";
 	private final static String getUserCourses = "SELECT c.CourseID, c.CourseName, c.CoursePrefix FROM Courses c, Students s WHERE s.userID = ? AND c.CourseID = s.courseID";
 	private final static String getStudent = "SELECT * FROM Students WHERE courseID = ? AND userID = ?";
 	private final static String getCourse = "SELECT * FROM Courses WHERE CoursePrefix = ?";
@@ -50,6 +51,7 @@ public class SQLConnection {
 	private final static String isInstructor = "SELECT teacher FROM Whiteboard.Students WHERE userID = ? AND courseID = ?";
 
 	private final static String changePassword = "UPDATE Users SET pass = ?, WHERE userID = ?";
+	private final static String deleteUser = "DELETE FROM Users WHERE userID = ?";
 	
 	public SQLConnection() {
 		try {
@@ -163,6 +165,26 @@ public class SQLConnection {
 			{
 				int CourseID = rs.getInt("CourseID");
 				String CourseName = rs.getString("CourseName");
+				Course temp = new Course(CourseID, CourseName, CoursePrefix);
+				courses.add(temp);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return courses;
+	}
+	
+	public Vector<Course> getCourseList() {
+		Vector<Course> courses = new Vector<Course>();
+		try {
+			PreparedStatement ps;
+			ps = conn.prepareStatement(getAllCourses);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next())
+			{
+				int CourseID = rs.getInt("CourseID");
+				String CourseName = rs.getString("CourseName");
+				String CoursePrefix = rs.getString("CoursePrefix");
 				Course temp = new Course(CourseID, CourseName, CoursePrefix);
 				courses.add(temp);
 			}
@@ -572,6 +594,7 @@ public class SQLConnection {
 		}
 	}
 
+
 	public void deletePost(String postID) {
 		try {
 			PreparedStatement ps;
@@ -583,6 +606,14 @@ public class SQLConnection {
 		}
 	}
 
-	
-	
+	public void deleteUser(String UserID){
+		try {
+			PreparedStatement ps;
+			ps = conn.prepareStatement(deleteUser);
+			ps.setInt(1, Integer.parseInt(UserID));
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 }

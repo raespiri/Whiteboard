@@ -83,17 +83,16 @@
 		</header>		
 		<%if(!username.equals("guest")){%>
 		<section class="tabs">
-			<h1>Change Password</h1>
-			<h1>Enter your current and new passwords below.</h1>
+			<h1>Change Profile Picture</h1>
+			<h1>Upload a new picture.</h1>
 			<h1 id="success" style="color:#00DB92"></h1>
 		</section>
 		
 		<div id="main">
-      		<h5 style="margin-bottom: 2px; text-align: left; color: white;">Current Password</h5>
-			<input style="margin-bottom: 7px; margin-top: 7px; width: 100%;" type="password" id="currpassField"/>
-			<h5 style="margin: 0; text-align: left; color: white;">New Password</h5>
-			<input style="margin-top: 7px; width: 100%;" type="password" id="newpassField"/> <br />
-			<button style= "margin-top: 10px; width: 100%" type="submit" name="login" onclick="validate()">Change Password</button>
+      		<h5 style="margin-bottom: 2px; text-align: left; color: white;">Current Image URL: <%=currimgUL %></h5>
+			<h5 style="margin: 0; text-align: left; color: white;">Enter a new Image URL:</h5>
+			<input style="margin-top: 7px; width: 100%;" type="text" id="newimgURLField"/> <br />
+			<button style= "margin-top: 10px; width: 100%" type="submit" name="Submit" onclick="validate()">Change</button>
 			<div id="error" style="color:red; font-size: 12px;"></div>
       	</div>
       	<div id="foot"></div>

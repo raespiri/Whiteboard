@@ -29,8 +29,11 @@
 		<title>Whiteboard</title>
 		<script src="https://use.typekit.net/ofv3bwh.js"></script>
 		<script>try{Typekit.load({ async: true });}catch(e){}</script>
-		<script src="../js/forum.js"></script>
-		<script type="text/javascript" src="js/bootstrap-filestyle.min.js"> </script>
+
+		<meta name="viewport" content="initial-scale=1.0, user-scalable=yes, width=device-width">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<link rel="shortcut icon" href="/Whiteboard/favicon.png">
+
 		<link href="../css/forum.css" rel="stylesheet" type="text/css">
 		<link href="../css/whiteboard.css" rel="stylesheet" type="text/css">
 		<link href="../css/font-awesome.css" rel="stylesheet" type="text/css">
@@ -38,7 +41,7 @@
 	</head>
 	<body>
 		<header>
-			<form action="../SearchServlet" method="get">
+			<form action="/Whiteboard/SearchServlet" method="get">
 				<div class="header__wrapper">
 					<div class="header__logo-container">
 						<a class="logo-container__logo" href="../jsp/homepage.jsp"></a>
@@ -65,7 +68,7 @@
 		</section>
 		<div id="fileUpload">
 			<p id="uploadTitle">Upload your own documents:</p>
-			<form action="../DocumentServlet" method="post" enctype="multipart/form-data">
+			<form action="/Whiteboard/DocumentServlet" method="post" enctype="multipart/form-data">
 				<input id="choosefile" type="file" name="file" size="50" />
 				<input id="submitfile" type="submit" value="Upload File" />
 			</form>
@@ -88,5 +91,9 @@
 		<%	
 			}
 		%>
+
+		<!-- Scripts -->
+		<script src="../js/forum.js" type="text/javascript"></script>
+		<script type="text/javascript" src="js/bootstrap-filestyle.min.js"> </script>
 	</body>
 </html>

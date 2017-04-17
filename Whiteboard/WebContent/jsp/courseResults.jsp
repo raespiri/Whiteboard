@@ -10,12 +10,17 @@
 		<title>Course Results</title>
 		<script src="https://use.typekit.net/ofv3bwh.js"></script>
 		<script>try{Typekit.load({ async: true });}catch(e){}</script>
+
+		<meta name="viewport" content="initial-scale=1.0, user-scalable=yes, width=device-width">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<link rel="shortcut icon" href="/Whiteboard/favicon.png">
+
 		<link href="../css/whiteboard.css" rel="stylesheet" type="text/css">
 		<link href="../css/font-awesome.css" rel="stylesheet" type="text/css">
 		<link href="../css/courseResults.css" rel="stylesheet" type="text/css">
 		<script>
 	    	function addCourse(courseID) {
-    			var url = "../CourseAddServlet?courseID="+courseID;
+    			var url = "/Whiteboard/CourseAddServlet?courseID="+courseID;
     			// create AJAX request
 	    		var req = new XMLHttpRequest();
 	    		req.open("GET", url, true);
@@ -32,7 +37,7 @@
 	</head>
 	<body>
 		<header>
-			<form action="../SearchServlet" method="get">
+			<form action="/Whiteboard/SearchServlet" method="get">
 				<div class="header__wrapper">
 					<div class="header__logo-container">
 						<a class="logo-container__logo" href="../jsp/homepage.jsp"></a>

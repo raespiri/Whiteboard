@@ -6,12 +6,17 @@
     	<title>Login Menu</title>
     	<script src="https://use.typekit.net/ofv3bwh.js"></script>
 		<script>try{Typekit.load({ async: true });}catch(e){}</script>
+
+		<meta name="viewport" content="initial-scale=1.0, user-scalable=yes, width=device-width">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<link rel="shortcut icon" href="/Whiteboard/favicon.png">
+
 		<link href="../css/whiteboard.css" rel="stylesheet" type="text/css">
 		<link href="../css/font-awesome.css" rel="stylesheet" type="text/css">
     	<link rel="stylesheet" type="text/css" href="../css/loginpage.css" />
     	<script>
 	    	function validate() {
-    			var url = "../LoginServlet?usernameField="+document.getElementById('usernameField').value+"&passwordField="+document.getElementById('passwordField').value;
+    			var url = "/Whiteboard/LoginServlet?usernameField="+document.getElementById('usernameField').value+"&passwordField="+document.getElementById('passwordField').value;
     			// create AJAX request
 	    		var req = new XMLHttpRequest();
 	    		req.open("GET", url, true);

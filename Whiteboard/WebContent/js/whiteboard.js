@@ -28,7 +28,8 @@ class Whiteboard {
 	// MARK: - Basic constructor
 	constructor(websocketURI, canvasSelector, refreshInterval, courseName) {
 		// Set instance variables
-		this._socket = new WebSocket(websocketURI)
+		this._websocketURI = websocketURI
+		this.initNetworkSocket()
 		this._canvas = document.querySelector(canvasSelector)
 		this._context = this._canvas.getContext("2d") // Drawing context
 
@@ -45,7 +46,6 @@ class Whiteboard {
 		this._selectedWidth = DEFAULT_DRAWING_WIDTH
 
 		// Setup
-		this.addNetworkHandlers()
 		this.addUIEventListeners()
 		this.startRunLoop()
 		this.fitCanvas()
@@ -53,6 +53,11 @@ class Whiteboard {
 	}
 
 	// MARK: - Initialization
+	initNetworkSocket() {
+		this._socket = new WebSocket(this._websocketURI)
+		this.addNetworkHandlers()
+	}
+
 	addNetworkHandlers() {
 		let _this = this
 
@@ -83,7 +88,16 @@ class Whiteboard {
 
 		this._socket.addEventListener("close", function(e) {
 			console.log("Closed whiteboard websocket")
+
+			_this.initNetworkSocket()
 		})
+
+		this._networkPingInterval = setInterval(function() {
+			_this._socket.send(JSON.stringify({
+				type: WBSocketMessage.NetworkPing,
+				data: {},
+			}))
+		}, 3000)
 	}
 
 	addUIEventListeners() {
@@ -214,7 +228,7 @@ class Whiteboard {
 		this._context.closePath()
 		this._context.stroke()
 
-		console.log("Drawing at:", isLocal, startPoint.toString(), endPoint.toString())
+		// console.log("Drawing at:", isLocal, startPoint.toString(), endPoint.toString())
 	}
 
 	drawInitialBoardImage(initialBoardState) {

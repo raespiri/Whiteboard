@@ -38,23 +38,29 @@ class Chat {
 	// MARK: - Basic constructor
 	constructor(websocketURI, username) {
 		// Set instance variables
-		this._socket = new WebSocket(websocketURI)
+		this._websocketURI = websocketURI
+		this.initNetworkSocket()
+
 		this._username = username
 		this._messageTemplate = document.querySelector("template.chat__message")
 		this._chatInputElem = document.querySelector(".chat__message-input")
 		this._chatScrollView = document.querySelector(".chat__scrollview")
 
 		// Setup
-		this.addNetworkHandlers()
 		this.addUIEventListeners()
 	}
 
 	// MARK: - Initialization
+	initNetworkSocket() {
+		this._socket = new WebSocket(this._websocketURI)
+		this.addNetworkHandlers()
+	}
+
 	addNetworkHandlers() {
 		let _this = this
 
 		this._socket.addEventListener("open", function(e) {
-			console.log("Opened whiteboard websocket")
+			console.log("Opened chat websocket")
 		})
 
 		this._socket.addEventListener("message", function(e) {
@@ -74,8 +80,16 @@ class Chat {
 		})
 
 		this._socket.addEventListener("close", function(e) {
-			console.log("Closed whiteboard websocket")
+			console.log("Closed chat websocket")
+			_this.initNetworkSocket()
 		})
+
+		this._networkPingInterval = setInterval(function() {
+			_this._socket.send(JSON.stringify({
+				type: WBSocketMessage.NetworkPing,
+				data: {},
+			}))
+		}, 3000)
 	}
 
 	addUIEventListeners() {

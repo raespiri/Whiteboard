@@ -22,6 +22,7 @@
 	}
 	String userID = curruser.getUserID();
 	String password = curruser.getPassword();
+	String currimgURL = curruser.getImage();
 	
 %>
 <html>
@@ -42,21 +43,15 @@
 	    	function validate() {
 	    		document.getElementById("success").innerHTML = "";
 	    		document.getElementById("error").innerHTML = ""
-    			var url = "../ChangePasswordServlet?currpass="+document.getElementById('currpassField').value+"&newpass="+document.getElementById('newpassField').value;
-    			//console.log(url);
+    			var url = "../ChangePictureServlet?newimgURL="+document.getElementById('newimgURLField').value;
+    			console.log(url);
     			// create AJAX request
 	    		var req = new XMLHttpRequest();
 	    		req.open("GET", url, true);
 	    		req.onreadystatechange = function () {
 	    			if(req.readyState == 4 && req.status == 200) { 
 	    				if(req.responseText === "noerror") { //if there is no error
-	    					document.getElementById("success").innerHTML = "Success! Password changed!";
-	    				}
-	    				else if(req.responseText === "invalidnewpass") { //else print error
-	    					document.getElementById("error").innerHTML = "New Password needs to be greater than 5 characters.";
-	    				}
-	    				else if(req.responseText === "invalidcurrpass") {
-	    					document.getElementById("error").innerHTML = "Error, invalid current password! Try again."
+	    					document.getElementById("success").innerHTML = "Success! Picture changed!";
 	    				}
 	    			}
 	    		}
@@ -83,17 +78,19 @@
 		</header>		
 		<%if(!username.equals("guest")){%>
 		<section class="tabs">
-			<h1>Change Password</h1>
-			<h1>Enter your current and new passwords below.</h1>
+			<h1>Change Profile Picture</h1>
+			<h1>Upload a new picture.</h1>
 			<h1 id="success" style="color:#00DB92"></h1>
 		</section>
 		
 		<div id="main">
-      		<h5 style="margin-bottom: 2px; text-align: left; color: white;">Current Password</h5>
-			<input style="margin-bottom: 7px; margin-top: 7px; width: 100%;" type="password" id="currpassField"/>
-			<h5 style="margin: 0; text-align: left; color: white;">New Password</h5>
-			<input style="margin-top: 7px; width: 100%;" type="password" id="newpassField"/> <br />
-			<button style= "margin-top: 10px; width: 100%" type="submit" name="login" onclick="validate()">Change Password</button>
+      		<h5 style="margin-bottom: 2px; text-align: left; color: white;">Current Image URL:</h5>
+      		<h5 style="margin-bottom: 2px; text-align: left; color: white; width:100px"><%=currimgURL %></h5>
+			<br>
+			<br>
+			<h5 style="margin: 0; text-align: left; color: white;">Enter a new Image URL:</h5>
+			<input style="margin-top: 7px; width: 100%;" type="text" id="newimgURLField"/> <br />
+			<button style= "margin-top: 10px; width: 100%" type="submit" name="Submit" onclick="validate()">Change</button>
 			<div id="error" style="color:red; font-size: 12px;"></div>
       	</div>
       	<div id="foot"></div>

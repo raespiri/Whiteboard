@@ -61,6 +61,7 @@
 				</div>
 			</form>	
 		</header>		
+		<%if(!username.equals("guest")){%>
 		<section class="tabs">
 			<h1>Delete Account</h1>
 			<h1>Are you sure you want to delete your account? This will be permanent.</h1>
@@ -75,5 +76,6 @@
 			<br>
 			
 		</section>
+		<%} %>
 	</body>
 </html>

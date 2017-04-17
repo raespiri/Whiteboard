@@ -30,11 +30,17 @@
 
 		cursor: pointer;
 
+		transition: all $transitionTime ease-out;
+
 		h1 {
 			font-weight: 800;
 			text-transform: uppercase;
 			font-size: 1.2em;
 		}
+	}
+
+	.chat__header:hover, .chat__header:focus {
+		background: lighten($backgroundColor, 5%);
 	}
 
 	.chat__scrollview {

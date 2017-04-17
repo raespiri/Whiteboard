@@ -43,10 +43,15 @@ public class SQLConnection {
 	private final static String getPost = "SELECT * FROM Posts WHERE contentID = ?";
 	private final static String downvotePost = "UPDATE Whiteboard.Posts "+
 			"SET score = score - 1 WHERE contentID = '";
+	private final static String deletePost = "DELETE FROM Posts WHERE contentID = ?";
 	private final static String getLoginCredentials = "SELECT pass FROM Users WHERE username = ?";
 	private final static String isModerator = "SELECT moderator FROM Users WHERE userID = ?";
-	private final static String isAdmin = "SELECT admin FROM Users WHERE userID = ?";	
+	private final static String isAdmin = "SELECT admin FROM Users WHERE userID = ?";
+	private final static String isTA = "SELECT ta FROM Whiteboard.Students WHERE userID = ? AND courseID = ?";
+	private final static String isInstructor = "SELECT teacher FROM Whiteboard.Students WHERE userID = ? AND courseID = ?";
+
 	private final static String changePassword = "UPDATE Users SET pass = ?, WHERE userID = ?";
+	private final static String changePicture = "UPDATE Users SET image = ?, WHERE userID = ?";
 	private final static String deleteUser = "DELETE FROM Users WHERE userID = ?";
 	
 	public SQLConnection() {
@@ -534,45 +539,68 @@ public class SQLConnection {
 			return null;
 		}
 	}
-	public int isModerator(String UserID) {
+	public Boolean isModerator(String UserID) {
 		try {
 			PreparedStatement ps;
 			ps = conn.prepareStatement(isModerator);
 			ps.setString(1, UserID);
 			ResultSet rs = ps.executeQuery();
 			int s = 0;
-			if (rs.next()) { // Loop to get all result sets
+			if (rs.next()) { 
 				s = rs.getInt("moderator");
-				return s;
+				System.out.println(getUsername(UserID)+" is a mod:"+s );
+				return s == 1;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return 0;
+		return false;
 	}
-	public int isAdmin(String UserID) {
+	public Boolean isAdmin(String UserID) {
 		try {
 			PreparedStatement ps;
 			ps = conn.prepareStatement(isAdmin);
 			ps.setString(1, UserID);
 			ResultSet rs = ps.executeQuery();
 			int s = 0;
-			if (rs.next()) { // Loop to get all result sets
+			if (rs.next()) { 
 				s = rs.getInt("moderator");
-				return s;
+				return s == 1;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return 0;
+		return false;
 	}
 	
+	public Boolean isTAForClass(String UserID, int classID)
+	{
+		
+		return false;
+	}
+	public Boolean isInstructorForClass(String UserID, int classID)
+	{
+		
+		return false;
+	}
 	public void changePassword(String UserID, String newpass) {
 		try {
 			PreparedStatement ps;
 			ps = conn.prepareStatement(changePassword);
 			ps.setString(1, newpass);
 			ps.setInt(2, Integer.parseInt(UserID));
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+
+	public void deletePost(String postID) {
+		try {
+			PreparedStatement ps;
+			ps = conn.prepareStatement(deletePost);
+			ps.setString(1, postID);
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -590,4 +618,15 @@ public class SQLConnection {
 		}
 	}
 	
+	public void changePicture(String UserID, String newimgURL) {
+		try {
+			PreparedStatement ps;
+			ps = conn.prepareStatement(changePicture);
+			ps.setString(1, newimgURL);
+			ps.setInt(2, Integer.parseInt(UserID));
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 }

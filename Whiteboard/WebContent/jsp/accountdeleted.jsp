@@ -24,7 +24,7 @@
 			<br>
 			<h1 id = "success" style="color:#00DB92"></h1>
 			<ul class="tabs__container">
-				<li><a href = "../html/LandingPage.html"><button id= "deleteuser" onclick= verify() class="tab__button tab__button--selected" style="text-align:center">Go to Landing Page</button></a></li>
+				<li><a href = "../html/LandingPage.html"><button class="tab__button tab__button--selected" >Go to Landing Page</button></a></li>
 			</ul>
 			<br>
 			<br>

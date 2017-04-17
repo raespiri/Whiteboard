@@ -32,6 +32,8 @@
 		margin-bottom: 15px;
 		padding: 15px;
 
+		box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+
 		.feed-element__username {
 
 		}
@@ -45,6 +47,8 @@
 	margin-left: 15px;
 	padding: 15px;
 	flex-shrink: 0;
+
+	box-shadow: 0 3px 10px rgba(0,0,0,0.05);
 
 	background: $lightBackgroundColor;
 	border-radius: 10px;

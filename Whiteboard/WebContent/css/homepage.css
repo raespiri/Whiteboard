@@ -373,9 +373,10 @@ footer {
   border-radius: 10px;
   margin-bottom: 15px;
   padding: 15px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
 }
 
-/* line 41, ../sass/homepage.scss */
+/* line 43, ../sass/homepage.scss */
 .sidebar {
   display: flex;
   flex-direction: column;
@@ -383,25 +384,26 @@ footer {
   margin-left: 15px;
   padding: 15px;
   flex-shrink: 0;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
   background: #eee;
   border-radius: 10px;
 }
-/* line 52, ../sass/homepage.scss */
+/* line 56, ../sass/homepage.scss */
 .sidebar .sidebar__container {
   margin-bottom: 30px;
 }
-/* line 55, ../sass/homepage.scss */
+/* line 59, ../sass/homepage.scss */
 .sidebar .sidebar__container h1 {
   font-weight: 800;
   font-size: 1.5em;
   margin-bottom: 10px;
 }
-/* line 61, ../sass/homepage.scss */
+/* line 65, ../sass/homepage.scss */
 .sidebar .sidebar__container:last-child {
   margin-bottom: 0;
 }
 
-/* line 66, ../sass/homepage.scss */
+/* line 70, ../sass/homepage.scss */
 .notif-in-list {
   height: 80px;
   border-radius: 10px;
@@ -410,7 +412,7 @@ footer {
   background: #eee;
 }
 
-/* line 74, ../sass/homepage.scss */
+/* line 78, ../sass/homepage.scss */
 .notif-title {
   font-size: 20px;
   position: relative;

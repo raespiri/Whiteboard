@@ -42,9 +42,9 @@
 			<div class="tabs__wrapper">
 				<h1><%= courseName %></h1>
 				<ul class="tabs__container">
-					<li><a href = "../jsp/whiteboard.jsp"><button class="tab__button tab__button--selected">Whiteboard</button></a></li>
-					<li><a href = "../jsp/forum.jsp"><button class="tab__button">Forum</button></a></li>
-					<li><a href = "../jsp/documents.jsp"><button class="tab__button">Docs</button></a></li>
+					<li><a href = "../html/Whiteboard.html?classID=<%=classID%>"><button class="tab__button tab__button--selected">Whiteboard</button></a></li>
+				<li><a href = "forum.jsp?classID=<%=classID%>"><button class="tab__button">Forum</button></a></li>
+				<li><a href = "../jsp/documents.jsp?classID=<%=classID%>"><button class="tab__button">Docs</button></a></li>
 				</ul>
 			</div>
 		</section>

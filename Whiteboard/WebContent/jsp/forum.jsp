@@ -3,17 +3,20 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ page import="sql.SQLConnection" %>
 <%@ page import="content.Post" %>
+<%@ page import="notifications.*, users.*" %>
 <%@ page import="java.util.List, java.util.Collections" %>
 
 <%	
 	RegisteredUser curUser = (RegisteredUser) session.getAttribute("currUser");
 	if (curUser == null) response.sendRedirect("error.jsp");
-	
+
 	SQLConnection sqlCon = new SQLConnection();
 	sqlCon.connect();
 	List<content.Post> posts=null;
 	String classID = "";
 	String courseName = "";
+	String username = curUser.getUsername();
+
 	if(request.getParameter("classID") != null){
 		posts = sqlCon.getPosts(Integer.parseInt(request.getParameter("classID")));
 		Collections.sort(posts);//to sort by date
@@ -49,7 +52,7 @@
 		<link rel="shortcut icon" href="/Whiteboard/favicon.png">
 
 		<link href="../css/forum.css" rel="stylesheet" type="text/css">
-		<link href="../css/whiteboard.css" rel="stylesheet" type="text/css">
+		<link href="../css/chat.css" rel="stylesheet" type="text/css">
 		<link href="../css/font-awesome.css" rel="stylesheet" type="text/css">
 	</head>
 	<body>
@@ -93,7 +96,7 @@
 					String title = post.getTitle();
 					String postID = post.getContentID();
 					String userID = post.getUserID();
-					String username = sqlCon.getUsername(userID);
+					String postUsername = sqlCon.getUsername(userID);
 			%>
 				<li class = "post-in-list">
 					<button class = "upvote" onclick = "upvote('<%=postID%>')">
@@ -104,12 +107,35 @@
 					</button>
 					<text class = "score" id = "score<%=postID%>"> <%=score %> </text>
 					<a href = "forumPost.jsp?postID=<%=postID %>&classID=<%=classID %>" class = "post-title"><%=title %></a><button class = 'delete-button' style = "float:right; display:none;">x</button><br>
-					<a style = "position: relative; top:15px; margin-left: 18%; margin-top: 5px; color: black;">posted by: <%=username %></a>
+					<a style = "position: relative; top:15px; margin-left: 18%; margin-top: 5px; color: black;">posted by: <%=postUsername %></a>
 				</li>
 			<%} } %>
 		</ul>
 
+		<!-- BEGIN CHAT MODULE -->
+		<section class="chat">
+			<div class="chat__header"><h1>Chat</h1></div>
+			<div class="chat__scrollview">
+				<template class="chat__message">
+					<h2 class="chat__message--sender">Sender</h2>
+					<div class="chat__message--message">The quick brown fox jumps over the lazy dog</div>
+				</template>
+			</div>
+			<div class="chat__input-container">
+				<input class="chat__message-input" type="text" placeholder="Type a message..." />
+				<button class="chat__message-send">Send</button>
+			</div>
+		</section>
+		<!-- END CHAT MODULE -->
+
+
 		<!-- Scripts -->
+		<script type="text/javascript">
+			const SESSION_USERNAME = `<%= username %>`
+			const SESSION_COURSENAME = `<%= courseName %>`
+		</script>
 		<script src="../js/forum.js" type="text/javascript"></script>
+		<script src="../js/WBSocketMessage.js" type="text/javascript"></script>
+		<script src="../js/chat.js" type="text/javascript"></script>
 	</body>
 </html>

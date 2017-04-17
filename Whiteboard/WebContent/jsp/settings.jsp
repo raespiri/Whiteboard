@@ -36,7 +36,7 @@
 
 		
 		<link href="../css/forum.css" rel="stylesheet" type="text/css">
-		<link href="../css/whiteboard.css" rel="stylesheet" type="text/css">
+		<link href="../css/partials/main.css" rel="stylesheet" type="text/css">
 		<link href="../css/font-awesome.css" rel="stylesheet" type="text/css">
 	</head>
 <body>

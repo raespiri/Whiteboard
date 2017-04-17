@@ -3,12 +3,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ page import="sql.SQLConnection" %>
 <%@ page import="content.File" %>
+<%@ page import="notifications.*, users.*" %>
 <%@ page import="java.util.ArrayList, java.util.Collections" %>
 
 <%	
 	RegisteredUser curUser = (RegisteredUser) session.getAttribute("currUser");
 	if (curUser == null) response.sendRedirect("error.jsp");
-	
+	String username = curUser.getUsername();
+
 	SQLConnection sqlCon = new SQLConnection();
 	sqlCon.connect();
 	ArrayList<File> docs=null;
@@ -38,7 +40,7 @@
 		<link rel="shortcut icon" href="/Whiteboard/favicon.png">
 
 		<link href="../css/forum.css" rel="stylesheet" type="text/css">
-		<link href="../css/whiteboard.css" rel="stylesheet" type="text/css">
+		<link href="../css/chat.css" rel="stylesheet" type="text/css">
 		<link href="../css/font-awesome.css" rel="stylesheet" type="text/css">
 		<link href="../css/documents.css" rel="stylesheet" type="text/css">
 	</head>
@@ -95,8 +97,31 @@
 			}
 		%>
 
+		<!-- BEGIN CHAT MODULE -->
+		<section class="chat">
+			<div class="chat__header"><h1>Chat</h1></div>
+			<div class="chat__scrollview">
+				<template class="chat__message">
+					<h2 class="chat__message--sender">Sender</h2>
+					<div class="chat__message--message">The quick brown fox jumps over the lazy dog</div>
+				</template>
+			</div>
+			<div class="chat__input-container">
+				<input class="chat__message-input" type="text" placeholder="Type a message..." />
+				<button class="chat__message-send">Send</button>
+			</div>
+		</section>
+		<!-- END CHAT MODULE -->
+
 		<!-- Scripts -->
-		<script src="../js/forum.js" type="text/javascript"></script>
+		<script type="text/javascript">
+			const SESSION_USERNAME = `<%= username %>`
+			const SESSION_COURSENAME = `<%= courseName %>`
+		</script>
 		<script type="text/javascript" src="js/bootstrap-filestyle.min.js"> </script>
+		<script src="../js/forum.js" type="text/javascript"></script>
+		<script src="../js/WBSocketMessage.js" type="text/javascript"></script>
+		<script src="../js/chat.js" type="text/javascript"></script>
+		
 	</body>
 </html>

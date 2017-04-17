@@ -43,7 +43,7 @@
 	    		document.getElementById("success").innerHTML = "";
 	    		document.getElementById("error").innerHTML = ""
     			var url = "../ChangePasswordServlet?currpass="+document.getElementById('currpassField').value+"&newpass="+document.getElementById('newpassField').value;
-    			console.log(url);
+    			//console.log(url);
     			// create AJAX request
 	    		var req = new XMLHttpRequest();
 	    		req.open("GET", url, true);
@@ -98,7 +98,5 @@
       	</div>
       	<div id="foot"></div>
 		<%} %>
-      	<!-- Scripts -->
-      	<script src="../js/forum.js" type="text/javascript"></script>
 	</body>
 </html>

@@ -47,6 +47,7 @@ public class SQLConnection {
 	private final static String isModerator = "SELECT moderator FROM Users WHERE userID = ?";
 	private final static String isAdmin = "SELECT admin FROM Users WHERE userID = ?";	
 	private final static String changePassword = "UPDATE Users SET pass = ?, WHERE userID = ?";
+	private final static String changePicture = "UPDATE Users SET image = ?, WHERE userID = ?";
 	private final static String deleteUser = "DELETE FROM Users WHERE userID = ?";
 	
 	public SQLConnection() {
@@ -584,6 +585,18 @@ public class SQLConnection {
 			PreparedStatement ps;
 			ps = conn.prepareStatement(deleteUser);
 			ps.setInt(1, Integer.parseInt(UserID));
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void changePicture(String UserID, String newimgURL) {
+		try {
+			PreparedStatement ps;
+			ps = conn.prepareStatement(changePicture);
+			ps.setString(1, newimgURL);
+			ps.setInt(2, Integer.parseInt(UserID));
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

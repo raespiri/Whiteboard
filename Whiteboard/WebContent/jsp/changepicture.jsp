@@ -22,6 +22,7 @@
 	}
 	String userID = curruser.getUserID();
 	String password = curruser.getPassword();
+	String currimgURL = curruser.getImage();
 	
 %>
 <html>
@@ -42,7 +43,7 @@
 	    	function validate() {
 	    		document.getElementById("success").innerHTML = "";
 	    		document.getElementById("error").innerHTML = ""
-    			var url = "../ChangePasswordServlet?currpass="+document.getElementById('currpassField').value+"&newpass="+document.getElementById('newpassField').value;
+    			var url = "../ChangePictureServlet?newimgURL="+document.getElementById('newimgURLField').value;
     			console.log(url);
     			// create AJAX request
 	    		var req = new XMLHttpRequest();
@@ -50,13 +51,7 @@
 	    		req.onreadystatechange = function () {
 	    			if(req.readyState == 4 && req.status == 200) { 
 	    				if(req.responseText === "noerror") { //if there is no error
-	    					document.getElementById("success").innerHTML = "Success! Password changed!";
-	    				}
-	    				else if(req.responseText === "invalidnewpass") { //else print error
-	    					document.getElementById("error").innerHTML = "New Password needs to be greater than 5 characters.";
-	    				}
-	    				else if(req.responseText === "invalidcurrpass") {
-	    					document.getElementById("error").innerHTML = "Error, invalid current password! Try again."
+	    					document.getElementById("success").innerHTML = "Success! Picture changed!";
 	    				}
 	    			}
 	    		}
@@ -89,7 +84,10 @@
 		</section>
 		
 		<div id="main">
-      		<h5 style="margin-bottom: 2px; text-align: left; color: white;">Current Image URL: <%=currimgUL %></h5>
+      		<h5 style="margin-bottom: 2px; text-align: left; color: white;">Current Image URL:</h5>
+      		<h5 style="margin-bottom: 2px; text-align: left; color: white; width:100px"><%=currimgURL %></h5>
+			<br>
+			<br>
 			<h5 style="margin: 0; text-align: left; color: white;">Enter a new Image URL:</h5>
 			<input style="margin-top: 7px; width: 100%;" type="text" id="newimgURLField"/> <br />
 			<button style= "margin-top: 10px; width: 100%" type="submit" name="Submit" onclick="validate()">Change</button>
@@ -97,7 +95,5 @@
       	</div>
       	<div id="foot"></div>
 		<%} %>
-      	<!-- Scripts -->
-      	<script src="../js/forum.js" type="text/javascript"></script>
 	</body>
 </html>

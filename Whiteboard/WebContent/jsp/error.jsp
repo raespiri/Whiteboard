@@ -17,8 +17,7 @@
 		<link rel="stylesheet" type="text/css" href="../css/loginpage.css" />		
 	</head>
 	<body>
-	
-	<header>
+		<header>
 			<div class="header__wrapper">
 				<div class="header__logo-container">
 					<a class="logo-container__logo" href="../html/LandingPage.html"></a>
@@ -27,12 +26,14 @@
 		</header>	
 			
 		<section class="tabs">
-			<h1>Account Deleted!</h1>
+			<h1>Oops, something went wrong!</h1>
 			<br>
 			<br>
 			<h1 id = "success" style="color:#00DB92"></h1>
 			<ul class="tabs__container">
-				<li><a href = "../html/LandingPage.html"><button class="tab__button tab__button--selected" >Go to Landing Page</button></a></li>
+				<li><a href = "loginpage.jsp"><button class="tab__button tab__button--selected" >Login</button></a></li>
+				<li><a href = "registration.jsp"><button class="tab__button tab__button--selected" >Sign up</button></a></li>
+				<li><a href = "../html/LandingPage.html"><button class="tab__button tab__button--selected" >Login as Guest</button></a></li>
 			</ul>
 			<br>
 			<br>

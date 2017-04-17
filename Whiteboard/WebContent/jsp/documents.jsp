@@ -78,7 +78,7 @@
 				<input id="submitfile" type="submit" value="Upload File" />
 			</form>
 		</div>
-		<div id="docTitle">Uploaded Documents</div>
+
 		<%
 			SQLConnection sql = new SQLConnection();
 			sql.connect();
@@ -88,10 +88,10 @@
 			String file = "file://";
 			for(int i = 0; i < Documents.size(); i++) {
 		%>
-		<div id="doc">
+		<div class="document-container">
 			<a href="<%=Documents.get(i).getFilepath() %>" download><b><%=Documents.get(i).getFilename()%></b></a>
-					<br>
-					<div id="timestamp">Uploaded: <%=Documents.get(i).getTimestamp()%></div>
+			<br>
+			<div class="document--timestamp">Uploaded: <%=Documents.get(i).getTimestamp()%></div>
 		</div>
 		<%	
 			}

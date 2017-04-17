@@ -82,6 +82,7 @@
 				</ul>
 			</div>
 		</section>
+		<%if(!username.equals("guest")){%>
 		<ul id = "post-list" style = "list-style: none;">
 			<li class = "post-in-list">
 				<input type = "text" id = "title" class = "title-input" placeholder = "Ask a Question..."/>
@@ -89,7 +90,7 @@
 				<input type="submit" name="submit" onclick="validate()" class = "submit-input"/>
 			</li>
 			<li><div id="error" style="color:red; font-size: 12px;"> </div></li>
-			<% 
+			<% }
 			if(posts != null){
 				for(content.Post post : posts){ 
 					int score = post.getScore();

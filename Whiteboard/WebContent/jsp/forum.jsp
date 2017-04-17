@@ -8,15 +8,23 @@
 
 <%	
 	RegisteredUser curUser = (RegisteredUser) session.getAttribute("currUser");
-	if (curUser == null) response.sendRedirect("error.jsp");
 
 	SQLConnection sqlCon = new SQLConnection();
 	sqlCon.connect();
 	List<content.Post> posts=null;
 	String classID = "";
 	String courseName = "";
-	String username = curUser.getUsername();
-	String curUserID = curUser.getUserID();
+	String username = "";
+	String curUserID = "";
+
+	if (curUser == null) {
+		response.sendRedirect("error.jsp");
+	} else {
+		username = curUser.getUsername();
+		curUser.getUserID();
+	}
+
+	
 	
 	if(request.getParameter("classID") != null){
 		posts = sqlCon.getPosts(Integer.parseInt(request.getParameter("classID")));

@@ -46,15 +46,16 @@
 				</div>
 			</div>
 		</header>	
-      	<div id="main">
-      		<h5 style="margin-bottom: 2px; text-align: left; color: white;">Username</h5>
-			<input style="margin-bottom: 7px; margin-top: 7px; width: 100%;" type="text" id="usernameField"/>
-			<h5 style="margin: 0; text-align: left; color: white;">Password</h5>
-			<input style="margin-top: 7px; width: 100%;" type="password" id="passwordField"/> <br />
-			<button style= "margin-top: 10px; width: 100%" type="submit" name="login" onclick="validate()">Log In</button>
-			<div id="error" style="color:red; font-size: 12px;"></div>
-      	</div>
-      	<div id="foot">
+      	<div class="login-container">
+      		<h1>Log In</h1>
+
+			<input type="text" placeholder="Username" id="usernameField"/>
+			<input type="password" id="passwordField"/>
+
+			<div class="login__footer">
+				<button type="submit" name="login" onclick="validate()">Log In</button>
+				<div class="login__error-message"></div>
+			</div>
       	</div>
   	</body>
 </html>

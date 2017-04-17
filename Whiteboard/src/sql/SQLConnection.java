@@ -41,7 +41,9 @@ public class SQLConnection {
 			"SET score = score - 1 WHERE contentID = '";
 	private final static String getLoginCredentials = "SELECT pass FROM Users WHERE username = ?";
 	private final static String isModerator = "SELECT moderator FROM Users WHERE userID = ?";
-	private final static String isAdmin = "SELECT admin FROM Users WHERE userID = ?";
+	private final static String isAdmin = "SELECT admin FROM Users WHERE userID = ?";	
+	private final static String changePassword = "UPDATE Users SET pass = ?, WHERE userID = ?";
+	
 	public SQLConnection() {
 		try {
 			new com.mysql.jdbc.Driver();
@@ -492,6 +494,19 @@ public class SQLConnection {
 		}
 		return 0;
 	}
+	
+	public void changePassword(String UserID, String newpass) {
+		try {
+			PreparedStatement ps;
+			ps = conn.prepareStatement(changePassword);
+			ps.setString(1, newpass);
+			ps.setInt(2, Integer.parseInt(UserID));
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
 	
 	
 }

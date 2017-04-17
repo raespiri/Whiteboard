@@ -42,6 +42,9 @@ public class SQLConnection {
 	private final static String downvotePost = "UPDATE Whiteboard.Posts "+
 			"SET score = score - 1 WHERE contentID = '";
 	private final static String getLoginCredentials = "SELECT pass FROM Users WHERE username = ?";
+	private final static String isModerator = "SELECT moderator FROM Users WHERE userID = ?";
+	private final static String isAdmin = "SELECT admin FROM Users WHERE userID = ?";	
+	private final static String changePassword = "UPDATE Users SET pass = ?, WHERE userID = ?";
 	
 	public SQLConnection() {
 		try {
@@ -487,6 +490,51 @@ public class SQLConnection {
 			return null;
 		}
 	}
+	public int isModerator(String UserID) {
+		try {
+			PreparedStatement ps;
+			ps = conn.prepareStatement(isModerator);
+			ps.setString(1, UserID);
+			ResultSet rs = ps.executeQuery();
+			int s = 0;
+			if (rs.next()) { // Loop to get all result sets
+				s = rs.getInt("moderator");
+				return s;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
+	public int isAdmin(String UserID) {
+		try {
+			PreparedStatement ps;
+			ps = conn.prepareStatement(isAdmin);
+			ps.setString(1, UserID);
+			ResultSet rs = ps.executeQuery();
+			int s = 0;
+			if (rs.next()) { // Loop to get all result sets
+				s = rs.getInt("moderator");
+				return s;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
+	
+	public void changePassword(String UserID, String newpass) {
+		try {
+			PreparedStatement ps;
+			ps = conn.prepareStatement(changePassword);
+			ps.setString(1, newpass);
+			ps.setInt(2, Integer.parseInt(UserID));
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
 	
 	
 }

@@ -96,7 +96,7 @@
 						<i class="fa fa-arrow-down" aria-hidden="true" onclick = "downvote('<%=postID%>')"></i>
 					</button>
 					<text class = "score" id = "score<%=postID%>"> <%=score %> </text>
-					<a href = "forumPost.jsp?postID=<%=postID %>&classID=<%=classID %>" class = "post-title"><%=title %></a><br>
+					<a href = "forumPost.jsp?postID=<%=postID %>&classID=<%=classID %>" class = "post-title"><%=title %></a><button class = 'delete-button' style = "float:right; display:none;">x</button><br>
 					<a style = "position: relative; top:15px; margin-left: 18%; margin-top: 5px; color: black;">posted by: <%=username %></a>
 				</li>
 			<%} } %>

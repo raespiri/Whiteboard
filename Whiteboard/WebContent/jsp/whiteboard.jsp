@@ -57,7 +57,9 @@
 				<button class="toolbar__color toolbar__color--blue" data-color="#0079DB"></button>
 				<button class="toolbar__color toolbar__color--white" data-color="#EEE" data-width="50"></button>
 			</div>
-			<canvas id="whiteboard__canvas" width="500px" height="500px"></canvas>
+			<div class="whiteboard__canvas-wrapper">
+				<canvas id="whiteboard__canvas" width="2000px" height="2000px"></canvas>
+			</div>
 		</section>
 
 		<!-- BEGIN CHAT MODULE -->
@@ -77,12 +79,14 @@
 		<!-- END CHAT MODULE -->
 
 		<!-- Scripts -->
+		<script type="text/javascript">
+			const SESSION_USERNAME = `<%= username %>`
+			const SESSION_COURSENAME = `<%= courseName %>`
+		</script>
+
+		<script src="../js/jquery-3.2.1.min.js" type="text/javascript"></script>
 		<script src="../js/WBSocketMessage.js" type="text/javascript"></script>
 		<script src="../js/whiteboard.js" type="text/javascript"></script>
 		<script src="../js/chat.js" type="text/javascript"></script>
-		<script type="text/javascript">
-			let secure = (location.protocol === "https:") ? "s" : ""
-			new Chat("ws" + secure + "://" + location.host + "/Whiteboard/server/v1/chat", `<%= username %>`)
-		</script>
 	</body>
 </html>

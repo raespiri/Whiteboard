@@ -5,11 +5,16 @@ $canvasBgColor: #eee;
 
 body, html {
 	background: $canvasBgColor;
+	overflow: hidden;
 }
 
 .whiteboard {
 	position: relative;
 	overflow: hidden;
+
+	.whiteboard__canvas-wrapper {
+		overflow: auto;
+	}
 
 	#whiteboard__canvas {
 		background: $canvasBgColor;

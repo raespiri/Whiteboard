@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="users.*" %>
+<%@ page import="java.util.Vector" %>
+<%@ page import="course.*" %>
+<%@ page import="sql.SQLConnection" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
@@ -15,6 +19,7 @@
 
 		<link href="../css/partials/main.css" rel="stylesheet" type="text/css">
 		<link href="../css/font-awesome.css" rel="stylesheet" type="text/css">
+		<link href="../css/profile.css" rel="stylesheet" type="text/css">
 	</head>
 	<body>
 		<header>
@@ -39,13 +44,23 @@
 				String prof_image = User.getImage();
 				String fullname = User.getFullname();
 			%>
-			<img id="profImage" src=<%=prof_image %> alt="some_text" style="width:125px; height:125px;">
-			<br>
-			<span  style = "display:inline-block" id = "info"><%=fullname %><br>10 hours total<br>Courses<br>CSCI201<br>CSCI270</span>
-			<ul  style = "display:inline-block; list-style: none;">
-				<li>action</li>
-				<li>action</li>
-			</ul>
+			<div id="userInfo">
+				<img id="profImage" src=<%=prof_image %> alt="some_text" style="width:125px; height:125px;">
+				<h1 id="userName"><%=fullname %></h1>
+				<h2 id="userCourses">Courses</h2>
+				<%
+						SQLConnection sql = new SQLConnection();
+						sql.connect();
+						int UserID = Integer.parseInt(User.getUserID());
+						Vector<Course> courses  = sql.getUserCourses(UserID);
+						for(int i = 0; i < courses.size(); i++) {
+					%>
+							<h3 id="courseName" ><a href = "forum.jsp?classID=<%= courses.get(i).getCourseID() %>"><%=courses.get(i).getName() %></a></h3>
+					<% 
+						}
+					%>					
+			</div>
+			<div id="userActions">Actions:</div>
 		</div>
 	</body>
 </html>

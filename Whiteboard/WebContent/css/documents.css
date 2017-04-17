@@ -318,24 +318,25 @@ footer {
   width: 100%;
   box-sizing: border-box;
   max-width: 550px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
 }
-/* line 19, ../sass/documents.scss */
+/* line 21, ../sass/documents.scss */
 .upload-container h1 {
   font-size: 2em;
   font-weight: 800;
   margin-bottom: 10px;
 }
-/* line 25, ../sass/documents.scss */
+/* line 27, ../sass/documents.scss */
 .upload-container form {
   display: flex;
   flex-direction: row;
   align-items: center;
 }
-/* line 30, ../sass/documents.scss */
+/* line 32, ../sass/documents.scss */
 .upload-container form input {
   font-family: "proxima-nova", Helvetica, Arial, sans-serif !important;
 }
-/* line 34, ../sass/documents.scss */
+/* line 36, ../sass/documents.scss */
 .upload-container form input[type="submit"] {
   background: #00DB92;
   color: white;
@@ -352,12 +353,12 @@ footer {
   cursor: pointer;
   transition: all 70ms ease-out;
 }
-/* line 52, ../sass/documents.scss */
+/* line 54, ../sass/documents.scss */
 .upload-container form input[type="submit"]:hover, .upload-container form input[type="submit"]:focus {
   background: #00f5a3;
 }
 
-/* line 58, ../sass/documents.scss */
+/* line 60, ../sass/documents.scss */
 .documents-container {
   display: flex;
   flex-direction: row;
@@ -368,7 +369,7 @@ footer {
   margin: 0 auto;
 }
 
-/* line 68, ../sass/documents.scss */
+/* line 70, ../sass/documents.scss */
 .document {
   display: flex;
   flex-direction: column;
@@ -382,14 +383,19 @@ footer {
   text-decoration: none !important;
   margin: 10px 10px;
   transition: all 70ms ease-out;
-}
-
-/* line 86, ../sass/documents.scss */
-.document:hover, .document:focus {
-  background-color: #e1e1e1;
+  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.1);
 }
 
 /* line 90, ../sass/documents.scss */
+.document:hover, .document:focus {
+  background-color: #e1e1e1;
+}
+/* line 93, ../sass/documents.scss */
+.document:hover .document--timestamp, .document:focus .document--timestamp {
+  background: #1e2021;
+}
+
+/* line 98, ../sass/documents.scss */
 .document--title {
   font-size: 1.2em;
   display: flex;
@@ -404,7 +410,7 @@ footer {
   text-overflow: ellipsis;
 }
 
-/* line 104, ../sass/documents.scss */
+/* line 112, ../sass/documents.scss */
 .document--timestamp {
   padding: 15px;
   background: black;
@@ -416,4 +422,5 @@ footer {
   flex-grow: 0;
   flex-shrink: 0;
   width: 100%;
+  transition: all 70ms ease-out;
 }

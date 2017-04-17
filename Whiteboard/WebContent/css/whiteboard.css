@@ -326,14 +326,19 @@ footer {
   color: white;
   padding: 10px 15px;
   cursor: pointer;
+  transition: all 70ms ease-out;
 }
-/* line 33, ../sass/chat.scss */
+/* line 35, ../sass/chat.scss */
 .chat .chat__header h1 {
   font-weight: 800;
   text-transform: uppercase;
   font-size: 1.2em;
 }
-/* line 40, ../sass/chat.scss */
+/* line 42, ../sass/chat.scss */
+.chat .chat__header:hover, .chat .chat__header:focus {
+  background: #1e2021;
+}
+/* line 46, ../sass/chat.scss */
 .chat .chat__scrollview {
   padding: 15px;
   box-sizing: border-box;
@@ -341,27 +346,27 @@ footer {
   height: 300px;
   transition: all 70ms ease-out;
 }
-/* line 49, ../sass/chat.scss */
+/* line 55, ../sass/chat.scss */
 .chat .chat__message {
   display: flex;
   flex-direction: column;
   margin-bottom: 10px;
 }
-/* line 55, ../sass/chat.scss */
+/* line 61, ../sass/chat.scss */
 .chat .chat__message:last-child {
   margin-bottom: 0;
 }
-/* line 59, ../sass/chat.scss */
+/* line 65, ../sass/chat.scss */
 .chat .chat__message--sender {
   font-weight: 600;
   color: black;
   margin-bottom: 0.1em;
 }
-/* line 65, ../sass/chat.scss */
+/* line 71, ../sass/chat.scss */
 .chat .chat__message--message {
   line-height: 1.2em;
 }
-/* line 69, ../sass/chat.scss */
+/* line 75, ../sass/chat.scss */
 .chat .chat__input-container {
   display: flex;
   flex-direction: row;
@@ -372,7 +377,7 @@ footer {
   padding: 10px 15px;
   box-sizing: border-box;
 }
-/* line 81, ../sass/chat.scss */
+/* line 87, ../sass/chat.scss */
 .chat .chat__message-input {
   background: white;
   border: none;
@@ -380,7 +385,7 @@ footer {
   outline: none;
   width: 100%;
 }
-/* line 89, ../sass/chat.scss */
+/* line 95, ../sass/chat.scss */
 .chat .chat__message-send {
   background: none;
   border: none;
@@ -394,12 +399,12 @@ footer {
   cursor: pointer;
   transition: color 70ms ease-out;
 }
-/* line 104, ../sass/chat.scss */
+/* line 110, ../sass/chat.scss */
 .chat .chat__message-send:hover, .chat .chat__message-send:focus {
   color: #00f5a3;
 }
 
-/* line 111, ../sass/chat.scss */
+/* line 117, ../sass/chat.scss */
 .chat--collapsed .chat__scrollview {
   height: 0;
   padding-top: 0;

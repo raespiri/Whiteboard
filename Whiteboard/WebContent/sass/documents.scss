@@ -16,6 +16,8 @@
 	box-sizing: border-box;
 	max-width: 550px;
 
+	box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+
 	h1 {
 		font-size: 2em;
 		font-weight: 800;
@@ -81,10 +83,16 @@
 
 	margin: 10px 10px;
 	transition: all $transitionTime ease-out;
+
+	box-shadow: 0 3px 3px rgba(0,0,0,0.1);
 }
 
 .document:hover, .document:focus {
 	background-color: darken($lightBackgroundColor, 5%);
+
+	.document--timestamp {
+		background: lighten($backgroundColor, 5%);
+	}
 }
 
 .document--title {
@@ -112,4 +120,6 @@
 	flex-grow: 0;
 	flex-shrink: 0;
 	width: 100%;
+
+	transition: all $transitionTime ease-out;
 }

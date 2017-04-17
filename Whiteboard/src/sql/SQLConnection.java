@@ -44,6 +44,7 @@ public class SQLConnection {
 	private final static String downvotePost = "UPDATE Whiteboard.Posts "+
 			"SET score = score - 1 WHERE contentID = '";
 	private final static String deletePost = "DELETE FROM Posts WHERE contentID = ?";
+	private final static String deleteDoc = "DELETE FROM Documents WHERE documentID = ?";
 	private final static String getLoginCredentials = "SELECT pass FROM Users WHERE username = ?";
 	private final static String isModerator = "SELECT moderator FROM Users WHERE userID = ?";
 	private final static String isAdmin = "SELECT admin FROM Users WHERE userID = ?";
@@ -540,6 +541,10 @@ public class SQLConnection {
 			return null;
 		}
 	}
+	public Boolean isPrivileged(String UserID, String classID)
+	{
+		return isModerator(UserID) || isAdmin(UserID) || isTAForClass(UserID, Integer.parseInt(classID)) ||isInstructorForClass(UserID, Integer.parseInt(classID));
+	}
 	public Boolean isModerator(String UserID) {
 		try {
 			PreparedStatement ps;
@@ -625,6 +630,17 @@ public class SQLConnection {
 			ps = conn.prepareStatement(changePicture);
 			ps.setString(1, newimgURL);
 			ps.setInt(2, Integer.parseInt(UserID));
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void deleteDoc(String docID) {
+		try {
+			PreparedStatement ps;
+			ps = conn.prepareStatement(deleteDoc);
+			ps.setString(1, docID);
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -1,9 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.Vector" %>
-<%@ page import="course.*" %>
+<%@ page import="course.*, users.*" %>
 <%@ page import="sql.SQLConnection" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<%
+	RegisteredUser curruser = (RegisteredUser) session.getAttribute("currUser");
+	
+		try{
+			curruser.getUserID();
+			curruser.getUsername();
+		}
+		catch(NullPointerException e){
+			response.sendRedirect("error.jsp");
+			return;
+		}
+%>
 <html>
 	<head>
 		<title>Courses</title>
@@ -18,6 +31,22 @@
 		<link href="../css/chat.css" rel="stylesheet" type="text/css">
 		<link href="../css/courses.css" rel="stylesheet" type="text/css">
 		<link href="../css/font-awesome.css" rel="stylesheet" type="text/css">
+		<script>
+			function addCourse(courseID) {
+		   			var url = "/Whiteboard/CourseAddServlet?courseID="+courseID;
+		   			// create AJAX request
+		    		var req = new XMLHttpRequest();
+		    		req.open("GET", url, true);
+		    		req.onreadystatechange = function () {
+		    			if(req.readyState == 4 && req.status == 200) { 
+		    				if(req.responseText === "You have already added this course") { //if there is no error
+		    					alert(req.responseText);
+		    				}
+		    			}
+		    		}
+		    		req.send(null);
+		    	}
+		</script>
 	</head>
 	<body>
 		<header>
@@ -37,6 +66,7 @@
 			</form>				
 		</header>
 		<div id="courseheader">Course Catalog</div>
+		<div id="note">*Click on a course name to add it*</div>
 		<table id="courselist">
 			<%
 				SQLConnection sql = new SQLConnection();
@@ -44,7 +74,7 @@
 				Vector<Course> courses = sql.getCourseList();
 				for(int i = 0; i < courses.size(); i++) {
 			%>
-				<tr><td><a href="/Whiteboard/SearchServlet?searchField="<%=courses.get(i).getPrefix() %>><%=courses.get(i).getName() %></a></td></tr>
+				<tr><td><button id="add" onclick="addCourse(<%=courses.get(i).getCourseID() %>)"><%=courses.get(i).getName() %></button></td></tr>
 			<%
 				}
 			%>

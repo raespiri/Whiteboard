@@ -21,6 +21,7 @@
 		sqlCon.stop();
 	} else {
 		response.sendRedirect("error.jsp");
+		return;
 	}
 %>
 

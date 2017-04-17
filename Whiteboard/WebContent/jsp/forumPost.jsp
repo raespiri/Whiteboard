@@ -16,6 +16,8 @@
 	String courseName = sqlCon.getcoursename(classID);
 	int score = 0;
 	String userID = "";
+	String username = "";
+
 	List<content.Post> replies=null;
 	if(request.getParameter("postID") != null){
 		String postID = request.getParameter("postID");
@@ -24,6 +26,7 @@
 		String title = post.getTitle();
 		String body = post.getBody();
 		userID = post.getUserID();
+		username = sqlCon.getUsername(userID);
 		String postername = sqlCon.getUsername(userID);
 		replies = sqlCon.getReplies(postID);
 		Collections.sort(replies);//to sort by date
@@ -93,7 +96,7 @@
 	<li>
 		<input type ="hidden" id = "title" class = "title-input" value = "reply"/>
 		<input type="text" id="body" class = "reply-input"  placeholder = "Reply to this Post."/>
-		<input type="submit" name="Reply" onclick="reply('<%=postID %>', '<%=userID %>')" class = "submit-reply-input"/>
+		<input type="submit" name="Reply" onclick="reply('<%=postID %>', '<%=username %>')" class = "submit-reply-input"/>
 	</li>
 	</ul>
 	<ul id = "reply-list">

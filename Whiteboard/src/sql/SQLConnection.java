@@ -55,6 +55,8 @@ public class SQLConnection {
 	private final static String changePicture = "UPDATE Users SET image = ? WHERE userID = ?";
 	private final static String deleteUser = "DELETE FROM Users WHERE userID = ?";
 	
+	private final static String getUserPosts = "SELECT c.CourseName FROM Posts p, User u, Courses c WHERE u.userID = ? AND c.CourseID = p.classID"
+	
 	public SQLConnection() {
 		try {
 			new com.mysql.jdbc.Driver();

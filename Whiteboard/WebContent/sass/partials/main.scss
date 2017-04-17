@@ -152,6 +152,12 @@ header {
 		}
 
 		.navigation__search {
+			font-size: 1.1em;
+			color: $accentColor;
+			background: none;
+			border: none;
+			outline: none;
+
 			form {
 				display: flex;
 				align-items: center;
@@ -159,25 +165,38 @@ header {
 				flex-direction: row;
 
 				input {
-					height: 20px;
-					border-radius: 10px;
+					height: 24px;
+					border-radius: 12px;
+					border-top-right-radius: 0;
+					border-bottom-right-radius: 0;
 					border: 1px solid transparent;
 					outline: none;
-					margin-right: 5px;
 					font-size: 0.8em;
 					padding: 0 10px;
 					box-sizing: border-box;
 				}
+
 				input:focus {
 					border-color: $accentColor;
 				}
-			}
 
-			font-size: 1.1em;
-			color: $accentColor;
-			background: none;
-			border: none;
-			outline: none;
+				button {
+					background: $accentColor;
+					color: white;
+					border-top-right-radius: 12px;
+					border-bottom-right-radius: 12px;
+					padding: 0 10px;
+					padding-right: 13px;
+					height: 24px;
+					cursor: pointer;
+
+					transition: all $transitionTime ease-out;
+				}
+
+				button:hover, button:focus {
+					background: lighten($accentColor, 5%);
+				}
+			}
 		}
 
 		.navigation__logout {

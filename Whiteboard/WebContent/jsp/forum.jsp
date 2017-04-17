@@ -28,7 +28,7 @@
 	
 	if(request.getParameter("classID") != null){
 		posts = sqlCon.getPosts(Integer.parseInt(request.getParameter("classID")));
-		Collections.sort(posts);//to sort by date
+		//Collections.sort(posts);//to sort by date
 		//System.out.println(request.getParameter("classID") + "cid");
 		session = request.getSession();		
 		session.setAttribute("currclassID", request.getParameter("classID")); // Set session attribute for guest user;
@@ -40,7 +40,7 @@
 		if(session.getAttribute("currclassID") != null){
 			String currclassID = (String) session.getAttribute("currclassID");
 			posts = sqlCon.getPosts(Integer.parseInt(currclassID));
-			Collections.sort(posts);//to sort by date
+			//Collections.sort(posts);//to sort by date
 			classID = request.getParameter("classID");
 		}
 		else{

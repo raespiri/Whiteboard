@@ -564,7 +564,7 @@ public class SQLConnection {
 			ResultSet rs = ps.executeQuery();
 			int s = 0;
 			if (rs.next()) { 
-				s = rs.getInt("moderator");
+				s = rs.getInt("admin");
 				return s == 1;
 			}
 		} catch (SQLException e) {

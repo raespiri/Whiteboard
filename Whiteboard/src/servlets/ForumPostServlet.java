@@ -44,6 +44,7 @@ public class ForumPostServlet extends HttpServlet {
 		String sql_actionID = sqlCon.getPostID(curruser.getUserID(), Integer.toString(classID), title, body);
 		sqlCon.addNotif("Post", sql_actionID, curruser.getUserID(), title, Integer.toString(classID));
 		sqlCon.stop();
+        response.setStatus(HttpServletResponse.SC_OK);
 		response.setContentType("text/plain");  // Set content type of the response
 	    response.setCharacterEncoding("UTF-8");
 	    response.getWriter().write(postID);

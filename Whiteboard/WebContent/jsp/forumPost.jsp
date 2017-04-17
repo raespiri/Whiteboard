@@ -100,7 +100,7 @@
 		<button class = "downvote">
 			<i class="fa fa-arrow-down" aria-hidden="true" onclick = "downvote('<%=replyPostID%>')"></i>
 		</button>
-		<text class = "score"> <%=replyScore %> </text>
+		<text id = "score<%=replyPostID%>" class = "score"> <%=replyScore %> </text>
 		<text class = "post-title"><%=replyBody %></text>
 	</li>
 	<%}} %>
@@ -122,12 +122,6 @@
 	}
 	function reply(parentID)
 	{
-		var list = document.getElementById('reply-list');
-		var entry = document.createElement('li');
-		var body = document.getElementById('body').value;
-		console.log(body);
-		entry.appendChild(document.createTextNode(body));
-		list.insertBefore(entry, list.childNodes[0]);
 		if(document.getElementById('body').value === "") {
 			console.log("no body text");
 		}
@@ -138,8 +132,42 @@
 			var req = new XMLHttpRequest();
 			req.open("GET", url, true);
 			if(req.readyState == 4 && req.status == 200) { 
+				console.log('doing this now');
 				
-				console.log("sent to post servlet");
+				var postID = req.responseText;
+				var list = document.getElementById('reply-list');
+				var entry = document.createElement('li');
+				entry.className = 'post-in-list';
+				
+				var body = document.getElementById('body').value;
+				var bodyNode = document.createTextNode(body)
+				bodyNode.className = 'post-title';
+				
+				var upButton = document.createElement('button');
+				upButton.className = 'upvote';
+				upButton.onclick = upvote(postID);
+				var upArrow = document.createElement('i');
+				upArrow.className = 'fa fa-arrow-up';
+				upButton.appendChild(upArrow);
+				entry.appendChild(upButton);
+				
+				var dButton = document.createElement('button');
+				dButton.className = 'downvote';
+				dButton.onclick = downvote(postID);
+				var dArrow = document.createElement('i');
+				dArrow.className = 'fa fa-arrow-down';
+				dButton.appendChild(dArrow);
+				entry.appendChild(dButton);
+				
+				var score = document.createElement('text');
+				score.className = 'score';
+				var scoreID = 'score'+postID;
+				score.id = scoreID;
+				score.innerHTML = '1';
+				entry.appendChild(score);
+				
+				entry.appendChild(bodyNode);
+				list.insertBefore(entry, list.childNodes[0]);
 			}
 			req.send(null);
 		}

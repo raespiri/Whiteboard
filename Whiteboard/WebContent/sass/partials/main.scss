@@ -83,7 +83,7 @@ body {
 
 	-webkit-text-size-adjust: 100%;
 
-	min-width: 460px;
+	min-width: $maxBodyWidth;
 }
 
 body.fixed-header {

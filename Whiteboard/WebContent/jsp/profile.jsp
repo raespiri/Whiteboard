@@ -89,15 +89,15 @@
 						}
 					%>		
 				<br>
-				<h2 id="userCourses">Friends</h2>	
-					<%
+				<!-- <h2 id="userCourses">Friends</h2>	
+					<%/*
 					for(int i=0; i < uIDs.size(); i++){
 						String curruserid = sqlCon.getUsername(uIDs.get(i));
 						String uID = uIDs.get(i);
 						System.out.println(uID);
 					%>
 					<h3 id = "courseName"><%=curruserid%> </h3>
-				<% }%>		
+				<% }*/%> -->
 			</div>
 			<div id="userActions">
 					<div id = "Actionheader">Actions</div>

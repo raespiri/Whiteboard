@@ -87,7 +87,17 @@
 							<h3 id="courseName" ><a href = "forum.jsp?classID=<%= courses.get(i).getCourseID() %>"><%=courses.get(i).getName() %></a></h3>
 					<% 
 						}
-					%>					
+					%>		
+				<br>
+				<h2 id="userCourses">Friends</h2>	
+					<%
+					for(int i=0; i < uIDs.size(); i++){
+						String curruserid = sqlCon.getUsername(uIDs.get(i));
+						String uID = uIDs.get(i);
+						System.out.println(uID);
+					%>
+					<h3 id = "courseName"><%=curruserid%> </h3>
+				<% }%>		
 			</div>
 			<div id="userActions">
 					<div id = "Actionheader">Actions</div>
@@ -101,17 +111,7 @@
 					<% 
 						}
 					%>			
-			</div>
-			<h3> Friends:</h3>
-			<%
-				for(int i=0; i < uIDs.size(); i++){
-					String curruserid = sqlCon.getUsername(uIDs.get(i));
-					String uID = uIDs.get(i);
-					System.out.println(uID);
-					%>
-					<a href="profile.jsp?curruser=<%=uID%>" ><%=curruserid%> </a>
-				<% }%>
-			
+			</div>		
 		</div>
 	</body>
 </html>

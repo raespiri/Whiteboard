@@ -465,3 +465,7 @@ html, body {
 .login-container .login__footer button:hover, .login-container .login__footer button:focus {
   background: #00f5a3;
 }
+/* line 82, ../sass/loginpage.scss */
+.login-container .login__footer .error-message {
+  margin-top: 5px;
+}

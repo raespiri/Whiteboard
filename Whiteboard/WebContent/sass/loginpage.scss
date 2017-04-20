@@ -78,5 +78,9 @@ html, body {
 		button:hover, button:focus {
 			background: lighten($accentColor, 5%);
 		}
+
+		.error-message {
+			margin-top: 5px;
+		}
 	}
 }

@@ -11,7 +11,7 @@
 		response.sendRedirect("error.jsp");
 		return;
 	}
-
+	String curUserName = curUser.getUsername();
 	SQLConnection sqlCon = new SQLConnection();
 	sqlCon.connect();
 	Post post = null;
@@ -103,7 +103,7 @@
 	<li>
 		<input type ="hidden" id = "title" class = "title-input" value = "reply"/>
 		<input type="text" id="body" class = "reply-input"  placeholder = "Reply to this Post."/>
-		<input type="submit" name="Reply" onclick="reply('<%=postID %>', '<%=username %>')" class = "submit-reply-input"/>
+		<input type="submit" name="Reply" onclick="reply('<%=postID %>', '<%=curUserName %>')" class = "submit-reply-input"/>
 	</li>
 	</ul>
 	<ul id = "reply-list">

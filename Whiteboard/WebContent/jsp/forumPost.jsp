@@ -12,6 +12,7 @@
 		return;
 	}
 	String curUserName = curUser.getUsername();
+	String curUserID = curUser.getUserID();
 	SQLConnection sqlCon = new SQLConnection();
 	sqlCon.connect();
 	Post post = null;
@@ -118,9 +119,7 @@
 			String replyUsername = sqlCon.getUsername(replyUserID);
 	%>
 	<li>
-		<%if(sqlCon.isModerator(userID) || sqlCon.isAdmin(userID)
-				|| sqlCon.isTAForClass(userID, Integer.parseInt(request.getParameter("classID")))
-				|| sqlCon.isInstructorForClass(userID, Integer.parseInt(request.getParameter("classID"))))
+		<%if(sqlCon.isPrivileged(curUserID, request.getParameter("classID")))
 		{ %>
 		<button id = 'delete' onclick = "deletePost('<%=replyPostID %>')" class = 'delete-button' style = "float:right;"><i class="icon-remove-sign">x</i></button><br>
 		<%} %>

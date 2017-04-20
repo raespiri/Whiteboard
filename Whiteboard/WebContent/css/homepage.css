@@ -392,6 +392,10 @@ footer {
   padding: 15px;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
 }
+/* line 37, ../sass/homepage.scss */
+.content .feed-element .feed-element__username {
+  font-weight: 800;
+}
 
 /* line 43, ../sass/homepage.scss */
 .sidebar {

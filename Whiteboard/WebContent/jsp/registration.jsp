@@ -12,9 +12,8 @@
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<link rel="shortcut icon" href="/Whiteboard/favicon.png">
 
-		<link href="../css/partials/main.css" rel="stylesheet" type="text/css">
 		<link href="../css/font-awesome.css" rel="stylesheet" type="text/css">
-		<link rel="stylesheet" type="text/css" href="../css/Registration.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/loginpage.css" />
 		<script>
 	    	function validate() {
 	    		if(document.getElementById("fullname").value === "" || document.getElementById("username").value === "" || document.getElementById("password").value === "" || document.getElementById("imageurl").value === "" || document.getElementById("email").value === "") {
@@ -23,6 +22,8 @@
 	    		}
 	    		else if(document.getElementById("fullname").value === "Full Name" || document.getElementById("username").value === "Username" || document.getElementById("password").value === "Password" || document.getElementById("imageurl").value === "Image URL" || document.getElementById("email").value === "Email") {
 	    			document.getElementById("error").innerHTML = "ERROR: One or more of the requested fields is empty";
+	    		} else if (document.querySelector("#password").value != document.querySelector("#confirm-password").value) {
+	    			document.querySelector(".error-message").innerHTML = "ERROR: Passwords do not match";
 	    		}
 	    		else {
 	    			var url = "/Whiteboard/RegistrationServlet?fullname="+document.getElementById('fullname').value+"&username="+document.getElementById('username').value+"&password="+document.getElementById('password').value+"&imageurl="+document.getElementById('imageurl').value+"&email="+document.getElementById('email').value;
@@ -36,7 +37,7 @@
 		    		    		document.location.href = url2;
 		    		    	}
 		    				else { //else print error
-		    					document.getElementById("error").innerHTML = req.responseText;
+		    					document.querySelector(".error-message").innerHTML = req.responseText;
 		    				}
 		    			}
 		    		}
@@ -49,25 +50,24 @@
 		<header>
 			<div class="header__wrapper">
 				<div class="header__logo-container">
-					<a class="logo-container__logo" href="../jsp/homepage.jsp"></a>
+					<a class="logo-container__logo" href="../html/LandingPage.html"></a>
 				</div>
 			</div>
 		</header>	
-    	<div class="wrapper">
-      		<div id="head">
-				<h5 style="padding-bottom: 1cm;">Please enter your information.</h5>
-      		</div>
-      	</div>
-      	<div id="main">
-			<input style="margin-bottom: 7px; margin-top: 7px; width: 100%;" type="text" id="fullname" onfocus="if (this.value=='Full Name') this.value = ''" value="Full Name"/>
-			<input style="margin-bottom: 7px; margin-top: 7px; width: 100%;" type="text" id="email" onfocus="if (this.value=='Email') this.value = ''" value="Email"/>
-			<input style="margin-bottom: 7px; margin-top: 7px; width: 100%;" type="text" id="username" onfocus="if (this.value=='Username') this.value = ''" value="Username"/>
-			<input style="margin-bottom: 7px; margin-top: 7px; width: 100%;" type="text" id="password" onfocus="if (this.value=='Password') this.value = ''" value="Password"/>
-			<input style="margin-bottom: 7px; margin-top: 7px; width: 100%;" type="text" id="imageurl" onfocus="if (this.value=='Image URL') this.value = ''" value="Image URL"/>
-			<button style= "margin-top: 10px; width: 100%; color: black;" type="submit" name="signup" onclick="validate()">Sign Up</button>
-			<div id="error" style="color:red; font-size: 12px;"> </div>
-      	</div>
-      	<div id="foot">
-      	</div>
+      	<section class="login-container">
+      		<h1>Sign Up</h1>
+
+      		<input type="text" id="fullname" placeholder="Full Name"/>
+			<input type="text" id="email" placeholder="Email"/>
+			<input type="text" id="username" placeholder="Username"/>
+			<input type="password" id="password" placeholder="Password"/>
+			<input type="password" id="confirm-password" placeholder="Confirm Password"/>
+			<input type="text" id="imageurl" placeholder="Profile Image URL"/>
+
+			<div class="login__footer">
+				<button type="submit" name="signup" onclick="validate()">Sign Up</button>
+				<div class="error-message" id="error"></div>
+			</div>
+      	</section>
   	</body>
 </html>

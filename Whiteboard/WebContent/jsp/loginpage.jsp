@@ -11,7 +11,6 @@
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<link rel="shortcut icon" href="/Whiteboard/favicon.png">
 
-		<link href="../css/partials/main.css" rel="stylesheet" type="text/css">
 		<link href="../css/font-awesome.css" rel="stylesheet" type="text/css">
     	<link rel="stylesheet" type="text/css" href="../css/loginpage.css" />
     	<script>

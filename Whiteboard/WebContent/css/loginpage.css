@@ -397,8 +397,7 @@ html, body {
   background: white;
   border-radius: 5px;
   width: 450px;
-  margin: 0 auto;
-  margin-top: 100px;
+  margin: 100px auto;
   padding: 0 30px;
   display: flex;
   flex-direction: column;
@@ -406,7 +405,7 @@ html, body {
   justify-content: center;
   color: black;
 }
-/* line 22, ../sass/loginpage.scss */
+/* line 21, ../sass/loginpage.scss */
 .login-container h1 {
   font-size: 2em;
   font-weight: 800;
@@ -414,13 +413,13 @@ html, body {
   margin-bottom: 50px;
   color: #00DB92;
 }
-/* line 30, ../sass/loginpage.scss */
+/* line 29, ../sass/loginpage.scss */
 .login-container h2 {
   font-size: 1.2em;
   font-weight: 600;
   margin-bottom: 5px;
 }
-/* line 36, ../sass/loginpage.scss */
+/* line 35, ../sass/loginpage.scss */
 .login-container input {
   margin-bottom: 25px;
   width: 100%;
@@ -434,20 +433,20 @@ html, body {
   outline: none;
   transition: border 70ms ease-out;
 }
-/* line 51, ../sass/loginpage.scss */
+/* line 50, ../sass/loginpage.scss */
 .login-container input:hover {
   border-color: #d5d5d5;
 }
-/* line 55, ../sass/loginpage.scss */
+/* line 54, ../sass/loginpage.scss */
 .login-container input:focus {
   border-color: #00DB92;
 }
-/* line 59, ../sass/loginpage.scss */
+/* line 58, ../sass/loginpage.scss */
 .login-container .login__footer {
   width: 100%;
   margin-bottom: 50px;
 }
-/* line 63, ../sass/loginpage.scss */
+/* line 62, ../sass/loginpage.scss */
 .login-container .login__footer button {
   background: #00DB92;
   height: 50px;
@@ -462,7 +461,7 @@ html, body {
   cursor: pointer;
   transition: all 70ms ease-out;
 }
-/* line 79, ../sass/loginpage.scss */
+/* line 78, ../sass/loginpage.scss */
 .login-container .login__footer button:hover, .login-container .login__footer button:focus {
   background: #00f5a3;
 }

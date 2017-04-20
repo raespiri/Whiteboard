@@ -124,13 +124,12 @@
 					</button>
 					<text class = "score" id = "score<%=postID%>"> <%=score %> </text>
 					<a href = "forumPost.jsp?postID=<%=postID %>&classID=<%=classID %>" class = "post-title"><%=title %></a>
-					<%if(sqlCon.isModerator(curUserID) || sqlCon.isAdmin(curUserID)
-							|| sqlCon.isTAForClass(curUserID, Integer.parseInt(request.getParameter("classID")))
-							|| sqlCon.isInstructorForClass(curUserID, Integer.parseInt(request.getParameter("classID"))))
-							
-					{ %>
-					<button id = 'delete' onclick = "deletePost('<%=postID %>')" class = 'delete-button' style = "float:right;">x</button><br>
-					<%} %>
+					<%if(sqlCon.isModerator(userID) || sqlCon.isAdmin(userID)
+						|| sqlCon.isTAForClass(userID, Integer.parseInt(request.getParameter("classID")))
+						|| sqlCon.isInstructorForClass(userID, Integer.parseInt(request.getParameter("classID"))))
+						{ %>
+						<button id = 'delete' onclick = "deletePost('<%=postID %>')" class = 'delete-button' style = "float:right;"><i class="icon-remove-sign">x</i></button><br>
+						<%} %>
 					<br>
 					<a style = "position: relative; top:15px; margin-left: 18%; margin-top: 5px; color: black;">posted by: <%=postUsername %></a>
 				</li>

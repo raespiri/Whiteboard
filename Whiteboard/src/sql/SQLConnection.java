@@ -37,7 +37,7 @@ public class SQLConnection {
 	private final static String getUsername = "SELECT username FROM Users WHERE userID = ?";
 	private final static String getUser = "SELECT * FROM Users WHERE userID = ?";
 	private final static String getNotif = "SELECT * FROM Notifications WHERE username = ?";
-	private final static String getPosts = "SELECT * FROM Posts WHERE parentID = 0 AND ClassID = ? ORDER BY TimePosted DESC";
+	private final static String getPosts = "SELECT * FROM Posts WHERE parentID = '0' AND ClassID = ? ORDER BY TimePosted DESC";
 	private final static String getReplies = "SELECT * FROM Posts WHERE parentID = ?";
 	private final static String upvotePost = "UPDATE Whiteboard.Posts "+
 											"SET score = score + 1 WHERE contentID = '";

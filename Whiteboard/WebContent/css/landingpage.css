@@ -386,92 +386,145 @@ footer {
   padding: 1em 16px;
 }
 
-/* line 3, ../sass/homepage.scss */
-.main-wrapper {
+/* line 3, ../sass/landingpage.scss */
+html, body {
+  background: #121314;
+}
+
+/* line 7, ../sass/landingpage.scss */
+.content-wrapper {
+  max-width: 850px;
+  margin: 0 auto;
+  padding-top: 30px;
+}
+/* line 12, ../sass/landingpage.scss */
+.content-wrapper header {
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
+}
+/* line 16, ../sass/landingpage.scss */
+.content-wrapper header .header__wrapper {
+  display: flex;
+  flex-direction: row;
   justify-content: flex-start;
-  max-width: 850px;
-  margin: 30px auto;
+  align-items: center;
+  width: 50%;
 }
-
-/* line 13, ../sass/homepage.scss */
-.content {
-  width: 100%;
+/* line 25, ../sass/landingpage.scss */
+.content-wrapper header .header__wrapper--right {
+  justify-content: flex-end;
+  align-items: flex-end;
 }
-/* line 16, ../sass/homepage.scss */
-.content h1 {
-  font-size: 2em;
-  font-weight: 800;
-  margin-bottom: 30px;
-}
-/* line 22, ../sass/homepage.scss */
-.content .feed-container {
+/* line 29, ../sass/landingpage.scss */
+.content-wrapper header .header__wrapper--right ul {
+  list-style: none;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
 }
-/* line 27, ../sass/homepage.scss */
-.content .feed-element {
-  background: #eee;
-  font-size: 1.2em;
-  border-radius: 10px;
-  margin-bottom: 15px;
-  padding: 15px;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
-}
-/* line 37, ../sass/homepage.scss */
-.content .feed-element .feed-element__username {
-  font-weight: 800;
-}
-
-/* line 43, ../sass/homepage.scss */
-.sidebar {
-  display: flex;
-  flex-direction: column;
-  width: 250px;
-  margin-left: 15px;
-  padding: 15px;
-  flex-shrink: 0;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
-  background: #eee;
-  border-radius: 10px;
-}
-/* line 56, ../sass/homepage.scss */
-.sidebar .sidebar__container {
-  margin-bottom: 30px;
-}
-/* line 59, ../sass/homepage.scss */
-.sidebar .sidebar__container h1 {
-  font-weight: 800;
-  font-size: 1.5em;
-  margin-bottom: 10px;
-}
-/* line 65, ../sass/homepage.scss */
-.sidebar .sidebar__container h3 {
-  font-weight: 600;
-}
-/* line 69, ../sass/homepage.scss */
-.sidebar .sidebar__container:last-child {
-  margin-bottom: 0;
-}
-
-/* line 74, ../sass/homepage.scss */
-.notif-in-list {
-  height: 80px;
-  border-radius: 10px;
-  margin-bottom: 5px;
-  margin-top: 5px;
-  background: #eee;
-}
-
-/* line 82, ../sass/homepage.scss */
-.notif-title {
-  font-size: 20px;
-  position: relative;
-  top: 15px;
-  left: 5px;
-  font-color: #000000;
+/* line 35, ../sass/landingpage.scss */
+.content-wrapper header .header__wrapper--right li {
+  margin: 0 10px;
   cursor: pointer;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 1.2em;
+}
+/* line 42, ../sass/landingpage.scss */
+.content-wrapper header .header__wrapper--right li a {
+  color: #00DB92;
+}
+/* line 47, ../sass/landingpage.scss */
+.content-wrapper header .header__wrapper--right li:last-child {
+  margin-right: 0;
+}
+/* line 53, ../sass/landingpage.scss */
+.content-wrapper .content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 400px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  position: relative;
+  padding: 30px;
+  background: white;
+  border-bottom: 4px solid #c8c8c8;
+}
+/* line 69, ../sass/landingpage.scss */
+.content-wrapper .content h1 {
+  font-size: 2.5em;
+  font-weight: 800;
+}
+/* line 74, ../sass/landingpage.scss */
+.content-wrapper .content .pen {
+  position: absolute;
+  bottom: 0;
+  height: 10px;
+  width: 64px;
+  border-radius: 5px;
+  background: #00DB92;
+  border-right: 5px solid #00c281;
+}
+/* line 84, ../sass/landingpage.scss */
+.content-wrapper .content .pen--red {
+  background: #DB0060;
+  border-right-color: #c20055;
+  left: 10%;
+}
+/* line 91, ../sass/landingpage.scss */
+.content-wrapper .content .pen--blue {
+  background: #0079DB;
+  border-right-color: #006bc2;
+  left: 30%;
+}
+/* line 98, ../sass/landingpage.scss */
+.content-wrapper .content .pen--green {
+  background: #00DB92;
+  border-right: none;
+  border-left: 5px solid #00c281;
+  right: 15%;
+}
+/* line 105, ../sass/landingpage.scss */
+.content-wrapper .content .cta-wrapper {
+  width: 100%;
+  margin-top: 15px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+/* line 115, ../sass/landingpage.scss */
+.content-wrapper .content .cta-wrapper .cta-button {
+  background: none;
+  font-size: 1.3em;
+  font-weight: 700;
+  border: none;
+  outline: none;
+  padding: 10px 15px;
+  border: 3px solid black;
+  border-radius: 30px;
+  letter-spacing: 0.03em;
+  margin: 0 10px;
   color: black;
+  text-decoration: none !important;
+  text-transform: uppercase;
+  transition: all 70ms ease-out;
+  cursor: pointer;
+}
+/* line 135, ../sass/landingpage.scss */
+.content-wrapper .content .cta-wrapper .cta-button:hover, .content-wrapper .content .cta-wrapper .cta-button:focus {
+  color: white;
+  background: black;
+}
+/* line 140, ../sass/landingpage.scss */
+.content-wrapper .content .cta-wrapper .cta-button--selected {
+  background: #00DB92;
+  color: white;
+  border-color: #00DB92;
+}
+/* line 146, ../sass/landingpage.scss */
+.content-wrapper .content .cta-wrapper .cta-button--selected:hover, .content-wrapper .content .cta-wrapper .tab__button--selected:focus {
+  background: #00f5a3;
+  border-color: #00f5a3;
 }

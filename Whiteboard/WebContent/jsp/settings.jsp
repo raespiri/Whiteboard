@@ -62,16 +62,14 @@
 	</header>
 	
 	<section class="tabs">
-		<h1>Settings</h1>
-		<br>
-		<br>
-		<ul class="tabs__container">
-			<li><a href = "changepassword.jsp"><button class="tab__button tab__button--selected">Change Password</button></a></li>
-			<li><a href = "changepicture.jsp"><button class="tab__button tab__button--selected">Change Profile Picture</button></a></li>
-			<li><a href = "deleteaccount.jsp"><button class="tab__button tab__button--selected" style="background-color:red; border:red">Delete Account</button></a></li>
-		</ul>
-		<br>
-		<br>
+		<div class="tabs__wrapper tabs__wrapper--vertical">
+			<h1>Settings</h1>
+			<ul class="tabs__container tabs__container--vertical">
+				<li><a href="changepassword.jsp"><button class="tab__button tab__button--selected">Change Password</button></a></li>
+				<li><a href="changepicture.jsp"><button class="tab__button tab__button--selected">Change Profile Picture</button></a></li>
+				<li><a href="deleteaccount.jsp"><button class="tab__button tab__button--selected tab__button--warning">Delete Account</button></a></li>
+			</ul>
+		</div>
 	</section>
 	
 	<!-- Scripts -->

@@ -231,6 +231,15 @@ header {
 		justify-content: flex-start;
 	}
 
+	.tabs__wrapper--vertical {
+		flex-direction: column;
+
+		h1 {
+			margin: 0;
+			margin-bottom: 15px;
+		}
+	}
+
 	h1 {
 		font-size: 2em;
 		font-weight: 800;
@@ -282,6 +291,25 @@ header {
 				background: lighten($accentColor, 5%);
 				border-color: lighten($accentColor, 5%);
 			}
+
+			.tab__button--warning {
+				background: $errorTextColor;
+				border-color: $errorTextColor;
+			}
+
+			.tab__button--warning:hover, .tab__button--warning:focus {
+				background: lighten($errorTextColor, 5%);
+				border-color: lighten($errorTextColor, 5%);
+			}
+		}
+	}
+
+	.tabs__container--vertical {
+		flex-direction: column;
+		
+		li {
+			margin: 0;
+			margin-bottom: 15px;
 		}
 	}
 }

@@ -278,26 +278,35 @@ header .header__navigation-container .navigation__logout {
   justify-content: flex-start;
 }
 /* line 234, ../sass/partials/main.scss */
+.tabs .tabs__wrapper--vertical {
+  flex-direction: column;
+}
+/* line 237, ../sass/partials/main.scss */
+.tabs .tabs__wrapper--vertical h1 {
+  margin: 0;
+  margin-bottom: 15px;
+}
+/* line 243, ../sass/partials/main.scss */
 .tabs h1 {
   font-size: 2em;
   font-weight: 800;
   margin-right: 15px;
 }
-/* line 240, ../sass/partials/main.scss */
+/* line 249, ../sass/partials/main.scss */
 .tabs .tabs__container {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
 }
-/* line 246, ../sass/partials/main.scss */
+/* line 255, ../sass/partials/main.scss */
 .tabs .tabs__container li {
   margin: 0 10px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-/* line 254, ../sass/partials/main.scss */
+/* line 263, ../sass/partials/main.scss */
 .tabs .tabs__container li .tab__button {
   background: none;
   font-size: 1.3em;
@@ -311,46 +320,65 @@ header .header__navigation-container .navigation__logout {
   transition: all 70ms ease-out;
   cursor: pointer;
 }
-/* line 270, ../sass/partials/main.scss */
+/* line 279, ../sass/partials/main.scss */
 .tabs .tabs__container li .tab__button:hover, .tabs .tabs__container li .tab__button:focus {
   color: white;
   background: black;
 }
-/* line 275, ../sass/partials/main.scss */
+/* line 284, ../sass/partials/main.scss */
 .tabs .tabs__container li .tab__button--selected {
   background: #00DB92;
   color: white;
   border-color: #00DB92;
 }
-/* line 281, ../sass/partials/main.scss */
+/* line 290, ../sass/partials/main.scss */
 .tabs .tabs__container li .tab__button--selected:hover, .tabs .tabs__container li .tab__button--selected:focus {
   background: #00f5a3;
   border-color: #00f5a3;
 }
+/* line 295, ../sass/partials/main.scss */
+.tabs .tabs__container li .tab__button--warning {
+  background: #db004d;
+  border-color: #db004d;
+}
+/* line 300, ../sass/partials/main.scss */
+.tabs .tabs__container li .tab__button--warning:hover, .tabs .tabs__container li .tab__button--warning:focus {
+  background: #f50056;
+  border-color: #f50056;
+}
+/* line 307, ../sass/partials/main.scss */
+.tabs .tabs__container--vertical {
+  flex-direction: column;
+}
+/* line 310, ../sass/partials/main.scss */
+.tabs .tabs__container--vertical li {
+  margin: 0;
+  margin-bottom: 15px;
+}
 
-/* line 289, ../sass/partials/main.scss */
+/* line 317, ../sass/partials/main.scss */
 .error-message {
   color: #db004d;
 }
 
-/* line 293, ../sass/partials/main.scss */
+/* line 321, ../sass/partials/main.scss */
 .logo {
   color: white;
   font-size: 3em;
   font-weight: 700;
 }
 
-/* line 299, ../sass/partials/main.scss */
+/* line 327, ../sass/partials/main.scss */
 template {
   display: none !important;
 }
 
-/* line 303, ../sass/partials/main.scss */
+/* line 331, ../sass/partials/main.scss */
 a, a:hover, a:focus, a:active, a:visited {
   color: #00DB92;
 }
 
-/* line 307, ../sass/partials/main.scss */
+/* line 335, ../sass/partials/main.scss */
 footer {
   background: white;
   color: #737373;

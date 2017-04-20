@@ -84,7 +84,7 @@
 					<li><button onclick="logout()" class="navigation__logout"><i class="fa fa-sign-out"  aria-hidden="true"></i></button></li>
 				</ul>
 			</div>
-		</header>		
+		</header>	
 		<%if(!username.equals("guest")){%>
 		<section class="tabs">
 			<h1>Change Password</h1>

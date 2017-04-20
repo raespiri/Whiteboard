@@ -6,39 +6,41 @@
 	
 	<script src="https://use.typekit.net/ofv3bwh.js"></script>
 	<script>try{Typekit.load({ async: true });}catch(e){}</script>
+
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=yes, width=device-width">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<link rel="shortcut icon" href="/Whiteboard/favicon.png">
 	
-	<link rel="stylesheet" href = "../css/main.css">
+	<link rel="stylesheet" href="../css/landingpage.css">
 	<link href="../css/font-awesome.css" rel="stylesheet" type="text/css">
-	<link href="../css/whiteboard.css" rel="stylesheet" type="text/css">
-	
-	<script type="text/javascript">
-		function guestredirect(){
-			window.location = '../GuestServlet';
-		}			  
-	</script>
-	
 </head>
 <body ontouchstart>
-	<header>
-		<div class="header__wrapper">
-				<div class="header__logo-container">
-					<a class="logo-container__logo" href="../html/LandingPage.html"></a>
+	<section class="content-container">
+		<div class="content-wrapper">
+			<header>
+				<div class="header__wrapper header__wrapper--left">
+					<div class="header__logo-container">
+						<a class="logo-container__logo" href="../html/LandingPage.html"></a>
+					</div>
 				</div>
+				<div class="header__wrapper header__wrapper--right">
+					<ul>
+						<li><a class="cta-button cta-button--selected" href="/Whiteboard/jsp/registration.jsp">Sign Up</a></li>
+						<li><a class="cta-button cta-button--selected" href="/Whiteboard/jsp/loginpage.jsp">Log In</a></li>
+					</ul>
+				</div>
+			</header>
+			<div class="content">
+				<h1>Your virtual classroom.</h1>
+				<div class="cta-wrapper">
+					<a class="cta-button cta-button--selected" href="/Whiteboard/jsp/registration.jsp">Join For Free</a>
+					<a class="cta-button" href="/Whiteboard/GuestServlet">Guest Access</a>
+				</div>
+				<div class="pen pen--red"></div>
+				<div class="pen pen--blue"></div>
+				<div class="pen pen--green"></div>
 			</div>
-	</header>
-	<div id = "landing-header">	</div>
-	<div id = "landing-footer"></div>
-	<div id = "central-landing-pane">
-		<div id = "virtual-classroom-header">
-			<div><text style="width: 80%; font-weight: bold; font-size:40px; margin-bottom:100cm;">Your Virtual Classroom</text></div>
-			<a class = "sign-button" href = "/Whiteboard/jsp/registration.jsp">Join For Free</a>
-			<a class = "sign-button" href = "/Whiteboard/jsp/loginpage.jsp">Login</a>
-			<button class="sign-button" type="submit" name="login" onclick="guestredirect()">Guest Access</button>
-			
 		</div>
-		<!-- <div id = "content-pane" style = "float:left; height:150px; width:150px;">This is an image</div>
-		<div id = "content-pane" style = "float:right;height:150px;width:150px;">This is some text</div>
-	 	-->
 	</div>
 </body>
 </html>

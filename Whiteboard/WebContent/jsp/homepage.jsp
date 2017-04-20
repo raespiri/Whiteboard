@@ -110,10 +110,6 @@
 						}
 					%>				
 				</div>
-				<div class="sidebar__container">
-					<h1>Moderating</h1>
-					<h3>CSCI270</h3>
-				</div>
 			</section>
 		</div>
 

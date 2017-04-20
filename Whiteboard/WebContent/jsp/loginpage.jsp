@@ -26,7 +26,7 @@
 	    					approve(); //approve login credentials
 	    				}
 	    				else { //else print error
-	    					document.getElementById("error").innerHTML = req.responseText;
+	    					document.querySelector(".error-message").innerHTML = req.responseText;
 	    				}
 	    			}
 	    		}
@@ -54,7 +54,7 @@
 
 			<div class="login__footer">
 				<button type="submit" name="login" onclick="validate()">Log In</button>
-				<div class="login__error-message"></div>
+				<div class="error-message"></div>
 			</div>
       	</section>
   	</body>

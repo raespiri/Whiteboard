@@ -144,7 +144,7 @@ class Whiteboard {
 		let _this = this
 
 		var img = new Image()
-		img.src = `../boardStates/${this._courseName}/board.png`
+		img.src = `../boardStates/${this._courseName}/board.png?c=${Math.floor(Math.random()*999999999)}`
 		img.addEventListener("load", function() {
 			_this.drawInitialBoardImage(img)
 		})

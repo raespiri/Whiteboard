@@ -92,20 +92,22 @@
 			<div class="tabs__wrapper">
 				<h1><%= courseName %></h1>
 				<ul class="tabs__container">
-					<li><a href = "whiteboard.jsp?classID=<%=classID%>"><button class="tab__button">Whiteboard</button></a></li>
-					<li><a href = "forum.jsp?classID=<%=classID%>"><button class="tab__button  tab__button--selected">Forum</button></a></li>
-					<li><a href = "documents.jsp?classID=<%=classID%>"><button class="tab__button">Docs</button></a></li>
+					<li><a href="whiteboard.jsp?classID=<%=classID%>"><button class="tab__button">Whiteboard</button></a></li>
+					<li><a href="forum.jsp?classID=<%=classID%>"><button class="tab__button  tab__button--selected">Forum</button></a></li>
+					<li><a href="documents.jsp?classID=<%=classID%>"><button class="tab__button">Docs</button></a></li>
 				</ul>
 			</div>
 		</section>
 		<%if(!username.equals("guest")){%>
-		<ul id = "post-list" style = "list-style: none;">
-			<li class = "post-in-list" style = "height:60px;">
-				<input type = "text" id = "title" class = "title-input" placeholder = "Ask a Question..."/>
-				<input type="text" id="body" class = "body-input"  placeholder = "Provide some more detail (Optional)."/>
-				<input type="submit" name="submit" onclick="validate()" class = "submit-input"/>
-			</li>
-			<li><div id="error" style="color:red; font-size: 12px;"> </div></li>
+		<div id="post-list">
+			<div class="submit-container">
+				<div class="submit__input-wrapper">
+					<input type="text" id="title" class="submit__title-input" placeholder="Ask a Question..."/>
+					<input type="text" id="body" class="submit__body-input"  placeholder="Provide some more detail (Optional)."/>
+				</div>
+				<input type="submit" name="submit" onclick="validate()" class="submit__button"/>
+			</div>
+			<div><div id="error" style="color:red; font-size: 12px;"></div></div>
 			<% }
 			if(posts != null){
 				for(content.Post post : posts){ 
@@ -115,27 +117,30 @@
 					String userID = post.getUserID();
 					String postUsername = sqlCon.getUsername(userID);
 			%>
-				<li class = "post-in-list">
-					<button class = "upvote" onclick = "upvote('<%=postID%>')">
-						<i class="fa fa-arrow-up" aria-hidden="true"></i>
-					</button>
-					<button class = "downvote">
-						<i class="fa fa-arrow-down" aria-hidden="true" onclick = "downvote('<%=postID%>')"></i>
-					</button>
-					<text class = "score" id = "score<%=postID%>"> <%=score %> </text>
-					<a href = "forumPost.jsp?postID=<%=postID %>&classID=<%=classID %>" class = "post-title"><%=title %></a>
-					<%if(sqlCon.isModerator(curUserID) || sqlCon.isAdmin(curUserID)
-							|| sqlCon.isTAForClass(curUserID, Integer.parseInt(request.getParameter("classID")))
-							|| sqlCon.isInstructorForClass(curUserID, Integer.parseInt(request.getParameter("classID"))))
-							
-					{ %>
-					<button id = 'delete' onclick = "deletePost('<%=postID %>')" class = 'delete-button' style = "float:right;">x</button><br>
-					<%} %>
-					<br>
-					<a style = "position: relative; top:15px; margin-left: 18%; margin-top: 5px; color: black;">posted by: <%=postUsername %></a>
-				</li>
+				<div class="post">
+					<div class="post__vote-container">
+						<button class="vote-arrow vote-arrow--upvote" onclick="upvote('<%=postID%>')">
+							<i class="fa fa-chevron-up" aria-hidden="true"></i>
+						</button>
+						<text class="score" id="score<%=postID%>"><%=score %></text>
+						<button class="vote-arrow vote-arrow--downvote">
+							<i class="fa fa-chevron-down" aria-hidden="true" onclick="downvote('<%=postID%>')"></i>
+						</button>
+					</div>
+					<div class="post__content-container">
+						<a href="forumPost.jsp?postID=<%=postID %>&classID=<%=classID %>" class="post__title"><%=title %></a>
+						<%if(sqlCon.isModerator(curUserID) || sqlCon.isAdmin(curUserID)
+								|| sqlCon.isTAForClass(curUserID, Integer.parseInt(request.getParameter("classID")))
+								|| sqlCon.isInstructorForClass(curUserID, Integer.parseInt(request.getParameter("classID"))))
+								
+						{ %>
+						<button id='delete' onclick="deletePost('<%=postID %>')" class='delete-button' style="float:right;">x</button><br>
+						<%} %>
+						<div class="post__metadata">submitted by <a class="post__author"><%=postUsername %></a></div>
+					</div>
+				</div>
 			<%} } %>
-		</ul>
+		</div>
 
 		<!-- BEGIN CHAT MODULE -->
 		<section class="chat">

@@ -1,202 +1,593 @@
-@CHARSET "UTF-8";
-
-.post-in-list
-{
-	min-height: 80px;
-	border: 1px solid #ccc!important;
-	border-radius: 16px!important;
-	margin-bottom:5px;
-	margin-top:5px;
-	width:55%;
-	margin-left:20%;
-	background:#d1d0d2;
+/* line 5, ../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
 }
 
-.upvote
-{
-	height:20px;
-	width:30px;
-	display: inline-block;
-	position: relative;
-	top:-10px;
-	left:15px;
+/* line 22, ../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+html {
+  line-height: 1;
 }
 
-.downvote
-{
-	height:20px;
-	width:30px;
-	display: inline-block;
-	position: relative;
-	top:25px;
-	right:18px;
+/* line 24, ../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+ol, ul {
+  list-style: none;
 }
 
-.score
-{
-	position: relative;
-	display: inline-block;
-	margin-left: 0px;
-	top: 10px;
-	right: 38px;
+/* line 26, ../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
 }
 
-.post-title
-{
-	font-size: 40px;
-	position: relative;
-	top: 15px;
-	left: 5px;
-	font-color: #000000;
-	cursor: pointer;
-	color:black;
-}
-.post-reply
-{
-	font-size: 24px;
-	position: relative;
-	top: 15px;
-	left: 5px;
-	font-color: #000000;
-	color:black;
+/* line 28, ../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
 }
 
-.post-title-on-page
-{
-	font-size: 40px;
-	position: relative;
-	font-color: #000000;
-	color: white;
+/* line 30, ../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+q, blockquote {
+  quotes: none;
+}
+/* line 103, ../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+q:before, q:after, blockquote:before, blockquote:after {
+  content: "";
+  content: none;
 }
 
-.post-title-on-page:hover
-{
-	color: black;
+/* line 32, ../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+a img {
+  border: none;
 }
 
-.title-input
-{
-	border: 1px solid #ccc!important;
-    border-radius: 16px 0px 0px 0px;
-    height: 36px;
-    width:80%;
-    margin: 0px;
-    font-size: 36px;
+/* line 116, ../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+  display: block;
 }
 
-.body-input
-{
-	border: 1px solid #ccc!important;
-    border-radius: 0px 0px 0px 16px;
-    height: 36px;
-    width:80%;
-    margin: 0px;
-    position:relative;
-    bottom:26px;
-    font-size: 24px;
-}
-.reply-input
-{
-	border: 1px solid #ccc!important;
-    border-radius: 16px 0px 0px 16px;
-    height: 72px;
-    width:42%;
-    margin-left:20%;
-    position:relative;
-    font-size: 24px;
-}
-.submit-reply-input
-{
-	background: #00DB92;
-	color: white;
-	border: 1px solid;
-	border-color: #00DB92;
-	height:78px;
-	border-radius: 0px 16px 16px 0px;
-	display:inline-block;
-	width: 13%;
-	font-size: 25px;
-	margin: 0px;
-	/* position: relative; */
-	/* top: 5px; */
-}
-.submit-input
-{
-	background: #00DB92;
-    color: white;
-    border: 1px solid;
-    border-color: #00DB92;
-    height:78px;
-    border-radius: 0px 16px 16px 0px;
-    position:relative;
-    display:inline-block;
-    right:2px;
-    bottom:39px;
-    width:18%;
-    font-size:40px;
-    margin: 0px;
-}
-.ballot-box
-{
-	margin: 20px;
-	height:60px;
-	width:20px;
-	display: inline-block;
-}
-.upvote-in-box
-{
-	height:20px;
-	width:30px;
-	margin:0px;
-	display: inline-block;
+/**
+ * Colors
+ */
+/**
+ * Fonts
+ */
+/**
+ * Layout guides
+ */
+/**
+ * Breakpoints for mobile opt.
+ */
+/**
+ * Transition timings
+ */
+/* line 38, ../sass/partials/main.scss */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+.logo {
+  transition: opacity 70ms ease-out;
 }
 
-.downvote-in-box
-{
-	height:20px;
-	width:30px;
-	margin:0px;
-	display: inline-block;
-}
-.score-in-box
-{
-	font-size:20px;
-	display: inline-block;
-	margin:0px;
-	width:30px;
-	text-align:center;
+/* line 48, ../sass/partials/main.scss */
+button,
+input,
+li {
+  transition: all 70ms ease-out !important;
 }
 
-.post-body-box
-{
-	background: #ccc;
-	color: black;
-	border: 1px solid;
-	border-color: #00DB92;
-	border-radius: 16px 16px 16px 16px;
-	min-height:100px;
-	font-size:20px;
-	margin: 0px;
-	padding: 10px;
-}
-.poster-name
-{
-	position: relative; top:15px; margin-left: 18%; margin-top: 5px; color: black;
+/* line 54, ../sass/partials/main.scss */
+.wf-loading h1,
+.wf-loading h2,
+.wf-loading h3,
+.wf-loading h4,
+.wf-loading h5,
+.wf-loading h6,
+.wf-loading p,
+.wf-loading .logo {
+  opacity: 0 !important;
 }
 
-#reply-list li
-{
-	min-height: 40px;
-	padding-top:20px;
-		padding-bottom:20px;
-	
-    border: 1px solid #ccc!important;
-    border-radius: 16px!important;
-    margin-bottom:5px;
-    margin-top:5px;
-    width:55%;
-    margin-left:20%;
-    background:#d1d0d2;
+/* line 64, ../sass/partials/main.scss */
+.wf-loading button,
+.wf-loading input,
+.wf-loading li {
+  color: transparent !important;
 }
 
+/* line 70, ../sass/partials/main.scss */
+html {
+  background: white;
+}
 
+/* line 74, ../sass/partials/main.scss */
+body {
+  background: white;
+  font-family: "proxima-nova", Helvetica, Arial, sans-serif;
+  color: black;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  text-shadow: 0 0 0 rgba(255, 255, 255, 0.01);
+  -webkit-text-size-adjust: 100%;
+  min-width: 460px;
+}
+
+/* line 89, ../sass/partials/main.scss */
+body.fixed-header {
+  padding-top: 35px;
+}
+
+/* line 93, ../sass/partials/main.scss */
+a {
+  text-decoration: none;
+}
+
+/* line 97, ../sass/partials/main.scss */
+a:hover, a:focus {
+  text-decoration: underline;
+}
+
+/* line 101, ../sass/partials/main.scss */
+wrapper.main {
+  max-width: 650px;
+  margin: 0 auto;
+  display: block;
+}
+
+/* line 107, ../sass/partials/main.scss */
+header {
+  background: #121314;
+  padding: 15px 16px;
+  text-align: center;
+  /* Left */
+  /* Right */
+}
+/* line 112, ../sass/partials/main.scss */
+header .header__wrapper {
+  max-width: 850px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 0 auto;
+}
+/* line 122, ../sass/partials/main.scss */
+header .header__logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 50%;
+  height: 30px;
+}
+/* line 130, ../sass/partials/main.scss */
+header .logo-container__logo {
+  background-image: url("/Whiteboard/img/TextLogo-light.svg");
+  background-size: contain;
+  background-position: left center;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+}
+/* line 140, ../sass/partials/main.scss */
+header .header__navigation-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 50%;
+  color: white;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+/* line 149, ../sass/partials/main.scss */
+header .header__navigation-container li {
+  margin: 0 10px;
+  cursor: pointer;
+}
+/* line 152, ../sass/partials/main.scss */
+header .header__navigation-container li a {
+  color: white;
+}
+/* line 157, ../sass/partials/main.scss */
+header .header__navigation-container .navigation__search {
+  font-size: 1.1em;
+  color: #00DB92;
+  background: none;
+  border: none;
+  outline: none;
+}
+/* line 164, ../sass/partials/main.scss */
+header .header__navigation-container .navigation__search form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
+/* line 170, ../sass/partials/main.scss */
+header .header__navigation-container .navigation__search form input {
+  height: 24px;
+  border-radius: 12px;
+  border: 1px solid transparent;
+  outline: none;
+  font-size: 0.8em;
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+/* line 180, ../sass/partials/main.scss */
+header .header__navigation-container .navigation__search form input:focus {
+  border-color: #00DB92;
+}
+/* line 184, ../sass/partials/main.scss */
+header .header__navigation-container .navigation__search form button {
+  color: white;
+  padding: 0 10px;
+  height: 24px;
+  cursor: pointer;
+  transition: all 70ms ease-out;
+}
+/* line 195, ../sass/partials/main.scss */
+header .header__navigation-container .navigation__logout {
+  transition: all 70ms ease-out;
+  font-size: 1.3em;
+  background: none;
+  color: white;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+/* line 215, ../sass/partials/main.scss */
+.tabs {
+  width: 100%;
+  background: white;
+}
+/* line 219, ../sass/partials/main.scss */
+.tabs .tabs__wrapper {
+  max-width: 850px;
+  margin: 0 auto;
+  padding: 32px 16px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+/* line 230, ../sass/partials/main.scss */
+.tabs h1 {
+  font-size: 2em;
+  font-weight: 800;
+  margin-right: 15px;
+}
+/* line 236, ../sass/partials/main.scss */
+.tabs .tabs__container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+/* line 242, ../sass/partials/main.scss */
+.tabs .tabs__container li {
+  margin: 0 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* line 250, ../sass/partials/main.scss */
+.tabs .tabs__container li .tab__button {
+  background: none;
+  font-size: 1.3em;
+  font-weight: 700;
+  border: none;
+  outline: none;
+  padding: 5px 15px;
+  border: 3px solid black;
+  border-radius: 30px;
+  letter-spacing: 0.03em;
+  transition: all 70ms ease-out;
+  cursor: pointer;
+}
+/* line 266, ../sass/partials/main.scss */
+.tabs .tabs__container li .tab__button:hover, .tabs .tabs__container li .tab__button:focus {
+  color: white;
+  background: black;
+}
+/* line 271, ../sass/partials/main.scss */
+.tabs .tabs__container li .tab__button--selected {
+  background: #00DB92;
+  color: white;
+  border-color: #00DB92;
+}
+/* line 277, ../sass/partials/main.scss */
+.tabs .tabs__container li .tab__button--selected:hover, .tabs .tabs__container li .tab__button--selected:focus {
+  background: #00f5a3;
+  border-color: #00f5a3;
+}
+
+/* line 285, ../sass/partials/main.scss */
+.error-message {
+  color: #db004d;
+}
+
+/* line 289, ../sass/partials/main.scss */
+.logo {
+  color: white;
+  font-size: 3em;
+  font-weight: 700;
+}
+
+/* line 295, ../sass/partials/main.scss */
+template {
+  display: none !important;
+}
+
+/* line 299, ../sass/partials/main.scss */
+a, a:hover, a:focus, a:active, a:visited {
+  color: #00DB92;
+}
+
+/* line 303, ../sass/partials/main.scss */
+footer {
+  background: white;
+  color: #737373;
+  font-size: 0.85em;
+  padding: 1em 16px;
+}
+
+/* line 3, ../sass/forum.scss */
+#post-list {
+  max-width: 850px;
+  margin: 0 auto;
+}
+
+/* line 8, ../sass/forum.scss */
+.submit-container {
+  display: flex;
+  flex-direction: row;
+  background: #eee;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  overflow: hidden;
+  box-sizing: border-box;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+}
+/* line 19, ../sass/forum.scss */
+.submit-container .submit__input-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+/* line 24, ../sass/forum.scss */
+.submit-container .submit__input-wrapper input {
+  display: flex;
+  width: 100%;
+  height: 40px;
+  border: none;
+  outline: none;
+  padding: 0 15px;
+  background: none;
+  font-weight: 600;
+  font-size: 1.2em;
+}
+/* line 36, ../sass/forum.scss */
+.submit-container .submit__input-wrapper .submit__title-input {
+  border-bottom: 1px solid #e1e1e1;
+}
+/* line 41, ../sass/forum.scss */
+.submit-container .submit__button {
+  background: #00DB92;
+  color: white;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  padding: 0 15px;
+  font-size: 1.5em;
+  font-weight: 800;
+  transition: background 70ms ease-out;
+}
+/* line 53, ../sass/forum.scss */
+.submit-container .submit__button:hover, .submit-container .submit__button:focus {
+  background: #00f5a3;
+}
+
+/* line 58, ../sass/forum.scss */
+.post {
+  display: flex;
+  flex-direction: row;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  width: 100%;
+  background: #eee;
+  padding: 10px 15px;
+  box-sizing: border-box;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+}
+/* line 70, ../sass/forum.scss */
+.post .post__vote-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+/* line 76, ../sass/forum.scss */
+.post .post__vote-container .vote-arrow {
+  font-size: 24px;
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+/* line 84, ../sass/forum.scss */
+.post .post__vote-container .vote-arrow--upvote {
+  color: #ff931e;
+  margin-bottom: 3px;
+}
+/* line 89, ../sass/forum.scss */
+.post .post__vote-container .vote-arrow--downvote {
+  color: #40a9f5;
+}
+/* line 93, ../sass/forum.scss */
+.post .post__vote-container .score {
+  font-weight: 600;
+}
+/* line 98, ../sass/forum.scss */
+.post .post__content-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin-left: 15px;
+}
+/* line 106, ../sass/forum.scss */
+.post .post__title {
+  font-size: 2em;
+  font-weight: 800;
+  color: #00DB92;
+  cursor: pointer;
+}
+/* line 113, ../sass/forum.scss */
+.post .post__metadata {
+  color: #737373;
+}
+/* line 117, ../sass/forum.scss */
+.post .post__author {
+  cursor: pointer;
+  font-weight: 600;
+}
+
+/* line 123, ../sass/forum.scss */
+.post-reply {
+  font-size: 24px;
+  position: relative;
+  top: 15px;
+  left: 5px;
+  font-color: #000000;
+  color: black;
+}
+
+/* line 132, ../sass/forum.scss */
+.post-title-on-page {
+  font-size: 40px;
+  position: relative;
+  font-color: #000000;
+  color: white;
+}
+
+/* line 139, ../sass/forum.scss */
+.post-title-on-page:hover {
+  color: black;
+}
+
+/* line 144, ../sass/forum.scss */
+.reply-input {
+  border: 1px solid #ccc !important;
+  border-radius: 16px 0px 0px 16px;
+  height: 72px;
+  width: 42%;
+  margin-left: 20%;
+  position: relative;
+  font-size: 24px;
+}
+
+/* line 154, ../sass/forum.scss */
+.submit-reply-input {
+  background: #00DB92;
+  color: white;
+  border: 1px solid;
+  border-color: #00DB92;
+  height: 78px;
+  border-radius: 0px 16px 16px 0px;
+  display: inline-block;
+  width: 13%;
+  font-size: 25px;
+  margin: 0px;
+  /* position: relative; */
+  /* top: 5px; */
+}
+
+/* line 170, ../sass/forum.scss */
+.ballot-box {
+  margin: 20px;
+  height: 60px;
+  width: 20px;
+  display: inline-block;
+}
+
+/* line 177, ../sass/forum.scss */
+.upvote-in-box {
+  height: 20px;
+  width: 30px;
+  margin: 0px;
+  display: inline-block;
+}
+
+/* line 185, ../sass/forum.scss */
+.downvote-in-box {
+  height: 20px;
+  width: 30px;
+  margin: 0px;
+  display: inline-block;
+}
+
+/* line 192, ../sass/forum.scss */
+.score-in-box {
+  font-size: 20px;
+  display: inline-block;
+  margin: 0px;
+  width: 30px;
+  text-align: center;
+}
+
+/* line 201, ../sass/forum.scss */
+.post-body-box {
+  background: #ccc;
+  color: black;
+  border: 1px solid;
+  border-color: #00DB92;
+  border-radius: 16px 16px 16px 16px;
+  min-height: 100px;
+  font-size: 20px;
+  margin: 0px;
+  padding: 10px;
+}
+
+/* line 213, ../sass/forum.scss */
+.poster-name {
+  position: relative;
+  top: 15px;
+  margin-left: 18%;
+  margin-top: 5px;
+  color: black;
+}
+
+/* line 218, ../sass/forum.scss */
+#reply-list li {
+  min-height: 40px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border: 1px solid #ccc !important;
+  border-radius: 16px !important;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  width: 55%;
+  margin-left: 20%;
+  background: #d1d0d2;
+}

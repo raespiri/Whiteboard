@@ -149,6 +149,9 @@ header {
 		li {
 			margin: 0 10px;
 			cursor: pointer;
+			a {
+				color: white;
+			}
 		}
 
 		.navigation__search {
@@ -167,8 +170,6 @@ header {
 				input {
 					height: 24px;
 					border-radius: 12px;
-					border-top-right-radius: 0;
-					border-bottom-right-radius: 0;
 					border: 1px solid transparent;
 					outline: none;
 					font-size: 0.8em;
@@ -181,20 +182,12 @@ header {
 				}
 
 				button {
-					background: $accentColor;
 					color: white;
-					border-top-right-radius: 12px;
-					border-bottom-right-radius: 12px;
 					padding: 0 10px;
-					padding-right: 13px;
 					height: 24px;
 					cursor: pointer;
 
 					transition: all $transitionTime ease-out;
-				}
-
-				button:hover, button:focus {
-					background: lighten($accentColor, 5%);
 				}
 			}
 		}
@@ -202,8 +195,8 @@ header {
 		.navigation__logout {
 			transition: all $transitionTime ease-out;
 			font-size: 1.3em;
-			color: $accentColor;
 			background: none;
+			color: white;
 			border: none;
 			outline: none;
 			cursor: pointer;

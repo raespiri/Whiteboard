@@ -521,9 +521,10 @@ html, body {
 .content-wrapper .content .cta-wrapper .cta-button--selected {
   background: #00DB92;
   color: white;
+  font-weight: 800;
   border-color: #00DB92;
 }
-/* line 146, ../sass/landingpage.scss */
+/* line 147, ../sass/landingpage.scss */
 .content-wrapper .content .cta-wrapper .cta-button--selected:hover, .content-wrapper .content .cta-wrapper .tab__button--selected:focus {
   background: #00f5a3;
   border-color: #00f5a3;

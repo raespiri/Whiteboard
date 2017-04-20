@@ -20,7 +20,7 @@
 	String courseName = sqlCon.getcoursename(classID);
 	int score = 0;
 	String userID = "";
-	String username = "";
+	String username = curUserName;
 
 	List<content.Post> replies=null;
 	if(request.getParameter("postID") != null){
@@ -101,16 +101,16 @@
 				<div class="post__body" ><%=body %></div>
 			</div>
 		</div>
-	
-		<div class="submit-container submit-container--single">
-			<div class="submit__input-wrapper">
-				<input type="hidden" id="title" value="reply"/>
-				<input type="text" id="body" class="submit__body-input" placeholder="Answer this question..."/>
+		
+		<%if(!curUserName.equals("guest")){%>
+			<div class="submit-container submit-container--single">
+				<div class="submit__input-wrapper">
+					<input type="hidden" id="title" value="reply"/>
+					<input type="text" id="body" class="submit__body-input" placeholder="Answer this question..."/>
+				</div>
+				<input type="submit" name="Reply" onclick="reply('<%=postID %>', '<%=curUserName %>')" class="submit__button"/>
 			</div>
-			<input type="submit" name="Reply" onclick="reply('<%=postID %>', '<%=curUserName %>')" class="submit__button"/>
-		</div>
-
-		<% 
+		<% }
 		if(replies != null){
 			for(content.Post reply : replies){ 
 				int replyScore = reply.getScore();

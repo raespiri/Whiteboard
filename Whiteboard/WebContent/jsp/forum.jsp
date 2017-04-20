@@ -99,16 +99,16 @@
 				</ul>
 			</div>
 		</section>
-		<%if(!username.equals("guest")){%>
 		<div class="content-wrapper">
-			<div class="submit-container">
-				<div class="submit__input-wrapper">
-					<input type="text" id="title" class="submit__title-input" placeholder="Ask a Question..."/>
-					<input type="text" id="body" class="submit__body-input"  placeholder="Provide some more detail (Optional)."/>
+			<%if(!username.equals("guest")){%>
+				<div class="submit-container">
+					<div class="submit__input-wrapper">
+						<input type="text" id="title" class="submit__title-input" placeholder="Ask a Question..."/>
+						<input type="text" id="body" class="submit__body-input"  placeholder="Provide some more detail (Optional)."/>
+					</div>
+					<input type="submit" name="submit" onclick="validate()" class="submit__button"/>
 				</div>
-				<input type="submit" name="submit" onclick="validate()" class="submit__button"/>
-			</div>
-			<div><div id="error" style="color:red; font-size: 12px;"></div></div>
+				<div id="error" style="color:red; font-size: 12px;"></div>
 			<% }
 			if(posts != null){
 				for(content.Post post : posts){ 

@@ -22,7 +22,8 @@
 		return;
 	} else {
 		username = curUser.getUsername();
-		curUser.getUserID();
+		System.out.println(username);
+		curUserID = curUser.getUserID();
 	}
 
 	
@@ -99,7 +100,7 @@
 			</div>
 		</section>
 		<%if(!username.equals("guest")){%>
-		<div id="post-list">
+		<div class="content-wrapper">
 			<div class="submit-container">
 				<div class="submit__input-wrapper">
 					<input type="text" id="title" class="submit__title-input" placeholder="Ask a Question..."/>
@@ -129,14 +130,10 @@
 					</div>
 					<div class="post__content-container">
 						<a href="forumPost.jsp?postID=<%=postID %>&classID=<%=classID %>" class="post__title"><%=title %></a>
-						<%if(sqlCon.isModerator(curUserID) || sqlCon.isAdmin(curUserID)
-								|| sqlCon.isTAForClass(curUserID, Integer.parseInt(request.getParameter("classID")))
-								|| sqlCon.isInstructorForClass(curUserID, Integer.parseInt(request.getParameter("classID"))))
-								
-						{ %>
-						<button id='delete' onclick="deletePost('<%=postID %>')" class='delete-button' style="float:right;">x</button><br>
-						<%} %>
 						<div class="post__metadata">submitted by <a class="post__author"><%=postUsername %></a></div>
+						<% if(sqlCon.isPrivileged(curUserID, request.getParameter("classID"))) { %>
+							<button class="post__delete-button" onclick="deletePost('<%=postID %>')">&times;</button>
+						<% } %>
 					</div>
 				</div>
 			<%} } %>

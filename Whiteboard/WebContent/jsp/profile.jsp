@@ -89,18 +89,18 @@
 						}
 					%>					
 			</div>
-			<div id="userActions">Actions:
+			<div id="userActions">
+					<div id = "Actionheader">Actions</div>
 					<%
 						SQLConnection sql2 = new SQLConnection();
 						sql2.connect();
 						ArrayList<Action> actions  = sql2.getUsersPosts(UserID);
 						for(int i = 0; i < actions.size(); i++) {
 					%>
-							<h3 id="post" >You posted a post with the title <%=actions.get(i).getPost()%> in <%=actions.get(i).getCourse()%>.</h3>
+							<div id="action"><h3 id="post" >You posted a post with the title "<%=actions.get(i).getPost()%>" in <%=actions.get(i).getCourse()%>.</h3></div>
 					<% 
 						}
-					%>				
-			
+					%>			
 			</div>
 			<h3> Friends:</h3>
 			<%

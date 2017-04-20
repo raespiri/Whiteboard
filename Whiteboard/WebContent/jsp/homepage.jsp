@@ -85,8 +85,8 @@
 
 									<%if (actiontype.equals("Post")) {%>
 										posted in
-										<div class="feed-element__coursename"><%=coursename %></div>
-										<div class="feed-element__title"><%=title %></div>
+										<span class="feed-element__coursename"><%=coursename %></span>
+										<!--<div class="feed-element__title"><%=title %></div>-->
 									<% } %>
 								</div>
 							<% } %>

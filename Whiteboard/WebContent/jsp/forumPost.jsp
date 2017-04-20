@@ -11,7 +11,8 @@
 		response.sendRedirect("error.jsp");
 		return;
 	}
-
+	String curUserName = curUser.getUsername();
+	String curUserID = curUser.getUserID();
 	SQLConnection sqlCon = new SQLConnection();
 	sqlCon.connect();
 	Post post = null;
@@ -73,69 +74,74 @@
 	<section class="tabs">
 		<div class="tabs__wrapper">
 			<h1><%= courseName %></h1>
-			<ul style = "position: relative: left:2%;" class="tabs__container">
-				<li><a href = "whiteboard.jsp?classID=<%=classID%>"><button class="tab__button">Whiteboard</button></a></li>
-				<li><a href = "forum.jsp?classID=<%=classID%>"><button class="tab__button tab__button--selected">Forum</button></a></li>
-				<li><a href = "documents.jsp?classID=<%=classID%>"><button class="tab__button">Docs</button></a></li>
+			<ul style="position: relative: left:2%;" class="tabs__container">
+				<li><a href="whiteboard.jsp?classID=<%=classID%>"><button class="tab__button">Whiteboard</button></a></li>
+				<li><a href="forum.jsp?classID=<%=classID%>"><button class="tab__button tab__button--selected">Forum</button></a></li>
+				<li><a href="documents.jsp?classID=<%=classID%>"><button class="tab__button">Docs</button></a></li>
 			</ul>
 		</div>
 	</section>
-	<ul style = "list-style: none;">
-		<li class="post-in-list" style="margin-top: 10px; background-color: #00DB92; min-height:200px; margin-bottom: 30px;">
-			<div class = "ballot-box">
-				<button class = "upvote-in-box" onclick = "upvote('<%=postID%>')">
-					<i class="fa fa-arrow-up" aria-hidden="true"></i>
+	<div class="content-wrapper">
+		<div class="post">
+			<div class="post__vote-container">
+				<button class="vote-arrow vote-arrow--upvote" onclick="upvote('<%=postID%>')">
+					<i class="fa fa-chevron-up" aria-hidden="true"></i>
 				</button>
-				<text id="score<%=postID %>" class = "score-in-box">
+				<text id="score<%=postID %>" class="score">
 					<%=score %>
 				</text>	
-				<button class = "downvote-in-box">
-					<i class="fa fa-arrow-down" aria-hidden="true" onclick = "downvote('<%=postID%>')"></i>
+				<button class="vote-arrow vote-arrow--downvote">
+					<i class="fa fa-chevron-down" aria-hidden="true" onclick="downvote('<%=postID%>')"></i>
 				</button>
 			</div>	
 			<img></img>
-			<a class = "post-title-on-page"><%=title%></a><br>
+			<div class="post__content-container">
+				<a class="post__title"><%=title%></a>
+				<div class="post__metadata">submitted by <a class="post__author"><%=postername %></a></div>
+				<div class="post__body" ><%=body %></div>
+			</div>
+		</div>
+	
+		<div class="submit-container submit-container--single">
+			<div class="submit__input-wrapper">
+				<input type="hidden" id="title" value="reply"/>
+				<input type="text" id="body" class="submit__body-input" placeholder="Answer this question..."/>
+			</div>
+			<input type="submit" name="Reply" onclick="reply('<%=postID %>', '<%=curUserName %>')" class="submit__button"/>
+		</div>
 
-			<a style = "color: black; margin-left: 20px;">posted by: <%=postername %></a>
-			<div class="post-body-box" ><%=body %></div>
-		</li>
-		<li><br></li>
-	<li>
-		<input type ="hidden" id = "title" class = "title-input" value = "reply"/>
-		<input type="text" id="body" class = "reply-input"  placeholder = "Reply to this Post."/>
-		<input type="submit" name="Reply" onclick="reply('<%=postID %>', '<%=username %>')" class = "submit-reply-input"/>
-	</li>
-	</ul>
-	<ul id = "reply-list">
-	<% 
-	if(replies != null){
-		for(content.Post reply : replies){ 
-			int replyScore = reply.getScore();
-			String replyTitle = reply.getTitle();
-			String replyBody = reply.getBody();
-			String replyPostID = reply.getContentID();
-			String replyUserID = reply.getUserID();
-			String replyUsername = sqlCon.getUsername(replyUserID);
-	%>
-	<li>
-		<%if(sqlCon.isModerator(userID) || sqlCon.isAdmin(userID)
-				|| sqlCon.isTAForClass(userID, Integer.parseInt(request.getParameter("classID")))
-				|| sqlCon.isInstructorForClass(userID, Integer.parseInt(request.getParameter("classID"))))
-		{ %>
-		<button id = 'delete' onclick = "deletePost('<%=replyPostID %>')" class = 'delete-button' style = "float:right;"><i class="icon-remove-sign">x</i></button><br>
-		<%} %>
-		<button class = "upvote" onclick = "upvote('<%=replyPostID%>')">
-			<i class="fa fa-arrow-up" aria-hidden="true"></i>
-		</button>
-		<button class = "downvote">
-			<i class="fa fa-arrow-down" aria-hidden="true" onclick = "downvote('<%=replyPostID%>')"></i>
-		</button>
-		<text id = "score<%=replyPostID%>" class = "score"> <%=replyScore %> </text>
-		<text class = "post-reply"><%=replyBody %></text><br>
-		<text class = 'poster-name'>posted by: <%=replyUsername %></text>
-	</li>
-	<%}} %>
-	</ul>
+		<% 
+		if(replies != null){
+			for(content.Post reply : replies){ 
+				int replyScore = reply.getScore();
+				String replyTitle = reply.getTitle();
+				String replyBody = reply.getBody();
+				String replyPostID = reply.getContentID();
+				String replyUserID = reply.getUserID();
+				String replyUsername = sqlCon.getUsername(replyUserID);
+		%>
+		<div class="post">
+			<div class="post__vote-container">
+				<button class="vote-arrow vote-arrow--upvote" onclick="upvote('<%=replyPostID%>')">
+					<i class="fa fa-chevron-up" aria-hidden="true"></i>
+				</button>
+				<text id="score<%=replyPostID%>" class="score"> <%=replyScore %> </text>
+				<button class="vote-arrow vote-arrow--downvote">
+					<i class="fa fa-chevron-down" aria-hidden="true" onclick="downvote('<%=replyPostID%>')"></i>
+				</button>
+			</div>
+			<div class="post__content-container">
+				<div class="post__metadata post__metadata--header"><a class="post__author"><%=replyUsername %></a></div>
+				<text class="post__body"><%=replyBody %></text>
+
+				<%if(sqlCon.isPrivileged(curUserID, request.getParameter("classID"))) { %>
+					<button class="post__delete-button" onclick="deletePost('<%=replyPostID %>')"><i class="icon-remove-sign">&times;</i></button>
+				<%} %>
+			</div>
+		</div>
+		<%}} %>
+
+	</div>
 	
 	<!-- Scripts -->
 	<script src="../js/forum.js" type="text/javascript"></script>

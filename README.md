@@ -1,3 +1,14 @@
+Description: 
+A web-based application which will serve as a virtual study room for students at USC. 
+The interface will allow students to network with each other for studying and will include 
+chat channels/rooms organized by specific class IDs and course subjects at USC. Students will 
+be able to upload notes and other materials for collaboration studying and search for users in 
+the same or similar classes. The use of chat channels for each class will encourage open 
+discussion between students by providing a more transient and casual environment for discussion 
+than Piazza or e-mail. Additionally, we will use location-based services and dynamic notifications 
+to facilitate real-world collaboration between students.
+
+
 Known bugs (Work-in-progress):
 - Friending is not fully functional
 - Post/Document sorting is not fully functional (This will be delineated in our tech specs)
@@ -7,9 +18,3 @@ Known bugs (Work-in-progress):
 - Homepage moderated course list does not update
 - Log out navigation button does not work for all pages
 - Active user session sometimes closes randomly and causes page exceptions
-
-Non-local connection link:
-- https://whiteboard.carbontechsoftware.com/Whiteboard/
-- Note this is hosted through Andrew's (awesomely janky) server setup so if you wish to access the hosted version please contact Andrew first so he can make sure it's up and running:
-  - chan489@usc.edu
-  - andrew@carbontechsoftware.com
